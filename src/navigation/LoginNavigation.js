@@ -1,20 +1,20 @@
 import React from 'react'
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
-import Home from '../views/Home'
+import Login from '../views/Login'
 
 const Stack = createStackNavigator()
 
-const UserNavigation = () => {
+const LoginNavigation = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen
-          name="Home"
-          component={ Home }
+          name="Login"
+          component={ Login }
         />
       </Stack.Navigator>
     </NavigationContainer>
   )
 }
-export default UserNavigation
+export default LoginNavigation

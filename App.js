@@ -1,16 +1,27 @@
-import React from 'react'
-import { View, Text } from 'react-native'
+import React, { useReducer } from 'react'
+import UserNavigation from './src/navigation/UserNavigation'
+import LoginNavigation from './src/navigation/LoginNavigation'
+import reducer from './src/store/Reducer'
+import { StoreProviderContext } from './src/store/StoreProvider'
 
-export default function App() {
+const value = {
+  type: '',
+}
+
+const App = () => {
+  const [store, dispatch] = useReducer(reducer, value)
+  const navigation = () => {
+    switch (store.type) {
+      case 'USER':
+        return <UserNavigation />
+      default:
+        return <LoginNavigation />
+    }
+  } 
   return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}
-    >
-      <Text>Universal React with Expo</Text>
-    </View>
+    <StoreProviderContext.Provider value={{ store, dispatch }}>
+      { navigation }
+    </StoreProviderContext.Provider>
   )
 }
+export default App
