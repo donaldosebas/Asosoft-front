@@ -2,7 +2,7 @@ import React, { useReducer } from 'react'
 import UserNavigation from './src/navigation/UserNavigation'
 import LoginNavigation from './src/navigation/LoginNavigation'
 import reducer from './src/store/Reducer'
-import { StoreProviderContext } from './src/store/StoreProvider'
+import StoreProviderContext from './src/store/StoreProvider'
 
 const value = {
   type: 'USER',

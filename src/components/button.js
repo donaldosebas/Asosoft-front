@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { StyleSheet, TouchableOpacity, Text } from 'react-native'
 
 const styles = StyleSheet.create({
@@ -14,6 +15,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
 })
+
 const Button = ({ navigation }) => {
   const press = () => {
     navigation.navigate('Sport', { name: 'Sport' })
@@ -27,4 +29,9 @@ const Button = ({ navigation }) => {
     </TouchableOpacity>
   )
 }
+
+Button.propTypes = {
+  navigation: PropTypes.shape({ navigate: PropTypes.func.isRequired }).isRequired,
+}
+
 export default Button

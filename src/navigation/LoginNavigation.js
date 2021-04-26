@@ -5,16 +5,15 @@ import Login from '../views/Login'
 
 const Stack = createStackNavigator()
 
-const LoginNavigation = () => {
-  return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen
-          name="Login"
-          component={ Login }
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
-  )
-}
+const LoginNavigation = () => (
+  <NavigationContainer>
+    <Stack.Navigator>
+      <Stack.Screen
+        name="Login"
+        component={Login}
+      />
+    </Stack.Navigator>
+  </NavigationContainer>
+)
+
 export default LoginNavigation

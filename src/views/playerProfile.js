@@ -8,6 +8,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 })
+
 const PlayerProfile = () => (
   <View style={styles.container}>
     <Text>Player Profile</Text>

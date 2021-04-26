@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { View, StyleSheet } from 'react-native'
 import Button from '../components/button'
 
@@ -13,4 +14,9 @@ const Home = ({ navigation }) => (
     <Button navigation={navigation} />
   </View>
 )
+
+Home.propTypes = {
+  navigation: PropTypes.shape({ navigate: PropTypes.func.isRequired }).isRequired,
+}
+
 export default Home
