@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   textBiography:{
-    backgroundColor:'yellow',
+    backgroundColor:'gray',
     borderRadius:5,
     padding:23,
     color:'white'
