@@ -3,6 +3,8 @@ import UserNavigation from './src/navigation/UserNavigation'
 import LoginNavigation from './src/navigation/LoginNavigation'
 import reducer from './src/store/Reducer'
 import StoreProviderContext from './src/store/StoreProvider'
+//trys
+import As from './src/components/asociacionHomeCard'
 
 const value = {
   type: 'USER',
@@ -13,7 +15,7 @@ const App = () => {
   const Navigation = () => {
     switch (store.type) {
       case 'USER':
-        return <UserNavigation />
+        return <As />
       default:
         return <LoginNavigation />
     }
