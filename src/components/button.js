@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
 
 const Button = ({ navigation }) => {
   const press = () => {
-    navigation.navigate('Player', { name: 'playerProfile' })
+    navigation.navigate('Tournament', { name: 'tournamentDescription' })
   }
   return (
     <TouchableOpacity
