@@ -5,29 +5,60 @@ import {
   Image,
   Text,
 } from 'react-native'
-import Icon from 'react-native-vector-icons/Ionicons'
+import IconIonic from 'react-native-vector-icons/Ionicons'
+import IconAnt from 'react-native-vector-icons/AntDesign'
+import NotificationIcon from '../customIcons/notificationIcon'
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 100,
     display: 'flex',
     flexDirection: 'row',
-    height: 300,
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    height: 260,
     width: '100%',
     padding: 10,
     borderBottomWidth: 2,
     borderBottomColor: 'grey',
-    backgroundColor: 'blue',
   },
   image: {
     width: '50%',
-    height: 280,
+    height: 240,
+    borderRadius: 10,
   },
   information: {
     display: 'flex',
     flexDirection: 'column',
-    height: 280,
+    justifyContent: 'space-evenly',
+    height: 240,
     width: '40%',
+  },
+  notificationsTitleContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+  },
+  title: {
+    fontSize: 30,
+  },
+  recentTitle: {
+    fontSize: 10,
+  },
+  notificationsTitle: {
+    fontSize: 20,
+    marginRight: 10,
+  },
+  notificationContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+  },
+  notificationIconActive: {
+    color: '#1B9CC4',
+    fontSize: 30,
+  },
+  notificationIconDeactive: {
+    color: 'grey',
+    fontSize: 30,
   },
 })
 
@@ -38,15 +69,36 @@ const AsociacionHomeCard = ({
   News,
   Advertisements,
   Results,
+  navigation,
 }) => (
   <View style={styles.container}>
     <Image
       style={styles.image}
-      source={{ uri: 'https://www.guatemala.com/fotos/2020/02/jd-morales.jpg' }}
+      source={{ uri: Photo }}
     />
     <View style={styles.information}>
-      <Icon name="ios-notifications-outline" size={30} />
+      <IconIonic
+        name="ios-notifications-outline"
+        style={isNotification ? styles.notificationIconActive : styles.notificationIconDeactive}
+      />
+      <Text style={styles.title}>{Sport}</Text>
+      <Text style={styles.recentTitle}>Reciente:</Text>
+      <View style={styles.notificationsTitleContainer}>
+        <View style={styles.notificationContainer}>
+          <Text style={styles.notificationsTitle}>Noticias</Text>
+          <NotificationIcon number={News} />
+        </View>
+        <View style={styles.notificationContainer}>
+          <Text style={styles.notificationsTitle}>Anuncios</Text>
+          <NotificationIcon number={Advertisements} />
+        </View>
+        <View style={styles.notificationContainer}>
+          <Text style={styles.notificationsTitle}>Resultados</Text>
+          <NotificationIcon number={Results} />
+        </View>
+      </View>
     </View>
+    <IconAnt name="right" size={30} />
   </View>
 )
 export default AsociacionHomeCard
