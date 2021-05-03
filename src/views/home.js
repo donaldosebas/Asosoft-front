@@ -6,6 +6,7 @@ import {
   FlatList,
 } from 'react-native'
 import AsociacionCard from '../components/asociacionHomeCard'
+import Boton from '../components/button'
 
 const data = [
   {
@@ -46,9 +47,11 @@ const Home = ({ navigation }) => (
           Advertisements={item.Advertisements}
           Results={item.Results}
         />
+
       )}
       keyExtractor={(item) => item.id}
     />
+    <Boton navigation={navigation} />
   </SafeAreaView>
 )
 
