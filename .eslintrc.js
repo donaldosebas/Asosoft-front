@@ -26,6 +26,7 @@ module.exports = {
   rules: {
     semi: ['error', 'never'],
     'react/jsx-filename-extension': 'off',
+    'linebreak-style': 'off',
   },
   settings: {
     react: {
