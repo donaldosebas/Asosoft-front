@@ -6,6 +6,7 @@ import Home from '../views/home'
 import Sport from '../views/Sport'
 import playerProfile from '../views/playerProfile'
 import tournamentDescription from '../views/tournamentDescription'
+import AssociationView from '../views/associationView'
 
 const Stack = createStackNavigator()
 
@@ -53,8 +54,13 @@ const UserNavigation = () => (
         name="Tournament"
         component={tournamentDescription}
       />
+      <Stack.Screen
+        name="Association"
+        component={AssociationView}
+      />
     </Stack.Navigator>
-    <UserNavigationDrawer />
+    { // <UserNavigationDrawer />
+    }
   </NavigationContainer>
 )
 export default UserNavigation
