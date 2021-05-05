@@ -6,10 +6,11 @@ import {
   FlatList,
 } from 'react-native'
 import AsociacionCard from '../components/asociacionHomeCard'
-import Boton from '../components/button'
+import NavigationButton from '../components/navigationButton'
 
 const data = [
   {
+    id: 1,
     Sport: 'SOFTBOL',
     Photo: 'https://www.guatemala.com/fotos/2020/02/jd-morales.jpg',
     isNotification: true,
@@ -18,6 +19,7 @@ const data = [
     Results: 10,
   },
   {
+    id: 2,
     Sport: 'BASKETBALL',
     Photo: 'https://www.usab.com/~/media/a06ee0b5e5b040afb696c2423f033c32.ashx?as=1&iar=1',
     isNotification: false,
@@ -49,9 +51,9 @@ const Home = ({ navigation }) => (
         />
 
       )}
-      keyExtractor={(item) => item.id}
+      keyExtractor={(item) => item.id.toString()}
     />
-    <Boton navigation={navigation} />
+    <NavigationButton content="Ir a torneo" navigation={navigation} screenName="Tournament" />
   </SafeAreaView>
 )
 

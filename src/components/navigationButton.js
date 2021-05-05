@@ -16,22 +16,24 @@ const styles = StyleSheet.create({
   },
 })
 
-const Button = ({ navigation }) => {
+const NavigationButton = ({ content, navigation, screenName }) => {
   const press = () => {
-    navigation.navigate('Tournament', { name: 'tournamentDescription' })
+    navigation.navigate(screenName)
   }
   return (
     <TouchableOpacity
       style={styles.container}
       onPress={press}
     >
-      <Text style={styles.text}>Ir a asociación</Text>
+      <Text style={styles.text}>{content}</Text>
     </TouchableOpacity>
   )
 }
 
-Button.propTypes = {
+NavigationButton.propTypes = {
+  content: PropTypes.string.isRequired,
   navigation: PropTypes.shape({ navigate: PropTypes.func.isRequired }).isRequired,
+  screenName: PropTypes.string.isRequired,
 }
 
-export default Button
+export default NavigationButton

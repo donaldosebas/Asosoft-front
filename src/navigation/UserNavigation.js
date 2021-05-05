@@ -6,6 +6,7 @@ import Home from '../views/home'
 import Sport from '../views/Sport'
 import playerProfile from '../views/playerProfile'
 import tournamentDescription from '../views/tournamentDescription'
+import AssociationView from '../views/associationView'
 
 const Stack = createStackNavigator()
 
@@ -23,6 +24,14 @@ const UserNavigationStack = () => (
       name="Player"
       component={playerProfile}
     />
+    <Stack.Screen
+      name="Tournament"
+      component={tournamentDescription}
+    />
+    <Stack.Screen
+      name="Association"
+      component={AssociationView}
+    />
   </Stack.Navigator>
 )
 
@@ -36,24 +45,6 @@ const UserNavigationDrawer = () => (
 
 const UserNavigation = () => (
   <NavigationContainer>
-    <Stack.Navigator>
-      <Stack.Screen
-        name="Home"
-        component={Home}
-      />
-      <Stack.Screen
-        name="Sport"
-        component={Sport}
-      />
-      <Stack.Screen
-        name="Player"
-        component={playerProfile}
-      />
-      <Stack.Screen
-        name="Tournament"
-        component={tournamentDescription}
-      />
-    </Stack.Navigator>
     <UserNavigationDrawer />
   </NavigationContainer>
 )
