@@ -1,35 +1,74 @@
-import React, { useState } from 'react'
-import { View, StyleSheet } from 'react-native'
-import { Picker } from '@react-native-picker/picker'
+import React from 'react'
+import { View, StyleSheet, Text } from 'react-native'
+import IconIonic from 'react-native-vector-icons/Ionicons'
+import {
+  Collapse, CollapseHeader, CollapseBody,
+} from 'accordion-collapse-react-native'
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: 40,
+    alignItems: 'flex-start',
+  },
+  title: {
+    fontSize: 15,
+    fontWeight: 'bold',
+  },
+  drop: {
+    flexDirection: 'row',
     alignItems: 'center',
+  },
+  arrow: {
+    fontSize: 15,
   },
 })
 
-const Dropdown = () => {
-  const [selectedValue, setSelectedValue] = useState('java')
-  return (
-    <View style={styles.container}>
-      <Picker
-        selectedValue={selectedValue}
-        style={{ height: 50, width: 300 }}
-      >
-        <Picker.Item label="¿Habrá parqueo?" value="java" />
-        <Picker.Item label="JavaScript" value="js" />
-      </Picker>
-      <Picker
-        selectedValue={selectedValue}
-        style={{ height: 50, width: 100 }}
-      >
-        <Picker.Item label="Java" value="java" />
-        <Picker.Item label="JavaScript" value="js" />
-      </Picker>
-    </View>
-  )
-}
+const Dropdown = () => (
+  <View style={styles.container}>
+    <Collapse>
+      <CollapseHeader>
+        <View style={styles.drop}>
+          <Text style={styles.title}>¿Cuantos boletos venderán?</Text>
+          <IconIonic
+            name="ios-arrow-down-outline"
+            style={styles.arrow}
+          />
+        </View>
+      </CollapseHeader>
+      <CollapseBody>
+        <Text>Aproximadamente 100 entradas</Text>
+      </CollapseBody>
+    </Collapse>
+    <Collapse>
+      <CollapseHeader>
+        <View style={styles.drop}>
+          <Text style={styles.title}>¿Habrá parqueo?</Text>
+          <IconIonic
+            name="ios-arrow-down-outline"
+            style={styles.arrow}
+          />
+        </View>
+      </CollapseHeader>
+      <CollapseBody>
+        <Text>Estimado usuario, sí contaremos con parqueo</Text>
+      </CollapseBody>
+    </Collapse>
+    <Collapse>
+      <CollapseHeader>
+        <View style={styles.drop}>
+          <Text style={styles.title}>¿Cuantos jugadores tendrá cada equipo?</Text>
+          <IconIonic
+            name="ios-arrow-down-outline"
+            style={styles.arrow}
+          />
+        </View>
+      </CollapseHeader>
+      <CollapseBody>
+        <Text>La cantidad de jugadores es de acuerdo al partido</Text>
+      </CollapseBody>
+    </Collapse>
+  </View>
+)
 
 export default Dropdown
