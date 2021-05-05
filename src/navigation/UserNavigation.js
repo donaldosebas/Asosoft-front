@@ -24,6 +24,14 @@ const UserNavigationStack = () => (
       name="Player"
       component={playerProfile}
     />
+    <Stack.Screen
+      name="Tournament"
+      component={tournamentDescription}
+    />
+    <Stack.Screen
+      name="Association"
+      component={AssociationView}
+    />
   </Stack.Navigator>
 )
 
@@ -37,30 +45,7 @@ const UserNavigationDrawer = () => (
 
 const UserNavigation = () => (
   <NavigationContainer>
-    <Stack.Navigator>
-      <Stack.Screen
-        name="Home"
-        component={Home}
-      />
-      <Stack.Screen
-        name="Sport"
-        component={Sport}
-      />
-      <Stack.Screen
-        name="Player"
-        component={playerProfile}
-      />
-      <Stack.Screen
-        name="Tournament"
-        component={tournamentDescription}
-      />
-      <Stack.Screen
-        name="Association"
-        component={AssociationView}
-      />
-    </Stack.Navigator>
-    { // <UserNavigationDrawer />
-    }
+    <UserNavigationDrawer />
   </NavigationContainer>
 )
 export default UserNavigation
