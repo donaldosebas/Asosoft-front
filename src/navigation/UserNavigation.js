@@ -7,6 +7,8 @@ import Sport from '../views/Sport'
 import playerProfile from '../views/playerProfile'
 import tournamentDescription from '../views/tournamentDescription'
 import AssociationView from '../views/associationView'
+import Matches from '../views/matches'
+import MatchDescription from '../views/matchDescription'
 
 const Stack = createStackNavigator()
 
@@ -25,12 +27,20 @@ const UserNavigationStack = () => (
       component={playerProfile}
     />
     <Stack.Screen
+      name="Association"
+      component={AssociationView}
+    />
+    <Stack.Screen
       name="Tournament"
       component={tournamentDescription}
     />
     <Stack.Screen
-      name="Association"
-      component={AssociationView}
+      name="Matches"
+      component={Matches}
+    />
+    <Stack.Screen
+      name="Match Description"
+      component={MatchDescription}
     />
   </Stack.Navigator>
 )
