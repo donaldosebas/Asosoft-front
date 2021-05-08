@@ -1,99 +1,224 @@
 import React from 'react'
 import {
-  View, Text, StyleSheet, SafeAreaView, ScrollView,
+  StyleSheet, View, Text, Image,
 } from 'react-native'
+import { FlatList, ScrollView } from 'react-native-gesture-handler'
+import PropTypes from 'prop-types'
+import { useNavigation } from '@react-navigation/core'
 import IconIonic from 'react-native-vector-icons/Ionicons'
-import TeamImage from '../components/teamVersus'
-import DateInformation from '../components/dateInfo'
-import Transmision from '../components/transimisionInfo'
-import Dropdown from '../components/dropdownQuestions'
+import IsSubscribed from '../components/isSubscribed'
+import { margin } from '../utils/stylesUtils'
+import TeamCircle from '../components/teamCircle'
+import Match from '../components/match'
 
 const styles = StyleSheet.create({
   container: {
-    margin: 10,
-    flex: 1,
-    justifyContent: 'flex-start',
   },
-  perfil: {
-    width: '80%',
-    height: 200,
-    borderRadius: 5,
-    justifyContent: 'center',
+  infoContainer: {
+    backgroundColor: 'white',
+    flexDirection: 'column',
+    alignItems: 'center',
+    paddingTop: 45,
+    paddingBottom: 15,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
   },
-  textBiography: {
-    backgroundColor: '#C4C4C4',
-    borderRadius: 5,
-    padding: 23,
-    color: 'black',
+  title: {
+    fontSize: 24,
+    fontWeight: 'bold',
   },
-  data: {
-    display: 'flex',
+  category: {
+    fontSize: 15,
+  },
+  image: {
+    width: '100%',
+    height: 100,
+    resizeMode: 'contain',
+  },
+  iconTextContainer: {
     flexDirection: 'row',
   },
-  faceicon: {
-    width: 55,
-    height: 55,
-    marginLeft: 15,
-  },
-  description: {
-    alignItems: 'flex-start',
-    fontWeight: 'bold',
-    fontSize: 24,
-    marginBottom: 10,
-  },
-  contact: {
-    fontWeight: 'bold',
-    marginTop: 30,
-    fontSize: 24,
-    marginBottom: 15,
-  },
-  icons: {
+  titleLinkContainer: {
     flexDirection: 'row',
-    justifyContent: 'center',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  sectionTitle: {
+    ...margin(20, 0, 10, 25),
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
+  linkAll: {
+    color: '#1B9CC4',
+    margin: 20,
+    top: 5,
+    fontWeight: 'bold',
+  },
+  notificationIcon: {
+    transform: [{ scale: 1.5 }],
+    margin: 5,
   },
   notificationIconActive: {
     color: '#1B9CC4',
-    fontSize: 30,
-    textAlign: 'center',
   },
   notificationIconDeactive: {
     color: 'grey',
-    fontSize: 30,
-    textAlign: 'center',
   },
 })
 
-const TournamentDescription = ({ isNotification = true }) => (
-  <SafeAreaView>
-    <ScrollView>
-      <View style={styles.container}>
-        <TeamImage />
-        <IconIonic
-          name="ios-notifications-outline"
-          style={isNotification ? styles.notificationIconActive : styles.notificationIconDeactive}
-        />
-        <Text style={styles.description}>Descripción</Text>
-        <Text style={styles.textBiography}>
-          Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-          Lorem Ipsum has been the industrys standard dummy text ever since the 1500s,
-          when an unknown printer took a galley of type and scrambled it to make a type
-          specimen book. It has survived not only five centuries, but also the leap
-          into electronic typesetting, remaining essentially unchanged.
-        </Text>
-        <DateInformation />
-        <Text style={styles.description}>Mas información</Text>
-        <Text style={styles.textBiography}>
-          Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-          Lorem Ipsum has been the industrys standard dummy text ever since the 1500s,
-          when an unknown printer took a galley of type and scrambled it to make a type
-          specimen book. It has survived not only five centuries, but also the leap
-          into electronic typesetting, remaining essentially unchanged.
-        </Text>
-        <Transmision />
-        <Dropdown />
-      </View>
-    </ScrollView>
-  </SafeAreaView>
+const TournamentDescription = ({ route }) => {
+  const { event } = route.params
+  const navigation = useNavigation()
 
-)
+  return (
+    <View style={styles.container}>
+      <IsSubscribed isSubscribed={event.isSubscribed} />
+      <ScrollView>
+        <View style={styles.infoContainer}>
+          <Text style={styles.title}>{event.title}</Text>
+          <Text style={styles.category}>{event.category}</Text>
+          <Image style={styles.image} source={{ uri: event.image }} />
+          <View style={styles.iconTextContainer}>
+            <IconIonic
+              name="pin"
+              style={{ margin: 5, color: '#1B9CC4' }}
+            />
+            <Text>{event.sede}</Text>
+          </View>
+          <View style={styles.iconTextContainer}>
+            <IconIonic
+              name="flag"
+              style={{ margin: 5, color: '#1B9CC4' }}
+            />
+            <Text>{`Jornada ${event.actualJourney} de ${event.totalJourneys}`}</Text>
+          </View>
+          <View style={styles.iconTextContainer}>
+            <IconIonic
+              name="calendar"
+              style={{ margin: 5, color: '#1B9CC4' }}
+            />
+            <Text>{`Del ${event.startDate} al ${event.endDate}`}</Text>
+          </View>
+        </View>
+        <Text style={styles.sectionTitle}>Equipos</Text>
+        <FlatList
+          data={event.teams}
+          horizontal
+          renderItem={({ item }) => (
+            <TeamCircle team={item} />
+          )}
+          keyExtractor={(team) => team.id.toString()}
+        />
+        {
+          (event.matches.filter((match) => (
+            Date.parse(`${match.date.split('-')[2]}-${match.date.split('-')[1]}-${match.date.split('-')[0]}`) > Date.now()
+          )).length !== 0)
+          && (
+            <>
+              <View style={styles.titleLinkContainer}>
+                <Text style={styles.sectionTitle}>Encuentros Futuros</Text>
+                <Text
+                  style={styles.linkAll}
+                  onPress={() => navigation.navigate('Matches', {
+                    matches: event.matches.filter((match) => (
+                      Date.parse(`${match.date.split('-')[2]}-${match.date.split('-')[1]}-${match.date.split('-')[0]}`) > Date.now()
+                    )),
+                  })}
+                >
+                  Ver todos
+                </Text>
+              </View>
+              <FlatList
+                data={event.matches.filter((match) => (
+                  Date.parse(`${match.date.split('-')[2]}-${match.date.split('-')[1]}-${match.date.split('-')[0]}`) > Date.now()
+                ))}
+                horizontal
+                renderItem={({ item }) => (
+                  <Match match={item} />
+                )}
+                keyExtractor={(item, index) => index.toString()}
+              />
+            </>
+          )
+        }
+        {
+          (event.matches.filter((match) => (
+            Date.parse(`${match.date.split('-')[2]}-${match.date.split('-')[1]}-${match.date.split('-')[0]}`) < Date.now()
+          )).length !== 0)
+          && (
+          <>
+            <View style={styles.titleLinkContainer}>
+              <Text style={styles.sectionTitle}>Resultados</Text>
+              <Text
+                style={styles.linkAll}
+                onPress={() => navigation.navigate('Matches', {
+                  matches: event.matches.filter((match) => (
+                    Date.parse(`${match.date.split('-')[2]}-${match.date.split('-')[1]}-${match.date.split('-')[0]}`) < Date.now()
+                  )),
+                })}
+              >
+                Ver todos
+              </Text>
+            </View>
+            <FlatList
+              data={event.matches.filter((match) => (
+                Date.parse(`${match.date.split('-')[2]}-${match.date.split('-')[1]}-${match.date.split('-')[0]}`) < Date.now()
+              ))}
+              horizontal
+              renderItem={({ item }) => (
+                <Match match={item} />
+              )}
+              keyExtractor={(item, index) => index.toString()}
+            />
+          </>
+          )
+        }
+      </ScrollView>
+    </View>
+  )
+}
+
+TournamentDescription.propTypes = {
+  route: PropTypes.shape({
+    params: PropTypes.shape({
+      event: PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        image: PropTypes.string.isRequired,
+        title: PropTypes.string.isRequired,
+        category: PropTypes.string.isRequired,
+        actualJourney: PropTypes.number,
+        totalJourneys: PropTypes.number,
+        sede: PropTypes.string,
+        winner: PropTypes.string,
+        startDate: PropTypes.string,
+        endDate: PropTypes.string,
+        isSubscribed: PropTypes.bool,
+        teams: PropTypes.arrayOf(PropTypes.shape({
+          id: PropTypes.number,
+          image: PropTypes.string,
+          title: PropTypes.string,
+          isSubscribed: PropTypes.bool,
+        })),
+        matches: PropTypes.arrayOf(PropTypes.shape({
+          id: PropTypes.number,
+          local: PropTypes.shape,
+          visit: PropTypes.shape,
+          localScore: PropTypes.number,
+          visitScore: PropTypes.number,
+          date: PropTypes.string,
+          time: PropTypes.string,
+          stadium: PropTypes.string,
+          price: PropTypes.string,
+        })),
+      }).isRequired,
+    }).isRequired,
+  }).isRequired,
+}
+
 export default TournamentDescription

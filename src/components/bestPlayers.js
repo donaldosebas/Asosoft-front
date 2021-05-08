@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: 250,
     height: 250,
-    borderRadius: 15,
+    borderRadius: 7,
     shadowColor: '#000',
     margin: 15,
     shadowOffset: {
@@ -26,8 +26,8 @@ const styles = StyleSheet.create({
     height: '75%',
     width: '100%',
     resizeMode: 'cover',
-    borderTopLeftRadius: 15,
-    borderTopRightRadius: 15,
+    borderTopLeftRadius: 7,
+    borderTopRightRadius: 7,
   },
   title: {
     fontSize: 18,

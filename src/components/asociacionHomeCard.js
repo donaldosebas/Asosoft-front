@@ -66,14 +66,17 @@ const styles = StyleSheet.create({
 const AsociacionHomeCard = ({
   Sport,
   Photo,
-  isNotification,
+  isSubscribed,
   News,
   Advertisements,
   Results,
   navigation,
 }) => (
   // TODO: Debe enviar el objeto completo de association en el navigate
-  <TouchableOpacity onPress={() => navigation.navigate('Association', { association: { isNotification: true } })}>
+  <TouchableOpacity onPress={() => navigation.navigate('Association', {
+    association: { isSubscribed }, // TODO: Y todos los demas parametros
+  })}
+  >
     <View style={styles.container}>
       <Image
         style={styles.image}
@@ -82,7 +85,7 @@ const AsociacionHomeCard = ({
       <View style={styles.information}>
         <IconIonic
           name="ios-notifications-outline"
-          style={isNotification ? styles.notificationIconActive : styles.notificationIconDeactive}
+          style={isSubscribed ? styles.notificationIconActive : styles.notificationIconDeactive}
         />
         <Text style={styles.title}>{Sport}</Text>
         <Text style={styles.recentTitle}>Reciente:</Text>
