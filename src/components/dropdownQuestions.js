@@ -31,7 +31,7 @@ const Dropdown = () => (
         <View style={styles.drop}>
           <Text style={styles.title}>¿Cuantos boletos venderán?</Text>
           <IconIonic
-            name="ios-arrow-down-outline"
+            name="chevron-down-outline"
             style={styles.arrow}
           />
         </View>
@@ -45,7 +45,7 @@ const Dropdown = () => (
         <View style={styles.drop}>
           <Text style={styles.title}>¿Habrá parqueo?</Text>
           <IconIonic
-            name="ios-arrow-down-outline"
+            name="chevron-down-outline"
             style={styles.arrow}
           />
         </View>
@@ -59,7 +59,7 @@ const Dropdown = () => (
         <View style={styles.drop}>
           <Text style={styles.title}>¿Cuantos jugadores tendrá cada equipo?</Text>
           <IconIonic
-            name="ios-arrow-down-outline"
+            name="chevron-down-outline"
             style={styles.arrow}
           />
         </View>

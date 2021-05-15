@@ -10,9 +10,10 @@ import Dropdown from '../components/dropdownQuestions'
 
 const styles = StyleSheet.create({
   container: {
-    margin: 10,
+    padding: 10,
     flex: 1,
     justifyContent: 'flex-start',
+    backgroundColor: 'white',
   },
   perfil: {
     width: '80%',
@@ -21,10 +22,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   textBiography: {
-    backgroundColor: '#C4C4C4',
+    backgroundColor: '#1B9CC4',
     borderRadius: 5,
     padding: 23,
-    color: 'black',
+    color: 'white',
   },
   data: {
     display: 'flex',

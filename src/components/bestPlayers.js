@@ -1,8 +1,9 @@
 import React from 'react'
 import {
-  StyleSheet, View, Text, Image,
+  StyleSheet, View, Text, Image, TouchableOpacity,
 } from 'react-native'
 import PropTypes from 'prop-types'
+import { useNavigation } from '@react-navigation/core'
 
 const styles = StyleSheet.create({
   container: {
@@ -25,7 +26,7 @@ const styles = StyleSheet.create({
     position: 'relative',
     height: '75%',
     width: '100%',
-    resizeMode: 'cover',
+    resizeMode: 'stretch',
     borderTopLeftRadius: 7,
     borderTopRightRadius: 7,
   },
@@ -36,13 +37,20 @@ const styles = StyleSheet.create({
   },
 })
 
-const BestPlayers = ({ player }) => (
-  <View style={styles.container}>
-    <Image style={styles.image} source={{ uri: player.image }} />
-    <Text style={styles.title}>{player.name}</Text>
-    <Text>{player.position}</Text>
-  </View>
-)
+const BestPlayers = ({ player }) => {
+  const navigation = useNavigation()
+  return (
+    <TouchableOpacity onPress={() => navigation.navigate('Player', {
+    })}
+    >
+      <View style={styles.container}>
+        <Image style={styles.image} source={{ uri: player.image }} />
+        <Text style={styles.title}>{player.name}</Text>
+        <Text>{player.position}</Text>
+      </View>
+    </TouchableOpacity>
+  )
+}
 
 BestPlayers.propTypes = {
   player: PropTypes.shape({

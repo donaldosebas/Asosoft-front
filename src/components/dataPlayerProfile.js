@@ -23,21 +23,25 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 24,
   },
+  games2: {
+    alignItems: 'center',
+    fontSize: 24,
+  },
 })
 
 const ProfileData = () => (
   <View style={styles.data}>
     <View style={styles.victory}>
       <Text style={styles.games}>Victorias</Text>
-      <Text style={styles.games}>35</Text>
+      <Text style={styles.games2}>35</Text>
     </View>
     <View style={styles.fail}>
       <Text style={styles.games}>Derrotas</Text>
-      <Text style={styles.games}>45</Text>
+      <Text style={styles.games2}>45</Text>
     </View>
     <View style={styles.games}>
       <Text style={styles.games}>Juegos</Text>
-      <Text style={styles.games}>47</Text>
+      <Text style={styles.games2}>47</Text>
     </View>
   </View>
 )

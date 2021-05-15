@@ -1,15 +1,17 @@
 import React from 'react'
 import {
-  View, Text, StyleSheet, Image,
+  View, Text, StyleSheet, ScrollView,
 } from 'react-native'
+import IconIonic from 'react-native-vector-icons/Ionicons'
 import ImageProfile from '../components/profileImagePlayer'
 import ProfileData from '../components/dataPlayerProfile'
 
 const styles = StyleSheet.create({
   container: {
-    margin: 10,
+    padding: 10,
     flex: 1,
     justifyContent: 'flex-start',
+    backgroundColor: 'white',
   },
   perfil: {
     width: '80%',
@@ -18,19 +20,23 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   textBiography: {
-    backgroundColor: '#C4C4C4',
+    backgroundColor: '#1B9CC4',
     borderRadius: 5,
     padding: 23,
-    color: 'black',
+    color: 'white',
+    textAlign: 'justify',
   },
   data: {
     display: 'flex',
     flexDirection: 'row',
   },
   faceicon: {
-    width: 55,
-    height: 55,
-    marginLeft: 15,
+    fontSize: 35,
+    color: 'white',
+    borderRadius: 15,
+    margin: 5,
+    padding: 4,
+    backgroundColor: '#1b9cc4',
   },
   biography: {
     alignItems: 'flex-start',
@@ -51,40 +57,32 @@ const styles = StyleSheet.create({
 })
 
 const PlayerProfile = () => (
-  <View style={styles.container}>
-    <ImageProfile />
-    <Text style={styles.biography}>Biografia</Text>
-    <Text style={styles.textBiography}>
-      Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-      Lorem Ipsum has been the industrys standard dummy text ever since the 1500s,
-      when an unknown printer took a galley of type and scrambled it to make a type
-      specimen book. It has survived not only five centuries, but also the leap
-      into electronic typesetting, remaining essentially unchanged.
-    </Text>
-    <ProfileData />
-    <Text style={styles.contact}>Contacto</Text>
-    <View style={styles.icons}>
-      <Image
-        style={styles.faceicon}
-        source={{
-          uri: 'https://cdn3.iconfinder.com/data/icons/picons-social/57/43-twitter-512.png',
-        }}
-      />
-      <Image
-        style={styles.faceicon}
-        source={{
-          uri: 'https://i.pinimg.com/originals/b7/63/69/b763699fd1fa3bfb374442593ae642e1.png',
-        }}
-      />
-      <Image
-        style={styles.faceicon}
-        source={{
-          uri: 'https://cdn1.iconfinder.com/data/icons/andriod-app-logo/32/icon_instagram-512.png',
-        }}
-      />
+  <ScrollView>
+    <View style={styles.container}>
+      <ImageProfile />
+      <Text style={styles.biography}>Biografia</Text>
+      <Text style={styles.textBiography}>
+        Fabián Esteban Vizcaíno Chinchilla nació en el año 1995 es un beisbolista guatemalteco,
+        que se desempeña como parador en corto.
+        Ha sido dos veces campeón de Centroamérica, subcampeón en una eliminatoria premundialista
+        y campeón de la Senior League Baseball World Series -competencia a nivel
+        americano para niños entre 13 y 16 años.
 
+        Actualmente, el jugador guatemalteco cursa una beca deportiva con la
+        Academia Tomás moreno en Florida, Estados Unidos, en busca de cumplir
+        sus metas de llegar a las Grandes Ligas de Béisbol de Estados Unidos.
+      </Text>
+      <ProfileData />
+      <Text style={styles.contact}>Contacto</Text>
+      <View style={styles.icons}>
+        <IconIonic name="logo-facebook" style={styles.faceicon} />
+        <IconIonic name="logo-instagram" style={styles.faceicon} />
+        <IconIonic name="logo-twitter" style={styles.faceicon} />
+        <IconIonic name="mail-outline" style={styles.faceicon} />
+
+      </View>
     </View>
-  </View>
+  </ScrollView>
 
 )
 export default PlayerProfile

@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, View, Image } from 'react-native'
+import { StyleSheet, View, ImageBackground } from 'react-native'
 
 const styles = StyleSheet.create({
   container: {
@@ -8,21 +8,24 @@ const styles = StyleSheet.create({
     height: 200,
     borderRadius: 5,
     alignItems: 'center',
+    backgroundColor: 'white',
   },
   perfil: {
+    flex: 1,
     width: '100%',
-    height: 200,
-    borderRadius: 5,
+    height: '100%',
   },
 })
 
 const ImageProfile = () => (
   <View style={styles.container}>
-    <Image
+    <ImageBackground
       style={styles.perfil}
+      resizeMode="stretch"
       source={{
-        uri: 'https://a2.espncdn.com/combiner/i?img=%2Fmedia%2Fmotion%2F2020%2F0725%2FHu_200725_Deportes_video_Javier_lemus_beibolista_Guatemala_alemania%2FHu_200725_Deportes_video_Javier_lemus_beibolista_Guatemala_alemania.jpg&w=640&h=360&format=jpg',
+        uri: 'https://www.soy502.com/sites/default/files/styles/escalar_image_inline/public/bib_4277.jpg',
       }}
+
     />
   </View>
 )
