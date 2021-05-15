@@ -1,7 +1,8 @@
 import React from 'react'
 import {
-  StyleSheet, View, Text, Image,
+  StyleSheet, View, Text,
 } from 'react-native'
+import IconIonic from 'react-native-vector-icons/Ionicons'
 
 const styles = StyleSheet.create({
   data: {
@@ -36,11 +37,15 @@ const styles = StyleSheet.create({
     fontSize: 24,
   },
   faceicon: {
-    width: 55,
-    height: 55,
+    fontSize: 45,
     marginLeft: 15,
+    backgroundColor: '#1B9CC4',
+    borderRadius: 15,
+    color: 'white',
+    padding: 5,
   },
   horarys: {
+    marginTop: 15,
     width: '100%',
     fontWeight: 'bold',
     display: 'flex',
@@ -56,18 +61,8 @@ const DateInfo = () => (
       <Text style={styles.info}>Transmision en vivo en: </Text>
     </View>
     <View style={styles.horarys}>
-      <Image
-        style={styles.faceicon}
-        source={{
-          uri: 'https://cdn3.iconfinder.com/data/icons/picons-social/57/43-twitter-512.png',
-        }}
-      />
-      <Image
-        style={styles.faceicon}
-        source={{
-          uri: 'https://i.pinimg.com/originals/b7/63/69/b763699fd1fa3bfb374442593ae642e1.png',
-        }}
-      />
+      <IconIonic name="logo-instagram" style={styles.faceicon} />
+      <IconIonic name="logo-facebook" style={styles.faceicon} />
     </View>
   </View>
 )

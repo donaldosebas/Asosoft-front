@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
 const notices = [
   {
     title: 'Noticia 1',
-    image: 'https://lh3.googleusercontent.com/proxy/xnlc6Yc6mM2Ap_ovzaEIwZ6d4FKOWPVmXCTTmcSCiOk7Nck5eSqzyCaB_HkNhoCJQrmY6ElrIaGVw7tiHmXp_JiIH3KYnPhh7mcuteMCPQlM1A7H_AJdGKl3',
+    image: 'https://www.asosoft.org/assets/images/website/masculino_6.jpg',
     preview: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s.',
   },
   {
@@ -334,8 +334,8 @@ const players = [
   {
     id: 1,
     position: '1st',
-    name: 'Juan Trejo',
-    image: 'https://www.asosoft.org/assets/images/website/masculino_1.jpg',
+    name: 'Esteban Vizcaíno',
+    image: 'https://i1.wp.com/antorchadeportiva.com/wp-content/uploads/2014/04/1340-2-Columbia-Blue-14.jpg?fit=250%2C360&ssl=1',
   },
 ]
 
