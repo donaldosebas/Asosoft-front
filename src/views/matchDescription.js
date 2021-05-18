@@ -102,23 +102,50 @@ const MatchDescription = ({ route }) => {
 MatchDescription.propTypes = {
   route: PropTypes.shape({
     params: PropTypes.shape({
+      event: PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        title: PropTypes.string.isRequired,
+        category: PropTypes.string.isRequired,
+      }),
       match: PropTypes.shape({
         local: PropTypes.shape({
           image: PropTypes.string,
           title: PropTypes.string,
           isSubscribed: PropTypes.bool,
+          players: PropTypes.arrayOf(PropTypes.shape({
+            number: PropTypes.number,
+            name: PropTypes.string,
+          })),
+          summary: PropTypes.arrayOf(PropTypes.shape({
+            title: PropTypes.string,
+            data: PropTypes.string,
+          })),
         }),
         visit: PropTypes.shape({
           image: PropTypes.string,
           title: PropTypes.string,
           isSubscribed: PropTypes.bool,
+          players: PropTypes.arrayOf(PropTypes.shape({
+            number: PropTypes.number,
+            name: PropTypes.string,
+          })),
+          summary: PropTypes.arrayOf(PropTypes.shape({
+            title: PropTypes.string,
+            data: PropTypes.string,
+          })),
         }),
         localScore: PropTypes.number,
         visitScore: PropTypes.number,
+        journey: PropTypes.number,
         date: PropTypes.string,
         time: PropTypes.string,
         stadium: PropTypes.string,
         price: PropTypes.string,
+        parking: PropTypes.string,
+        transmition: PropTypes.arrayOf(PropTypes.shape({
+          paltform: PropTypes.string,
+          link: PropTypes.string,
+        })),
       }).isRequired,
     }).isRequired,
   }).isRequired,

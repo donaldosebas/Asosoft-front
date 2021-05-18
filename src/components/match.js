@@ -40,17 +40,19 @@ const styles = StyleSheet.create({
   },
 })
 
-const Match = ({ match }) => {
+const Match = ({ match, event }) => {
   const navigation = useNavigation()
 
   return (
     <TouchableOpacity
       style={{ padding: 20, paddingTop: 5 }}
       onPress={() => navigation.navigate('Match Description', {
+        event,
         match,
       })}
     >
       <View style={styles.container}>
+        <Text>{`${event.title} - ${event.category} - Jornada: ${match.journey}`}</Text>
         <View style={styles.versusContainer}>
           <TeamCircle team={match.local} />
           <Text style={styles.result}>
@@ -68,6 +70,11 @@ const Match = ({ match }) => {
 }
 
 Match.propTypes = {
+  event: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    category: PropTypes.string.isRequired,
+  }).isRequired,
   match: PropTypes.shape({
     id: PropTypes.number,
     local: PropTypes.shape({
@@ -82,6 +89,7 @@ Match.propTypes = {
     }),
     localScore: PropTypes.number,
     visitScore: PropTypes.number,
+    journey: PropTypes.number,
     date: PropTypes.string,
     time: PropTypes.string,
     stadium: PropTypes.string,

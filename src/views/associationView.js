@@ -69,47 +69,263 @@ const actualEvents = [
     matches: [
       {
         id: 1,
-        local: teams[0],
-        visit: teams[1],
+        local: {
+          ...teams[0],
+          players: [
+            {
+              number: 5,
+              name: 'Oriol Zhu',
+            },
+            {
+              number: 12,
+              name: 'Arturo Puente',
+            },
+            {
+              number: 1,
+              name: 'Eduardo Chaves',
+            },
+            {
+              number: 1,
+              name: 'Melchor Serrano',
+            },
+            {
+              number: 1,
+              name: 'Gerard Perello',
+            },
+          ],
+          summary: [
+            {
+              title: 'Jugador del partido',
+              data: 'Eduardo Chaves',
+            },
+            {
+              title: 'Bateos',
+              data: '28',
+            },
+            {
+              title: 'Atrapadas',
+              data: '28',
+            },
+          ],
+        },
+        visit: {
+          ...teams[1],
+          players: [
+            {
+              number: 5,
+              name: 'Jose-Andres Viera',
+            },
+            {
+              number: 12,
+              name: 'Esteban Manrique',
+            },
+            {
+              number: 1,
+              name: 'Felipe Calle',
+            },
+            {
+              number: 1,
+              name: 'Christian Bernabe',
+            },
+            {
+              number: 1,
+              name: 'Eugenio Toledano',
+            },
+          ],
+          summary: [
+            {
+              title: 'Jugador del partido',
+              data: 'Esteban Manrique',
+            },
+            {
+              title: 'Bateos',
+              data: '28',
+            },
+            {
+              title: 'Atrapadas',
+              data: '28',
+            },
+          ],
+        },
         localScore: 13,
         visitScore: 5,
+        journey: 5,
         date: '07-01-2021',
         time: '14:00',
         stadium: 'Estadio X',
         price: 'Q25.00',
+        parking: 'Sí, gratis',
+        transmition: [
+          {
+            platform: 'instagram',
+            link: 'www.instagram.com',
+          },
+          {
+            platform: 'facebook',
+            link: 'www.facebook.com',
+          },
+        ],
       },
       {
         id: 2,
-        local: teams[0],
-        visit: teams[1],
+        local: {
+          ...teams[0],
+          players: [
+            {
+              number: 5,
+              name: 'Oriol Zhu',
+            },
+            {
+              number: 12,
+              name: 'Arturo Puente',
+            },
+            {
+              number: 1,
+              name: 'Eduardo Chaves',
+            },
+            {
+              number: 1,
+              name: 'Melchor Serrano',
+            },
+            {
+              number: 1,
+              name: 'Gerard Perello',
+            },
+          ],
+          summary: [
+            {
+              title: 'Jugador del partido',
+              data: 'Eduardo Chaves',
+            },
+            {
+              title: 'Bateos',
+              data: '28',
+            },
+            {
+              title: 'Atrapadas',
+              data: '28',
+            },
+          ],
+        },
+        visit: {
+          ...teams[1],
+          players: [
+            {
+              number: 5,
+              name: 'Jose-Andres Viera',
+            },
+            {
+              number: 12,
+              name: 'Esteban Manrique',
+            },
+            {
+              number: 1,
+              name: 'Felipe Calle',
+            },
+            {
+              number: 1,
+              name: 'Christian Bernabe',
+            },
+            {
+              number: 1,
+              name: 'Eugenio Toledano',
+            },
+          ],
+          summary: [
+            {
+              title: 'Jugador del partido',
+              data: 'Esteban Manrique',
+            },
+            {
+              title: 'Bateos',
+              data: '28',
+            },
+            {
+              title: 'Atrapadas',
+              data: '28',
+            },
+          ],
+        },
         localScore: 9,
         visitScore: 12,
+        journey: 5,
         date: '07-02-2021',
         time: '14:00',
         stadium: 'Estadio X',
         price: 'Q25.00',
+        parking: 'Sí, gratis',
+        transmition: [
+          {
+            platform: 'instagram',
+            link: 'www.instagram.com',
+          },
+          {
+            platform: 'facebook',
+            link: 'www.facebook.com',
+          },
+        ],
       },
       {
         id: 3,
-        local: teams[0],
-        visit: teams[1],
+        local: {
+          ...teams[0],
+          players: [],
+          summary: [],
+        },
+        visit: {
+          ...teams[1],
+          players: [],
+          summary: [],
+        },
         localScore: null,
         visitScore: null,
+        journey: 5,
         date: '07-09-2021',
         time: '14:00',
         stadium: 'Estadio X',
         price: 'Q25.00',
+        parking: 'Sí, gratis',
+        transmition: [
+          {
+            platform: 'instagram',
+            link: 'www.instagram.com',
+          },
+          {
+            platform: 'facebook',
+            link: 'www.facebook.com',
+          },
+        ],
       },
       {
         id: 4,
-        local: teams[0],
-        visit: teams[1],
+        local: {
+          ...teams[0],
+          players: [],
+          summary: [],
+        },
+        visit: {
+          ...teams[1],
+          players: [],
+          summary: [],
+        },
         localScore: null,
         visitScore: null,
+        journey: 5,
         date: '07-10-2021',
         time: '14:00',
         stadium: 'Estadio X',
         price: 'Q25.00',
+        parking: 'Sí, gratis',
+        transmition: [
+          {
+            platform: 'instagram',
+            link: 'www.instagram.com',
+          },
+          {
+            platform: 'facebook',
+            link: 'www.facebook.com',
+          },
+        ],
       },
     ],
   }, {
@@ -128,47 +344,297 @@ const actualEvents = [
     matches: [
       {
         id: 1,
-        local: teams[0],
-        visit: teams[1],
+        local: {
+          ...teams[0],
+          players: [
+            {
+              number: 5,
+              name: 'Oriol Zhu',
+            },
+            {
+              number: 12,
+              name: 'Arturo Puente',
+            },
+            {
+              number: 1,
+              name: 'Eduardo Chaves',
+            },
+            {
+              number: 1,
+              name: 'Melchor Serrano',
+            },
+            {
+              number: 1,
+              name: 'Gerard Perello',
+            },
+          ],
+          summary: [
+            {
+              title: 'Jugador del partido',
+              data: 'Eduardo Chaves',
+            },
+            {
+              title: 'Bateos',
+              data: '28',
+            },
+            {
+              title: 'Atrapadas',
+              data: '28',
+            },
+          ],
+        },
+        visit: {
+          ...teams[1],
+          players: [
+            {
+              number: 5,
+              name: 'Jose-Andres Viera',
+            },
+            {
+              number: 12,
+              name: 'Esteban Manrique',
+            },
+            {
+              number: 1,
+              name: 'Felipe Calle',
+            },
+            {
+              number: 1,
+              name: 'Christian Bernabe',
+            },
+            {
+              number: 1,
+              name: 'Eugenio Toledano',
+            },
+          ],
+          summary: [
+            {
+              title: 'Jugador del partido',
+              data: 'Esteban Manrique',
+            },
+            {
+              title: 'Bateos',
+              data: '28',
+            },
+            {
+              title: 'Atrapadas',
+              data: '28',
+            },
+          ],
+        },
         localScore: 13,
         visitScore: 5,
+        journey: 5,
         date: '07-01-2021',
         time: '14:00',
         stadium: 'Estadio X',
         price: 'Q25.00',
+        parking: 'Sí, gratis',
+        transmition: [
+          {
+            platform: 'instagram',
+            link: 'www.instagram.com',
+          },
+          {
+            platform: 'facebook',
+            link: 'www.facebook.com',
+          },
+        ],
       },
       {
         id: 2,
-        local: teams[0],
-        visit: teams[1],
+        local: {
+          ...teams[0],
+          players: [
+            {
+              number: 5,
+              name: 'Oriol Zhu',
+            },
+            {
+              number: 12,
+              name: 'Arturo Puente',
+            },
+            {
+              number: 1,
+              name: 'Eduardo Chaves',
+            },
+            {
+              number: 1,
+              name: 'Melchor Serrano',
+            },
+            {
+              number: 1,
+              name: 'Gerard Perello',
+            },
+          ],
+          summary: [
+            {
+              title: 'Jugador del partido',
+              data: 'Eduardo Chaves',
+            },
+            {
+              title: 'Bateos',
+              data: '28',
+            },
+            {
+              title: 'Atrapadas',
+              data: '28',
+            },
+          ],
+        },
+        visit: {
+          ...teams[1],
+          players: [
+            {
+              number: 5,
+              name: 'Jose-Andres Viera',
+            },
+            {
+              number: 12,
+              name: 'Esteban Manrique',
+            },
+            {
+              number: 1,
+              name: 'Felipe Calle',
+            },
+            {
+              number: 1,
+              name: 'Christian Bernabe',
+            },
+            {
+              number: 1,
+              name: 'Eugenio Toledano',
+            },
+          ],
+          summary: [
+            {
+              title: 'Jugador del partido',
+              data: 'Esteban Manrique',
+            },
+            {
+              title: 'Bateos',
+              data: '28',
+            },
+            {
+              title: 'Atrapadas',
+              data: '28',
+            },
+          ],
+        },
         localScore: 9,
         visitScore: 12,
+        journey: 5,
         date: '07-02-2021',
         time: '14:00',
         stadium: 'Estadio X',
         price: 'Q25.00',
+        parking: 'Sí, gratis',
+        transmition: [
+          {
+            platform: 'instagram',
+            link: 'www.instagram.com',
+          },
+          {
+            platform: 'facebook',
+            link: 'www.facebook.com',
+          },
+        ],
       },
       {
         id: 3,
-        local: teams[0],
-        visit: teams[1],
+        local: {
+          ...teams[0],
+          players: [
+            {
+              number: 5,
+              name: 'Oriol Zhu',
+            },
+            {
+              number: 12,
+              name: 'Arturo Puente',
+            },
+            {
+              number: 1,
+              name: 'Eduardo Chaves',
+            },
+            {
+              number: 1,
+              name: 'Melchor Serrano',
+            },
+            {
+              number: 1,
+              name: 'Gerard Perello',
+            },
+          ],
+          summary: [
+            {
+              title: 'Jugador del partido',
+              data: 'Eduardo Chaves',
+            },
+            {
+              title: 'Bateos',
+              data: '28',
+            },
+            {
+              title: 'Atrapadas',
+              data: '28',
+            },
+          ],
+        },
+        visit: {
+          ...teams[1],
+          players: [],
+          summary: [],
+        },
         localScore: null,
         visitScore: null,
+        journey: 5,
         date: '07-09-2021',
         time: '14:00',
         stadium: 'Estadio X',
         price: 'Q25.00',
+        parking: 'Sí, gratis',
+        transmition: [
+          {
+            platform: 'instagram',
+            link: 'www.instagram.com',
+          },
+          {
+            platform: 'facebook',
+            link: 'www.facebook.com',
+          },
+        ],
       },
       {
         id: 4,
-        local: teams[0],
-        visit: teams[1],
+        local: {
+          ...teams[0],
+          players: [],
+          summary: [],
+        },
+        visit: {
+          ...teams[1],
+          players: [],
+          summary: [],
+        },
         localScore: null,
         visitScore: null,
+        journey: 5,
         date: '07-10-2021',
         time: '14:00',
         stadium: 'Estadio X',
         price: 'Q25.00',
+        parking: 'Sí, gratis',
+        transmition: [
+          {
+            platform: 'instagram',
+            link: 'www.instagram.com',
+          },
+          {
+            platform: 'facebook',
+            link: 'www.facebook.com',
+          },
+        ],
       },
     ],
   },
@@ -191,25 +657,65 @@ const nextEvents = [
     matches: [
       {
         id: 1,
-        local: teams[0],
-        visit: teams[1],
+        local: {
+          ...teams[0],
+          players: [],
+          summary: [],
+        },
+        visit: {
+          ...teams[1],
+          players: [],
+          summary: [],
+        },
         localScore: null,
         visitScore: null,
+        journey: 5,
         date: '07-10-2021',
         time: '14:00',
         stadium: 'Estadio X',
         price: 'Q25.00',
+        parking: 'Sí, gratis',
+        transmition: [
+          {
+            platform: 'instagram',
+            link: 'www.instagram.com',
+          },
+          {
+            platform: 'facebook',
+            link: 'www.facebook.com',
+          },
+        ],
       },
       {
         id: 2,
-        local: teams[0],
-        visit: teams[1],
+        local: {
+          ...teams[0],
+          players: [],
+          summary: [],
+        },
+        visit: {
+          ...teams[1],
+          players: [],
+          summary: [],
+        },
         localScore: null,
         visitScore: null,
+        journey: 5,
         date: '07-11-2021',
         time: '14:00',
         stadium: 'Estadio X',
         price: 'Q25.00',
+        parking: 'Sí, gratis',
+        transmition: [
+          {
+            platform: 'instagram',
+            link: 'www.instagram.com',
+          },
+          {
+            platform: 'facebook',
+            link: 'www.facebook.com',
+          },
+        ],
       },
     ],
   }, {
@@ -228,25 +734,65 @@ const nextEvents = [
     matches: [
       {
         id: 1,
-        local: teams[0],
-        visit: teams[1],
+        local: {
+          ...teams[0],
+          players: [],
+          summary: [],
+        },
+        visit: {
+          ...teams[1],
+          players: [],
+          summary: [],
+        },
         localScore: null,
         visitScore: null,
+        journey: 5,
         date: '07-10-2021',
         time: '14:00',
         stadium: 'Estadio X',
         price: 'Q25.00',
+        parking: 'Sí, gratis',
+        transmition: [
+          {
+            platform: 'instagram',
+            link: 'www.instagram.com',
+          },
+          {
+            platform: 'facebook',
+            link: 'www.facebook.com',
+          },
+        ],
       },
       {
         id: 2,
-        local: teams[0],
-        visit: teams[1],
+        local: {
+          ...teams[0],
+          players: [],
+          summary: [],
+        },
+        visit: {
+          ...teams[1],
+          players: [],
+          summary: [],
+        },
         localScore: null,
         visitScore: null,
+        journey: 5,
         date: '07-11-2021',
         time: '14:00',
         stadium: 'Estadio X',
         price: 'Q25.00',
+        parking: 'Sí, gratis',
+        transmition: [
+          {
+            platform: 'instagram',
+            link: 'www.instagram.com',
+          },
+          {
+            platform: 'facebook',
+            link: 'www.facebook.com',
+          },
+        ],
       },
     ],
   },
@@ -269,25 +815,201 @@ const pastEvents = [
     matches: [
       {
         id: 1,
-        local: teams[0],
-        visit: teams[1],
+        local: {
+          ...teams[0],
+          players: [
+            {
+              number: 5,
+              name: 'Oriol Zhu',
+            },
+            {
+              number: 12,
+              name: 'Arturo Puente',
+            },
+            {
+              number: 1,
+              name: 'Eduardo Chaves',
+            },
+            {
+              number: 1,
+              name: 'Melchor Serrano',
+            },
+            {
+              number: 1,
+              name: 'Gerard Perello',
+            },
+          ],
+          summary: [
+            {
+              title: 'Jugador del partido',
+              data: 'Eduardo Chaves',
+            },
+            {
+              title: 'Bateos',
+              data: '28',
+            },
+            {
+              title: 'Atrapadas',
+              data: '28',
+            },
+          ],
+        },
+        visit: {
+          ...teams[1],
+          players: [
+            {
+              number: 5,
+              name: 'Jose-Andres Viera',
+            },
+            {
+              number: 12,
+              name: 'Esteban Manrique',
+            },
+            {
+              number: 1,
+              name: 'Felipe Calle',
+            },
+            {
+              number: 1,
+              name: 'Christian Bernabe',
+            },
+            {
+              number: 1,
+              name: 'Eugenio Toledano',
+            },
+          ],
+          summary: [
+            {
+              title: 'Jugador del partido',
+              data: 'Esteban Manrique',
+            },
+            {
+              title: 'Bateos',
+              data: '28',
+            },
+            {
+              title: 'Atrapadas',
+              data: '28',
+            },
+          ],
+        },
         localScore: 15,
         visitScore: 13,
+        journey: 5,
         date: '07-10-2020',
         time: '14:00',
         stadium: 'Estadio X',
         price: 'Q25.00',
+        parking: 'Sí, gratis',
+        transmition: [
+          {
+            platform: 'instagram',
+            link: 'www.instagram.com',
+          },
+          {
+            platform: 'facebook',
+            link: 'www.facebook.com',
+          },
+        ],
       },
       {
         id: 2,
-        local: teams[0],
-        visit: teams[1],
+        local: {
+          ...teams[0],
+          players: [
+            {
+              number: 5,
+              name: 'Oriol Zhu',
+            },
+            {
+              number: 12,
+              name: 'Arturo Puente',
+            },
+            {
+              number: 1,
+              name: 'Eduardo Chaves',
+            },
+            {
+              number: 1,
+              name: 'Melchor Serrano',
+            },
+            {
+              number: 1,
+              name: 'Gerard Perello',
+            },
+          ],
+          summary: [
+            {
+              title: 'Jugador del partido',
+              data: 'Eduardo Chaves',
+            },
+            {
+              title: 'Bateos',
+              data: '28',
+            },
+            {
+              title: 'Atrapadas',
+              data: '28',
+            },
+          ],
+        },
+        visit: {
+          ...teams[1],
+          players: [
+            {
+              number: 5,
+              name: 'Jose-Andres Viera',
+            },
+            {
+              number: 12,
+              name: 'Esteban Manrique',
+            },
+            {
+              number: 1,
+              name: 'Felipe Calle',
+            },
+            {
+              number: 1,
+              name: 'Christian Bernabe',
+            },
+            {
+              number: 1,
+              name: 'Eugenio Toledano',
+            },
+          ],
+          summary: [
+            {
+              title: 'Jugador del partido',
+              data: 'Esteban Manrique',
+            },
+            {
+              title: 'Bateos',
+              data: '28',
+            },
+            {
+              title: 'Atrapadas',
+              data: '28',
+            },
+          ],
+        },
         localScore: 19,
         visitScore: 8,
+        journey: 5,
         date: '07-11-2020',
         time: '14:00',
         stadium: 'Estadio X',
         price: 'Q25.00',
+        parking: 'Sí, gratis',
+        transmition: [
+          {
+            platform: 'instagram',
+            link: 'www.instagram.com',
+          },
+          {
+            platform: 'facebook',
+            link: 'www.facebook.com',
+          },
+        ],
       },
     ],
   }, {
@@ -306,25 +1028,201 @@ const pastEvents = [
     matches: [
       {
         id: 1,
-        local: teams[0],
-        visit: teams[1],
+        local: {
+          ...teams[0],
+          players: [
+            {
+              number: 5,
+              name: 'Oriol Zhu',
+            },
+            {
+              number: 12,
+              name: 'Arturo Puente',
+            },
+            {
+              number: 1,
+              name: 'Eduardo Chaves',
+            },
+            {
+              number: 1,
+              name: 'Melchor Serrano',
+            },
+            {
+              number: 1,
+              name: 'Gerard Perello',
+            },
+          ],
+          summary: [
+            {
+              title: 'Jugador del partido',
+              data: 'Eduardo Chaves',
+            },
+            {
+              title: 'Bateos',
+              data: '28',
+            },
+            {
+              title: 'Atrapadas',
+              data: '28',
+            },
+          ],
+        },
+        visit: {
+          ...teams[1],
+          players: [
+            {
+              number: 5,
+              name: 'Jose-Andres Viera',
+            },
+            {
+              number: 12,
+              name: 'Esteban Manrique',
+            },
+            {
+              number: 1,
+              name: 'Felipe Calle',
+            },
+            {
+              number: 1,
+              name: 'Christian Bernabe',
+            },
+            {
+              number: 1,
+              name: 'Eugenio Toledano',
+            },
+          ],
+          summary: [
+            {
+              title: 'Jugador del partido',
+              data: 'Esteban Manrique',
+            },
+            {
+              title: 'Bateos',
+              data: '28',
+            },
+            {
+              title: 'Atrapadas',
+              data: '28',
+            },
+          ],
+        },
         localScore: 12,
         visitScore: 13,
+        journey: 5,
         date: '07-10-2020',
         time: '14:00',
         stadium: 'Estadio X',
         price: 'Q25.00',
+        parking: 'Sí, gratis',
+        transmition: [
+          {
+            platform: 'instagram',
+            link: 'www.instagram.com',
+          },
+          {
+            platform: 'facebook',
+            link: 'www.facebook.com',
+          },
+        ],
       },
       {
         id: 2,
-        local: teams[0],
-        visit: teams[1],
+        local: {
+          ...teams[0],
+          players: [
+            {
+              number: 5,
+              name: 'Oriol Zhu',
+            },
+            {
+              number: 12,
+              name: 'Arturo Puente',
+            },
+            {
+              number: 1,
+              name: 'Eduardo Chaves',
+            },
+            {
+              number: 1,
+              name: 'Melchor Serrano',
+            },
+            {
+              number: 1,
+              name: 'Gerard Perello',
+            },
+          ],
+          summary: [
+            {
+              title: 'Jugador del partido',
+              data: 'Eduardo Chaves',
+            },
+            {
+              title: 'Bateos',
+              data: '28',
+            },
+            {
+              title: 'Atrapadas',
+              data: '28',
+            },
+          ],
+        },
+        visit: {
+          ...teams[1],
+          players: [
+            {
+              number: 5,
+              name: 'Jose-Andres Viera',
+            },
+            {
+              number: 12,
+              name: 'Esteban Manrique',
+            },
+            {
+              number: 1,
+              name: 'Felipe Calle',
+            },
+            {
+              number: 1,
+              name: 'Christian Bernabe',
+            },
+            {
+              number: 1,
+              name: 'Eugenio Toledano',
+            },
+          ],
+          summary: [
+            {
+              title: 'Jugador del partido',
+              data: 'Esteban Manrique',
+            },
+            {
+              title: 'Bateos',
+              data: '28',
+            },
+            {
+              title: 'Atrapadas',
+              data: '28',
+            },
+          ],
+        },
         localScore: 11,
         visitScore: 18,
+        journey: 5,
         date: '07-11-2020',
         time: '14:00',
         stadium: 'Estadio X',
         price: 'Q25.00',
+        parking: 'Sí, gratis',
+        transmition: [
+          {
+            platform: 'instagram',
+            link: 'www.instagram.com',
+          },
+          {
+            platform: 'facebook',
+            link: 'www.facebook.com',
+          },
+        ],
       },
     ],
   },
