@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
     ...padding(5, 10, 5, 10),
   },
   continue: {
-    color: 'blue',
+    color: '#1B9CC4',
   },
   gradient: {
     position: 'absolute',
@@ -47,7 +47,7 @@ const NewsCard = ({ notice }) => (
     </LinearGradient>
     <Text style={styles.preview}>
       {notice.preview}
-      <Text style={styles.continue}> ...Leer mas</Text>
+      <Text style={styles.continue}> ...Leer más</Text>
     </Text>
   </View>
 )

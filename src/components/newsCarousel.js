@@ -12,6 +12,14 @@ const { width } = Dimensions.get('screen')
 const styles = StyleSheet.create({
   container: {
     backgroundColor: 'white',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
   },
 })
 
@@ -35,21 +43,23 @@ const NewsCarousel = ({ data }) => {
   }, [])
 
   return (
-    <FlatList
-      ref={flatList}
-      data={data}
-      horizontal
-      pagingEnabled
-      scrollEnabled
-      onViewableItemsChanged={onViewRef.current}
-      viewabilityConfig={viewConfigRef.current}
-      renderItem={({ item }) => (
-        <View style={[styles.container, { width }]}>
-          <NewsCard notice={item} />
-        </View>
-      )}
-      keyExtractor={(item, index) => index.toString()}
-    />
+    <View style={styles.container}>
+      <FlatList
+        ref={flatList}
+        data={data}
+        horizontal
+        pagingEnabled
+        scrollEnabled
+        onViewableItemsChanged={onViewRef.current}
+        viewabilityConfig={viewConfigRef.current}
+        renderItem={({ item }) => (
+          <View style={{ width }}>
+            <NewsCard notice={item} />
+          </View>
+        )}
+        keyExtractor={(item, index) => index.toString()}
+      />
+    </View>
   )
 }
 
