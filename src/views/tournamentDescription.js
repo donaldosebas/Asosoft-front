@@ -126,6 +126,7 @@ const TournamentDescription = ({ route }) => {
                 <Text
                   style={styles.linkAll}
                   onPress={() => navigation.navigate('Matches', {
+                    event,
                     matches: event.matches.filter((match) => (
                       Date.parse(`${match.date.split('-')[2]}-${match.date.split('-')[1]}-${match.date.split('-')[0]}`) > Date.now()
                     )),
@@ -140,7 +141,7 @@ const TournamentDescription = ({ route }) => {
                 ))}
                 horizontal
                 renderItem={({ item }) => (
-                  <Match match={item} />
+                  <Match match={item} event={event} />
                 )}
                 keyExtractor={(item, index) => index.toString()}
               />
@@ -158,6 +159,7 @@ const TournamentDescription = ({ route }) => {
               <Text
                 style={styles.linkAll}
                 onPress={() => navigation.navigate('Matches', {
+                  event,
                   matches: event.matches.filter((match) => (
                     Date.parse(`${match.date.split('-')[2]}-${match.date.split('-')[1]}-${match.date.split('-')[0]}`) < Date.now()
                   )),
@@ -172,7 +174,7 @@ const TournamentDescription = ({ route }) => {
               ))}
               horizontal
               renderItem={({ item }) => (
-                <Match match={item} />
+                <Match match={item} event={event} />
               )}
               keyExtractor={(item, index) => index.toString()}
             />
@@ -211,6 +213,7 @@ TournamentDescription.propTypes = {
           visit: PropTypes.shape,
           localScore: PropTypes.number,
           visitScore: PropTypes.number,
+          journey: PropTypes.number,
           date: PropTypes.string,
           time: PropTypes.string,
           stadium: PropTypes.string,

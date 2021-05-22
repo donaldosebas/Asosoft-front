@@ -1,20 +1,23 @@
 import React from 'react'
 import {
-  StyleSheet, View, Text, Image,
+  StyleSheet, View, Text, Image, Pressable,
 } from 'react-native'
 import PropTypes from 'prop-types'
 import IconIonic from 'react-native-vector-icons/Ionicons'
-import { TouchableOpacity } from 'react-native-gesture-handler'
 import { useNavigation } from '@react-navigation/core'
 
 const styles = StyleSheet.create({
   container: {
+    padding: 15,
+  },
+  contentContainer: {
     backgroundColor: 'white',
     alignItems: 'center',
-    borderRadius: 7,
     width: 250,
     height: 250,
-    margin: 15,
+    borderRadius: 7,
+  },
+  notPressed: {
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
@@ -23,6 +26,16 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
     elevation: 5,
+  },
+  pressed: {
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.18,
+    shadowRadius: 1,
+    elevation: 1,
   },
   image: {
     height: 80,
@@ -56,11 +69,16 @@ const EventCard = ({ event }) => {
   const local = 'Guatemala'
 
   return (
-    <TouchableOpacity onPress={() => navigation.navigate('Tournament', {
-      event,
-    })}
-    >
-      <View style={styles.container}>
+    <View style={styles.container}>
+      <Pressable
+        style={({ pressed }) => [
+          (pressed) ? styles.pressed : styles.notPressed,
+          styles.contentContainer,
+        ]}
+        onPress={() => navigation.navigate('Tournament', {
+          event,
+        })}
+      >
         <IconIonic
           name="ios-notifications-outline"
           style={[
@@ -136,8 +154,8 @@ const EventCard = ({ event }) => {
             </View>
           </>
         )}
-      </View>
-    </TouchableOpacity>
+      </Pressable>
+    </View>
   )
 }
 

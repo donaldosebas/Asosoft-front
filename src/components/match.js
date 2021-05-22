@@ -1,9 +1,8 @@
 import { useNavigation } from '@react-navigation/core'
 import React from 'react'
 import {
-  StyleSheet, View, Text, Dimensions,
+  StyleSheet, View, Text, Dimensions, Pressable,
 } from 'react-native'
-import { TouchableOpacity } from 'react-native-gesture-handler'
 import PropTypes from 'prop-types'
 import TeamCircle from './teamCircle'
 
@@ -11,12 +10,18 @@ const { width } = Dimensions.get('screen')
 
 const styles = StyleSheet.create({
   container: {
+    marginTop: 5,
+    margin: 20,
+  },
+  contentContainer: {
     width: width - 40,
     backgroundColor: 'white',
     flexDirection: 'column',
     alignItems: 'center',
     padding: 10,
     borderRadius: 7,
+  },
+  notPressed: {
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
@@ -26,31 +31,46 @@ const styles = StyleSheet.create({
     shadowRadius: 3.84,
     elevation: 5,
   },
+  pressed: {
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.18,
+    shadowRadius: 1,
+    elevation: 1,
+  },
   versusContainer: {
     width: '100%',
     justifyContent: 'space-around',
     flexDirection: 'row',
-    alignItems: 'center',
   },
   result: {
     textAlign: 'center',
     fontSize: 20,
     fontWeight: 'bold',
+    marginTop: 35,
     margin: 10,
   },
 })
 
-const Match = ({ match }) => {
+const Match = ({ match, event }) => {
   const navigation = useNavigation()
 
   return (
-    <TouchableOpacity
-      style={{ padding: 20, paddingTop: 5 }}
-      onPress={() => navigation.navigate('Match Description', {
-        match,
-      })}
-    >
-      <View style={styles.container}>
+    <View style={styles.container}>
+      <Pressable
+        style={({ pressed }) => [
+          (pressed) ? styles.pressed : styles.notPressed,
+          styles.contentContainer,
+        ]}
+        onPress={() => navigation.navigate('Match Description', {
+          event,
+          match,
+        })}
+      >
+        <Text>{`${event.title} - ${event.category} - Jornada: ${match.journey}`}</Text>
         <View style={styles.versusContainer}>
           <TeamCircle team={match.local} />
           <Text style={styles.result}>
@@ -62,12 +82,17 @@ const Match = ({ match }) => {
         </View>
         <Text>{match.date}</Text>
         <Text>{match.time}</Text>
-      </View>
-    </TouchableOpacity>
+      </Pressable>
+    </View>
   )
 }
 
 Match.propTypes = {
+  event: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    category: PropTypes.string.isRequired,
+  }).isRequired,
   match: PropTypes.shape({
     id: PropTypes.number,
     local: PropTypes.shape({
@@ -82,6 +107,7 @@ Match.propTypes = {
     }),
     localScore: PropTypes.number,
     visitScore: PropTypes.number,
+    journey: PropTypes.number,
     date: PropTypes.string,
     time: PropTypes.string,
     stadium: PropTypes.string,

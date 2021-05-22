@@ -1,98 +1,162 @@
 import React from 'react'
 import {
-  View, Text, StyleSheet, SafeAreaView, ScrollView,
+  View, StyleSheet, SafeAreaView, ScrollView, Text,
 } from 'react-native'
 import PropTypes from 'prop-types'
-import TeamImage from '../components/teamVersus'
-import DateInformation from '../components/dateInfo'
-import Transmision from '../components/transimisionInfo'
-import Dropdown from '../components/dropdownQuestions'
+import TeamVersusHeader from '../components/teamVersus'
+import TransmissionInfo from '../components/transmissionInfo'
+import MatchInfo from '../components/matchInfo'
+import TeamsShowdown from '../components/teamsShowdown'
 
 const styles = StyleSheet.create({
   container: {
-    padding: 10,
-    flex: 1,
+  },
+})
+
+const playerStyles = StyleSheet.create({
+  containerLeft: {
+    flexDirection: 'row',
     justifyContent: 'flex-start',
-    backgroundColor: 'white',
   },
-  perfil: {
-    width: '80%',
-    height: 200,
-    borderRadius: 5,
-    justifyContent: 'center',
+  containerRight: {
+    flexDirection: 'row-reverse',
+    justifyContent: 'flex-start',
   },
-  textBiography: {
-    backgroundColor: '#1B9CC4',
-    borderRadius: 5,
-    padding: 23,
-    color: 'white',
+  number: {
+    width: 30,
+    textAlign: 'center',
+    fontSize: 15,
+    fontWeight: 'bold',
+    color: '#1B9CC4',
+  },
+})
+
+const summaryStyles = StyleSheet.create({
+  containerLeft: {
+    flexDirection: 'column',
+    alignItems: 'flex-start',
+  },
+  containerRight: {
+    flexDirection: 'column',
+    alignItems: 'flex-end',
+  },
+  title: {
+    textAlign: 'center',
+    fontSize: 15,
   },
   data: {
-    display: 'flex',
-    flexDirection: 'row',
-  },
-  faceicon: {
-    width: 55,
-    height: 55,
-    marginLeft: 15,
-  },
-  description: {
-    alignItems: 'flex-start',
-    fontWeight: 'bold',
-    fontSize: 24,
-    marginBottom: 10,
-  },
-  contact: {
-    fontWeight: 'bold',
-    marginTop: 30,
-    fontSize: 24,
-    marginBottom: 15,
-  },
-  icons: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-  },
-  notificationIconActive: {
+    textAlign: 'center',
+    fontSize: 14,
+    marginBottom: 5,
     color: '#1B9CC4',
-    fontSize: 30,
-    textAlign: 'center',
-  },
-  notificationIconDeactive: {
-    color: 'grey',
-    fontSize: 30,
-    textAlign: 'center',
   },
 })
 
 const MatchDescription = ({ route }) => {
-  // TODO: quitar deshabilitacion de linea al usar la constante
-  // eslint-disable-next-line no-unused-vars
   const { match } = route.params
+  const { event } = route.params
+
+  const Player = ({ number, name, side }) => (
+    <View style={(side === 'left') ? playerStyles.containerLeft : playerStyles.containerRight}>
+      <Text style={playerStyles.number}>{number}</Text>
+      <Text>{name}</Text>
+    </View>
+  )
+
+  Player.propTypes = {
+    number: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    side: PropTypes.string.isRequired,
+  }
+
+  const TeamSummary = ({ title, data, side }) => (
+    <View style={(side === 'left') ? summaryStyles.containerLeft : summaryStyles.containerRight}>
+      <Text style={summaryStyles.title}>{title}</Text>
+      <Text style={summaryStyles.data}>{data}</Text>
+    </View>
+  )
+
+  TeamSummary.propTypes = {
+    title: PropTypes.string.isRequired,
+    data: PropTypes.string.isRequired,
+    side: PropTypes.string.isRequired,
+  }
 
   return (
     <SafeAreaView>
       <ScrollView>
         <View style={styles.container}>
-          <TeamImage />
-          <Text style={styles.description}>Descripción</Text>
-          <Text style={styles.textBiography}>
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-            Lorem Ipsum has been the industrys standard dummy text ever since the 1500s,
-            when an unknown printer took a galley of type and scrambled it to make a type
-            specimen book. It has survived not only five centuries, but also the leap
-            into electronic typesetting, remaining essentially unchanged.
-          </Text>
-          <DateInformation />
-          <Text style={styles.description}>Mas información</Text>
-          <Text style={styles.textBiography}>
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-            Lorem Ipsum has been the industrys standard dummy text ever since the 1500s,
-            when an unknown printer took a galley of type and scrambled it to make a type
-            specimen book. It has survived not only five centuries, but also the leap
-            into electronic typesetting, remaining essentially unchanged.
-          </Text>
-          <Transmision />
-          <Dropdown />
+          <TeamVersusHeader
+            eventLabel={`${event.title} - ${event.category} - Jornada: ${match.journey}`}
+            match={match}
+          />
+          <MatchInfo match={match} showExtraInfo={match.localScore === null} />
+          {
+            (match.localScore === null)
+              ? (
+                <TransmissionInfo transmissions={match.transmissions} />
+              )
+              : (
+                <>
+                  <TeamsShowdown
+                    title="Jugadores"
+                    localTitle={match.local.title}
+                    localData={(
+                      <View>
+                        {
+                          match.local.players.map((player) => (
+                            <Player
+                              key={player.number.toString()}
+                              number={player.number.toString()}
+                              name={player.name}
+                              side="left"
+                            />
+                          ))
+                        }
+                      </View>
+                    )}
+                    visitTitle={match.visit.title}
+                    visitData={(
+                      <View>
+                        {
+                          match.visit.players.map((player) => (
+                            <Player
+                              key={player.number.toString()}
+                              number={player.number.toString()}
+                              name={player.name}
+                              side="right"
+                            />
+                          ))
+                        }
+                      </View>
+                    )}
+                  />
+                  <TeamsShowdown
+                    title="Resumen"
+                    localTitle={match.local.title}
+                    localData={(
+                      <View>
+                        {
+                          match.local.summary.map((item) => (
+                            <TeamSummary key={item.title} title={item.title} data={item.data} side="left" />
+                          ))
+                        }
+                      </View>
+                    )}
+                    visitTitle={match.visit.title}
+                    visitData={(
+                      <View>
+                        {
+                          match.visit.summary.map((item) => (
+                            <TeamSummary key={item.title} title={item.title} data={item.data} side="right" />
+                          ))
+                        }
+                      </View>
+                    )}
+                  />
+                </>
+              )
+          }
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -102,23 +166,50 @@ const MatchDescription = ({ route }) => {
 MatchDescription.propTypes = {
   route: PropTypes.shape({
     params: PropTypes.shape({
+      event: PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        title: PropTypes.string.isRequired,
+        category: PropTypes.string.isRequired,
+      }),
       match: PropTypes.shape({
         local: PropTypes.shape({
           image: PropTypes.string,
           title: PropTypes.string,
           isSubscribed: PropTypes.bool,
+          players: PropTypes.arrayOf(PropTypes.shape({
+            number: PropTypes.number,
+            name: PropTypes.string,
+          })),
+          summary: PropTypes.arrayOf(PropTypes.shape({
+            title: PropTypes.string,
+            data: PropTypes.string,
+          })),
         }),
         visit: PropTypes.shape({
           image: PropTypes.string,
           title: PropTypes.string,
           isSubscribed: PropTypes.bool,
+          players: PropTypes.arrayOf(PropTypes.shape({
+            number: PropTypes.number,
+            name: PropTypes.string,
+          })),
+          summary: PropTypes.arrayOf(PropTypes.shape({
+            title: PropTypes.string,
+            data: PropTypes.string,
+          })),
         }),
         localScore: PropTypes.number,
         visitScore: PropTypes.number,
+        journey: PropTypes.number,
         date: PropTypes.string,
         time: PropTypes.string,
         stadium: PropTypes.string,
         price: PropTypes.string,
+        parking: PropTypes.string,
+        transmissions: PropTypes.arrayOf(PropTypes.shape({
+          paltform: PropTypes.string,
+          link: PropTypes.string,
+        })),
       }).isRequired,
     }).isRequired,
   }).isRequired,
