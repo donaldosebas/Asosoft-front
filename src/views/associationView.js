@@ -9,6 +9,7 @@ import { margin } from '../utils/stylesUtils'
 import EventCard from '../components/eventCard'
 import BestPlayers from '../components/bestPlayers'
 import IsSubscribed from '../components/isSubscribed'
+import { associationViewText } from '../text/es.json'
 
 const styles = StyleSheet.create({
   title: {
@@ -1261,7 +1262,7 @@ const AssociationView = ({ route }) => {
       <IsSubscribed isSubscribed={association.isSubscribed} />
       <ScrollView>
         <NewsCarousel data={notices} />
-        <Text style={styles.title}>Eventos en curso</Text>
+        <Text style={styles.title}>{associationViewText.currentEventsTitle}</Text>
         <FlatList
           data={actualEvents}
           horizontal
@@ -1270,7 +1271,7 @@ const AssociationView = ({ route }) => {
           )}
           keyExtractor={(item) => item.id.toString()}
         />
-        <Text style={styles.title}>Próximos Eventos</Text>
+        <Text style={styles.title}>{associationViewText.postEventsTitle}</Text>
         <FlatList
           data={nextEvents}
           horizontal
@@ -1279,7 +1280,7 @@ const AssociationView = ({ route }) => {
           )}
           keyExtractor={(item) => item.id.toString()}
         />
-        <Text style={styles.title}>Eventos Pasados</Text>
+        <Text style={styles.title}>{associationViewText.pastEventsTitle}</Text>
         <FlatList
           data={pastEvents}
           horizontal
@@ -1288,7 +1289,7 @@ const AssociationView = ({ route }) => {
           )}
           keyExtractor={(item) => item.id.toString()}
         />
-        <Text style={styles.title}>Jugadores Destacados</Text>
+        <Text style={styles.title}>{associationViewText.topPlayersTitle}</Text>
         <FlatList
           data={players}
           horizontal

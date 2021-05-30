@@ -1,5 +1,6 @@
 import React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
+import { loginText } from '../text/es.json'
 
 const styles = StyleSheet.create({
   container: {
@@ -11,7 +12,7 @@ const styles = StyleSheet.create({
 
 const Login = () => (
   <View style={styles.container}>
-    <Text>LOGIN ASOSOFT</Text>
+    <Text>{loginText.loginTitle}</Text>
   </View>
 )
 export default Login

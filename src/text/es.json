@@ -1,0 +1,11 @@
+{
+  "associationViewText": {
+    "currentEventsTitle": "Eventos en curso",
+    "postEventsTitle": "Próximos Eventos",
+    "pastEventsTitle": "Eventos Pasados",
+    "topPlayersTitle": "Jugadores Destacados"
+  },
+  "loginText":{
+    "loginTitle": "Login GuateSports"
+  }
+}
