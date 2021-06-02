@@ -5,6 +5,7 @@ import {
 import IconIonic from 'react-native-vector-icons/Ionicons'
 import ImageProfile from '../components/profileImagePlayer'
 import ProfileData from '../components/dataPlayerProfile'
+import { playerProfileText } from '../text/es.json'
 
 const styles = StyleSheet.create({
   container: {
@@ -60,7 +61,7 @@ const PlayerProfile = () => (
   <ScrollView>
     <View style={styles.container}>
       <ImageProfile />
-      <Text style={styles.biography}>Biografia</Text>
+      <Text style={styles.biography}>{playerProfileText.biographyTitle}</Text>
       <Text style={styles.textBiography}>
         Fabián Esteban Vizcaíno Chinchilla nació en el año 1995 es un beisbolista guatemalteco,
         que se desempeña como parador en corto.
@@ -73,7 +74,7 @@ const PlayerProfile = () => (
         sus metas de llegar a las Grandes Ligas de Béisbol de Estados Unidos.
       </Text>
       <ProfileData />
-      <Text style={styles.contact}>Contacto</Text>
+      <Text style={styles.contact}>{playerProfileText.contactTitle}</Text>
       <View style={styles.icons}>
         <IconIonic name="logo-facebook" style={styles.faceicon} />
         <IconIonic name="logo-instagram" style={styles.faceicon} />

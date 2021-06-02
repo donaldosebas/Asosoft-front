@@ -1,5 +1,6 @@
 import React from 'react'
 import { StyleSheet, View, Text } from 'react-native'
+import { dataPlayerProfileText } from '../text/es.json'
 
 const styles = StyleSheet.create({
   data: {
@@ -32,15 +33,15 @@ const styles = StyleSheet.create({
 const ProfileData = () => (
   <View style={styles.data}>
     <View style={styles.victory}>
-      <Text style={styles.games}>Victorias</Text>
+      <Text style={styles.games}>{dataPlayerProfileText.victoryTitle}</Text>
       <Text style={styles.games2}>35</Text>
     </View>
     <View style={styles.fail}>
-      <Text style={styles.games}>Derrotas</Text>
+      <Text style={styles.games}>{dataPlayerProfileText.defeatsTitle}</Text>
       <Text style={styles.games2}>45</Text>
     </View>
     <View style={styles.games}>
-      <Text style={styles.games}>Juegos</Text>
+      <Text style={styles.games}>{dataPlayerProfileText.gamesTitle}</Text>
       <Text style={styles.games2}>47</Text>
     </View>
   </View>

@@ -7,5 +7,14 @@
   },
   "loginText":{
     "loginTitle": "Login GuateSports"
+  },
+  "playerProfileText":{
+    "biographyTitle": "Biografia",
+    "contactTitle": "Contacto"
+  },
+  "dataPlayerProfileText":{
+    "victoryTitle": "Victorias",
+    "defeatsTitle": "Derrotas",
+    "gamesTitle": "Juegos"
   }
 }
