@@ -1,11 +1,12 @@
 import React from 'react'
 import {
-  View, Text, StyleSheet, ScrollView,
+  View, StyleSheet, ScrollView,
 } from 'react-native'
 import IconIonic from 'react-native-vector-icons/Ionicons'
 import ImageProfile from '../components/profileImagePlayer'
 import ProfileData from '../components/dataPlayerProfile'
-import { playerProfileText } from '../text/es.json'
+import RouteProfile from '../components/routePlayerProfile'
+import BiographyProfile from '../components/biographyPlayerProfile'
 
 const styles = StyleSheet.create({
   container: {
@@ -61,27 +62,14 @@ const PlayerProfile = () => (
   <ScrollView>
     <View style={styles.container}>
       <ImageProfile />
-      <Text style={styles.biography}>{playerProfileText.biographyTitle}</Text>
-      <Text style={styles.textBiography}>
-        Fabián Esteban Vizcaíno Chinchilla nació en el año 1995 es un beisbolista guatemalteco,
-        que se desempeña como parador en corto.
-        Ha sido dos veces campeón de Centroamérica, subcampeón en una eliminatoria premundialista
-        y campeón de la Senior League Baseball World Series -competencia a nivel
-        americano para niños entre 13 y 16 años.
-
-        Actualmente, el jugador guatemalteco cursa una beca deportiva con la
-        Academia Tomás moreno en Florida, Estados Unidos, en busca de cumplir
-        sus metas de llegar a las Grandes Ligas de Béisbol de Estados Unidos.
-      </Text>
-      <ProfileData />
-      <Text style={styles.contact}>{playerProfileText.contactTitle}</Text>
       <View style={styles.icons}>
         <IconIonic name="logo-facebook" style={styles.faceicon} />
         <IconIonic name="logo-instagram" style={styles.faceicon} />
-        <IconIonic name="logo-twitter" style={styles.faceicon} />
         <IconIonic name="mail-outline" style={styles.faceicon} />
-
       </View>
+      <ProfileData />
+      <RouteProfile />
+      <BiographyProfile />
     </View>
   </ScrollView>
 
