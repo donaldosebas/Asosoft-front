@@ -23,8 +23,14 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 15,
-    fontWeight: 'bold',
     marginTop: 15,
+    marginBottom: 15,
+    fontWeight: 'bold',
+  },
+  title2: {
+    fontSize: 15,
+    marginTop: 15,
+    marginBottom: 15,
   },
   available: {
     color: '#68c17c',
@@ -38,7 +44,7 @@ const styles = StyleSheet.create({
     width: '100%',
     flex: 1,
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'space-around',
   },
   dataV: {
     alignItems: 'center',
@@ -66,27 +72,32 @@ const ProfileData = () => (
 
     <Text style={styles.title}>{dataPlayerProfileText.countryTitle}</Text>
     <View style={styles.origin}>
-      <Image source={{ uri: 'https://image.flaticon.com/icons/png/512/206/206754.png' }} style={{ width: 20, height: 20 }} />
+      <Image source={{ uri: 'https://image.flaticon.com/icons/png/512/206/206754.png' }} style={{ width: 20, height: 20, marginRight: 5 }} />
       <Text style={styles.title2}>Guatemala</Text>
     </View>
     <Text style={styles.title}>{dataPlayerProfileText.actualteamTitle}</Text>
     <View style={styles.origin}>
-      <Image source={{ uri: 'https://upload.wikimedia.org/wikipedia/en/thumb/7/75/Baltimore_Orioles_cap.svg/1200px-Baltimore_Orioles_cap.svg.png' }} style={{ width: 20, height: 20, borderRadius: 50 }} />
+      <Image
+        source={{ uri: 'https://upload.wikimedia.org/wikipedia/en/thumb/7/75/Baltimore_Orioles_cap.svg/1200px-Baltimore_Orioles_cap.svg.png' }}
+        style={{
+          width: 20, height: 20, borderRadius: 50, marginRight: 5,
+        }}
+      />
       <Text style={styles.title2}>Orioles</Text>
     </View>
 
     <View style={styles.data}>
       <View style={styles.dataV}>
         <Text style={styles.title}>{dataPlayerProfileText.victoryTitle}</Text>
-        <Text style={styles.title}>35</Text>
+        <Text style={styles.title2}>35</Text>
       </View>
       <View style={styles.dataF}>
         <Text style={styles.title}>{dataPlayerProfileText.defeatsTitle}</Text>
-        <Text style={styles.title}>35</Text>
+        <Text style={styles.title2}>25</Text>
       </View>
       <View style={styles.dataG}>
         <Text style={styles.title}>{dataPlayerProfileText.gamesTitle}</Text>
-        <Text style={styles.title}>35</Text>
+        <Text style={styles.title2}>35</Text>
       </View>
     </View>
   </View>

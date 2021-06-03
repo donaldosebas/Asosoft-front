@@ -1,6 +1,6 @@
 import React from 'react'
 import {
-  View, StyleSheet, ScrollView,
+  View, StyleSheet, ScrollView, Text,
 } from 'react-native'
 import IconIonic from 'react-native-vector-icons/Ionicons'
 import ImageProfile from '../components/profileImagePlayer'
@@ -34,11 +34,11 @@ const styles = StyleSheet.create({
   },
   faceicon: {
     fontSize: 35,
-    color: 'white',
+    color: '#1B9CC4',
     borderRadius: 15,
     margin: 5,
     padding: 4,
-    backgroundColor: '#1b9cc4',
+    alignItems: 'center',
   },
   biography: {
     alignItems: 'flex-start',
@@ -53,8 +53,19 @@ const styles = StyleSheet.create({
     marginBottom: 15,
   },
   icons: {
+    flex: 1,
     flexDirection: 'row',
+    justifyContent: 'space-around',
+  },
+  red: {
+    flex: 1,
     justifyContent: 'center',
+    alignItems: 'center',
+  },
+  text: {
+    fontSize: 12,
+    alignItems: 'center',
+    textAlign: 'center',
   },
 })
 
@@ -63,9 +74,18 @@ const PlayerProfile = () => (
     <View style={styles.container}>
       <ImageProfile />
       <View style={styles.icons}>
-        <IconIonic name="logo-facebook" style={styles.faceicon} />
-        <IconIonic name="logo-instagram" style={styles.faceicon} />
-        <IconIonic name="mail-outline" style={styles.faceicon} />
+        <View style={styles.red}>
+          <IconIonic name="logo-facebook" style={styles.faceicon} />
+          <Text style={styles.text}>/vizcaino.gt</Text>
+        </View>
+        <View style={styles.red}>
+          <IconIonic name="logo-instagram" style={styles.faceicon} />
+          <Text style={styles.text}>@vizcaino.gt</Text>
+        </View>
+        <View style={styles.red}>
+          <IconIonic name="mail-outline" style={styles.faceicon} />
+          <Text style={styles.text}>vizcaino@gmail.com</Text>
+        </View>
       </View>
       <ProfileData />
       <RouteProfile />
