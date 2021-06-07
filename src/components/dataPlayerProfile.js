@@ -2,6 +2,7 @@ import React from 'react'
 import {
   StyleSheet, View, Text, Image,
 } from 'react-native'
+import PropTypes from 'prop-types'
 import { dataPlayerProfileText } from '../text/es.json'
 
 const styles = StyleSheet.create({
@@ -24,13 +25,15 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 15,
     marginTop: 15,
-    marginBottom: 15,
     fontWeight: 'bold',
   },
-  title2: {
+  value: {
     fontSize: 15,
-    marginTop: 15,
-    marginBottom: 15,
+    marginBottom: 5,
+  },
+  valueNumber: {
+    fontSize: 25,
+    marginBottom: 5,
   },
   available: {
     color: '#68c17c',
@@ -67,40 +70,60 @@ const styles = StyleSheet.create({
   },
 })
 
-const ProfileData = () => (
+const ProfileData = ({
+  country,
+  team,
+  wins,
+  loses,
+  games,
+}) => (
   <View style={styles.container}>
 
     <Text style={styles.title}>{dataPlayerProfileText.countryTitle}</Text>
     <View style={styles.origin}>
-      <Image source={{ uri: 'https://image.flaticon.com/icons/png/512/206/206754.png' }} style={{ width: 20, height: 20, marginRight: 5 }} />
-      <Text style={styles.title2}>Guatemala</Text>
+      <Image source={{ uri: country.flag }} style={{ width: 18, height: 12, marginRight: 5 }} />
+      <Text style={styles.value}>{country.name}</Text>
     </View>
     <Text style={styles.title}>{dataPlayerProfileText.actualteamTitle}</Text>
     <View style={styles.origin}>
       <Image
-        source={{ uri: 'https://upload.wikimedia.org/wikipedia/en/thumb/7/75/Baltimore_Orioles_cap.svg/1200px-Baltimore_Orioles_cap.svg.png' }}
+        source={{ uri: team.image }}
         style={{
           width: 20, height: 20, borderRadius: 50, marginRight: 5,
         }}
       />
-      <Text style={styles.title2}>Orioles</Text>
+      <Text style={styles.value}>{team.title}</Text>
     </View>
 
     <View style={styles.data}>
       <View style={styles.dataV}>
         <Text style={styles.title}>{dataPlayerProfileText.victoryTitle}</Text>
-        <Text style={styles.title2}>35</Text>
+        <Text style={styles.valueNumber}>{wins}</Text>
       </View>
       <View style={styles.dataF}>
         <Text style={styles.title}>{dataPlayerProfileText.defeatsTitle}</Text>
-        <Text style={styles.title2}>25</Text>
+        <Text style={styles.valueNumber}>{loses}</Text>
       </View>
       <View style={styles.dataG}>
         <Text style={styles.title}>{dataPlayerProfileText.gamesTitle}</Text>
-        <Text style={styles.title2}>35</Text>
+        <Text style={styles.valueNumber}>{games}</Text>
       </View>
     </View>
   </View>
 )
+
+ProfileData.propTypes = {
+  country: PropTypes.shape({
+    name: PropTypes.string,
+    flag: PropTypes.string,
+  }).isRequired,
+  team: PropTypes.shape({
+    title: PropTypes.string,
+    image: PropTypes.string,
+  }).isRequired,
+  wins: PropTypes.number.isRequired,
+  loses: PropTypes.number.isRequired,
+  games: PropTypes.number.isRequired,
+}
 
 export default ProfileData

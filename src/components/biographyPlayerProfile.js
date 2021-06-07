@@ -2,6 +2,7 @@ import React from 'react'
 import {
   StyleSheet, View, Text,
 } from 'react-native'
+import PropTypes from 'prop-types'
 import Truncate from './truncateText'
 import { biographyPlayerProfileText } from '../text/es.json'
 
@@ -68,22 +69,16 @@ const styles = StyleSheet.create({
   },
 })
 
-const BiographyProfile = () => (
+const BiographyProfile = ({ biography }) => (
   <View style={styles.container}>
 
     <Text style={styles.title}>{biographyPlayerProfileText.bioTitle}</Text>
-    <Truncate max={126}>
-      Fabián Esteban Vizcaíno Chinchilla nació en el año 1995 es un beisbolista guatemalteco,
-      que se desempeña como parador en corto.
-      Ha sido dos veces campeón de Centroamérica, subcampeón en una eliminatoria premundialista
-      y campeón de la Senior League Baseball World Series -competencia a nivel
-      americano para niños entre 13 y 16 años.
-
-      Actualmente, el jugador guatemalteco cursa una beca deportiva con la
-      Academia Tomás moreno en Florida, Estados Unidos, en busca de cumplir
-      sus metas de llegar a las Grandes Ligas de Béisbol de Estados Unidos.
-    </Truncate>
+    <Truncate max={126}>{biography}</Truncate>
   </View>
 )
+
+BiographyProfile.propTypes = {
+  biography: PropTypes.string.isRequired,
+}
 
 export default BiographyProfile
