@@ -1,14 +1,19 @@
 import React from 'react'
 import { StyleSheet, View, ImageBackground } from 'react-native'
+import PropTypes from 'prop-types'
 
 const styles = StyleSheet.create({
   container: {
-    justifyContent: 'center',
     width: '100%',
     height: 200,
-    borderRadius: 5,
-    alignItems: 'center',
-    backgroundColor: 'white',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
   },
   perfil: {
     flex: 1,
@@ -17,17 +22,20 @@ const styles = StyleSheet.create({
   },
 })
 
-const ImageProfile = () => (
+const ImageProfile = ({ image }) => (
   <View style={styles.container}>
     <ImageBackground
       style={styles.perfil}
-      resizeMode="stretch"
+      resizeMode="cover"
       source={{
-        uri: 'https://www.soy502.com/sites/default/files/styles/escalar_image_inline/public/bib_4277.jpg',
+        uri: image,
       }}
-
     />
   </View>
 )
+
+ImageProfile.propTypes = {
+  image: PropTypes.string.isRequired,
+}
 
 export default ImageProfile
