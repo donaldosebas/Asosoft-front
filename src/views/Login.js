@@ -3,6 +3,9 @@ import React, { useState } from 'react'
 import {
   View, Text, StyleSheet, Pressable,
 } from 'react-native'
+import IconAntDesign from 'react-native-vector-icons/AntDesign'
+import CheckToogle from '../components/checkToogle'
+import SimpleButton from '../components/simpleButton'
 import { CustomTextInput, Types } from '../components/textInput'
 import { loginText } from '../text/es.json'
 
@@ -16,6 +19,18 @@ const styles = StyleSheet.create({
   inputContainer: {
     width: '70%',
   },
+  optionContainer: {
+    width: '100%',
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    marginTop: 5,
+  },
+  optionIcon: {
+    transform: [{ scale: 1.7 }],
+    margin: 10,
+    color: '#7C7C7C',
+  },
   link: {
     color: '#1B9CC4',
     textDecorationLine: 'underline',
@@ -28,6 +43,7 @@ const Login = () => {
     username: '',
     password: '',
   })
+  const [rememberMe, setRememberMe] = useState(false)
 
   return (
     <View style={styles.container}>
@@ -47,7 +63,21 @@ const Login = () => {
           onChangeText={(newValue) => setUser((old) => ({ ...old, password: newValue }))}
           type={Types.PASSWORD}
         />
+        <Pressable
+          onPress={() => setRememberMe((old) => !old)}
+          style={styles.optionContainer}
+        >
+          <CheckToogle toogled={rememberMe} />
+          <Text>{loginText.rememberMe}</Text>
+        </Pressable>
+        <Pressable
+          style={styles.optionContainer}
+        >
+          <IconAntDesign name="questioncircleo" style={styles.optionIcon} />
+          <Text>{loginText.forgotPassword}</Text>
+        </Pressable>
       </View>
+      <SimpleButton title={loginText.action} />
       <Pressable
         onPress={() => navigation.navigate('Signup')}
       >
