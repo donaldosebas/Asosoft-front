@@ -6,7 +6,14 @@
     "topPlayersTitle": "Jugadores Destacados"
   },
   "loginText":{
-    "loginTitle": "Login GuateSports"
+    "loginTitle": "Login GuateSports",
+    "usernameInput": "Nombre de usuario",
+    "passwordInput": "Contraseña"
+  },
+  "signupText": {
+    "usernameInput": "Nombre de usuario",
+    "name": "Nombre",
+    "passwordInput": "Contraseña"
   },
   "playerProfileText":{
     "biographyTitle": "Biografia",
