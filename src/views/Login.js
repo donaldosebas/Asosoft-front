@@ -4,9 +4,9 @@ import {
   View, Text, StyleSheet, Pressable,
 } from 'react-native'
 import IconAntDesign from 'react-native-vector-icons/AntDesign'
-import CheckToggle from '../components/checkToggle'
-import SimpleButton from '../components/simpleButton'
-import { CustomTextInput, Types } from '../components/textInput'
+import CheckToggle from '../components/common/inputs/checkToggle'
+import SimpleButton from '../components/common/inputs/simpleButton'
+import { CustomTextInput, Types } from '../components/common/inputs/textInput'
 import { loginText } from '../text/es.json'
 
 const styles = StyleSheet.create({
