@@ -4,7 +4,7 @@ import {
   View, Text, StyleSheet, Pressable,
 } from 'react-native'
 import { CustomTextInput, Types } from '../components/textInput'
-import { loginText } from '../text/es.json'
+import { signupText } from '../text/es.json'
 
 const styles = StyleSheet.create({
   container: {
@@ -22,26 +22,42 @@ const styles = StyleSheet.create({
   },
 })
 
-const Login = () => {
+const Signup = () => {
   const navigation = useNavigation()
   const [user, setUser] = useState({
     username: '',
+    name: '',
+    email: '',
     password: '',
   })
 
   return (
     <View style={styles.container}>
-      <Text>{loginText.loginTitle}</Text>
+      <Text>{signupText.signupTitle}</Text>
       <View style={styles.inputContainer}>
         <CustomTextInput
-          title={loginText.usernameInput}
+          title={signupText.usernameInput}
           name="username"
           value={user.username}
           onChangeText={(newValue) => setUser((old) => ({ ...old, username: newValue }))}
           type={Types.USERNAME}
         />
         <CustomTextInput
-          title={loginText.passwordInput}
+          title={signupText.nameInput}
+          name="name"
+          value={user.name}
+          onChangeText={(newValue) => setUser((old) => ({ ...old, name: newValue }))}
+          type={Types.USERNAME}
+        />
+        <CustomTextInput
+          title={signupText.emailInput}
+          name="email"
+          value={user.email}
+          onChangeText={(newValue) => setUser((old) => ({ ...old, email: newValue }))}
+          type={Types.EMAIL}
+        />
+        <CustomTextInput
+          title={signupText.passwordInput}
           name="password"
           value={user.password}
           onChangeText={(newValue) => setUser((old) => ({ ...old, password: newValue }))}
@@ -49,12 +65,12 @@ const Login = () => {
         />
       </View>
       <Pressable
-        onPress={() => navigation.navigate('Signup')}
+        onPress={() => navigation.navigate('Login')}
       >
-        <Text style={styles.link}>{loginText.goToSignup}</Text>
+        <Text style={styles.link}>{signupText.goToLogin}</Text>
       </Pressable>
     </View>
   )
 }
 
-export default Login
+export default Signup

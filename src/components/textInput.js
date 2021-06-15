@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
   container: {
     padding: 5,
     minWidth: 150,
-    width: 250,
+    width: '100%',
   },
   title: {
     position: 'absolute',
@@ -50,7 +50,8 @@ const styles = StyleSheet.create({
     color: 'black',
     marginLeft: 30,
     top: -5,
-    width: '80%',
+    paddingRight: 5,
+    flex: 1,
     height: 40,
   },
   isFocused: {
@@ -59,16 +60,16 @@ const styles = StyleSheet.create({
 })
 
 const animations = StyleSheet.create({
-  title: (focusAnim, value) => ({
+  title: (animation, value) => ({
     transform: [
       {
-        translateX: focusAnim.interpolate({
+        translateX: animation.interpolate({
           inputRange: (value === '') ? [0, 1] : [1, 1],
           outputRange: [42, 5],
         }),
       },
       {
-        translateY: focusAnim.interpolate({
+        translateY: animation.interpolate({
           inputRange: (value === '') ? [0, 1] : [1, 1],
           outputRange: [9, -25],
         }),
@@ -80,6 +81,7 @@ const animations = StyleSheet.create({
 const Types = {
   USERNAME: 'username',
   PASSWORD: 'password',
+  EMAIL: 'email',
 }
 
 const CustomTextInput = ({
@@ -91,8 +93,8 @@ const CustomTextInput = ({
   useEffect(() => {
     Animated.timing(focusAnim, {
       toValue: isFocused ? 1 : 0,
-      duration: 100,
-      easing: Easing.bezier(0.4, 0, 0.2, 1),
+      duration: 150,
+      easing: Easing.bezier(0.3, 0.25, 0.1, 1),
       useNativeDriver: true,
     }).start()
   }, [focusAnim, isFocused])
@@ -116,6 +118,7 @@ const CustomTextInput = ({
           (() => {
             if (type === Types.USERNAME) return <IconFeather style={styles.icon} name="user" />
             if (type === Types.PASSWORD) return <IconFeather style={styles.icon} name="lock" />
+            if (type === Types.EMAIL) return <IconFeather style={styles.icon} name="mail" />
             return ''
           })()
         }
@@ -124,13 +127,11 @@ const CustomTextInput = ({
           onChangeText={onChangeText}
           value={value}
           secureTextEntry={type === Types.PASSWORD}
-          onBlur={(event) => {
+          onBlur={() => {
             setIsFocused(false)
-            // onBlur?.(event)
           }}
-          onFocus={(event) => {
+          onFocus={() => {
             setIsFocused(true)
-            // onFocus?.(event)
           }}
         />
       </View>
