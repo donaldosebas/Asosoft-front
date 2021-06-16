@@ -4,7 +4,7 @@ import {
   View, Text, StyleSheet, Pressable,
 } from 'react-native'
 import IconAntDesign from 'react-native-vector-icons/AntDesign'
-import CheckToogle from '../components/checkToogle'
+import CheckToggle from '../components/checkToggle'
 import SimpleButton from '../components/simpleButton'
 import { CustomTextInput, Types } from '../components/textInput'
 import { signupText } from '../text/es.json'
@@ -83,7 +83,7 @@ const Signup = () => {
           onPress={() => setRememberMe((old) => !old)}
           style={styles.optionContainer}
         >
-          <CheckToogle toogled={rememberMe} />
+          <CheckToggle toggled={rememberMe} />
           <Text>{signupText.rememberMe}</Text>
         </Pressable>
         <Pressable
