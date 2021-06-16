@@ -1,11 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import {
-  StyleSheet, View, TextInput,
+  StyleSheet, View, TextInput, Animated, Easing,
 } from 'react-native'
 // import IconIonic from 'react-native-vector-icons/Ionicons'
 import IconFeather from 'react-native-vector-icons/Feather'
-import Animated, { Easing } from 'react-native-reanimated'
 
 const PRIMARYCOLOR = '#1B9CC4'
 
