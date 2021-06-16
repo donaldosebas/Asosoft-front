@@ -31,13 +31,13 @@ const animations = StyleSheet.create({
   }),
 })
 
-const CheckToogle = ({ toogled }) => {
+const CheckToggle = ({ toggled }) => {
   const toogleAnim = useRef(new Animated.Value(0)).current
 
   useEffect(() => {
     Animated.sequence([
       Animated.timing(toogleAnim, {
-        toValue: 1,
+        toValue: toggled ? 1 : 0,
         duration: 100,
         easing: Easing.linear,
         useNativeDriver: true,
@@ -49,7 +49,7 @@ const CheckToogle = ({ toogled }) => {
         useNativeDriver: true,
       }),
     ]).start()
-  }, [toogleAnim, toogled])
+  }, [toogleAnim, toggled])
 
   return (
     <Animated.View
@@ -60,14 +60,14 @@ const CheckToogle = ({ toogled }) => {
     >
       <IconIonic
         name="checkmark-circle-outline"
-        style={[styles.icon, toogled ? styles.selected : styles.deselected]}
+        style={[styles.icon, toggled ? styles.selected : styles.deselected]}
       />
     </Animated.View>
   )
 }
 
-CheckToogle.propTypes = {
-  toogled: PropTypes.bool.isRequired,
+CheckToggle.propTypes = {
+  toggled: PropTypes.bool.isRequired,
 }
 
-export default CheckToogle
+export default CheckToggle
