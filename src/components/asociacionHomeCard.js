@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'flex-start',
     alignItems: 'flex-end',
-    height: 260,
+    height: 250,
     padding: 10,
   },
   image: {
@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
     width: 0,
     height: 0,
     bottom: 0,
-    borderTopWidth: 240,
+    borderTopWidth: 230,
     borderTopColor: 'rgba(0,0,0,0.5)',
     borderRightWidth: 70,
     borderRightColor: 'transparent',
@@ -60,7 +60,6 @@ const styles = StyleSheet.create({
   },
   notificationsTitle: {
     fontSize: 16,
-    fontWeight: '100',
     marginRight: 10,
     color: 'white',
     marginLeft: 10,
