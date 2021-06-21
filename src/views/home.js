@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import {
   SafeAreaView,
   StyleSheet,
@@ -11,7 +10,7 @@ const data = [
   {
     id: 1,
     Sport: 'SOFTBOL',
-    Photo: 'https://www.guatemala.com/fotos/2020/02/jd-morales.jpg',
+    Photo: 'https://scontent.fgua9-1.fna.fbcdn.net/v/t1.6435-9/69361977_10157182589816777_621699724436570112_n.jpg?_nc_cat=101&ccb=1-3&_nc_sid=8bfeb9&_nc_ohc=KaQSFbOWgA8AX97rzku&_nc_oc=AQkuoVV-jvALKNfKwPXh7kcs1y_SjqK8IBiUAnf3ZP3ErxWd_xO6t3IIJnH5gKe6XTQ&tn=cLHFj1pnGDJ0nWAH&_nc_ht=scontent.fgua9-1.fna&oh=0c5e30133d4e3261f078f1d505eed577&oe=60D62BCC',
     isSubscribed: true,
     News: 4,
     Advertisements: 9,
@@ -20,7 +19,7 @@ const data = [
   {
     id: 2,
     Sport: 'BASKETBALL',
-    Photo: 'https://www.usab.com/~/media/a06ee0b5e5b040afb696c2423f033c32.ashx?as=1&iar=1',
+    Photo: 'https://fnbg.com.gt/wp-content/uploads/2020/07/Rodrigo-Oliva-Guatemala.jpg',
     isSubscribed: false,
     News: 10,
     Advertisements: 3,
@@ -34,19 +33,18 @@ const styles = StyleSheet.create({
   },
 })
 
-const Home = ({ navigation }) => (
+const Home = () => (
   <SafeAreaView style={styles.container}>
     <FlatList
       data={data}
       renderItem={({ item }) => (
         <AsociacionCard
-          navigation={navigation}
-          Sport={item.Sport}
-          Photo={item.Photo}
+          sport={item.Sport}
+          photo={item.Photo}
           isSubscribed={item.isSubscribed}
-          News={item.News}
-          Advertisements={item.Advertisements}
-          Results={item.Results}
+          news={item.News}
+          advertisements={item.Advertisements}
+          results={item.Results}
         />
 
       )}
@@ -54,9 +52,5 @@ const Home = ({ navigation }) => (
     />
   </SafeAreaView>
 )
-
-Home.propTypes = {
-  navigation: PropTypes.shape({ navigate: PropTypes.func.isRequired }).isRequired,
-}
 
 export default Home

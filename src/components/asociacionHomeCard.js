@@ -2,37 +2,51 @@ import React from 'react'
 import {
   StyleSheet,
   View,
-  Image,
   Text,
   TouchableOpacity,
+  Image,
 } from 'react-native'
+import PropTypes from 'prop-types'
+import { useNavigation } from '@react-navigation/core'
 import IconIonic from 'react-native-vector-icons/Ionicons'
-import IconAnt from 'react-native-vector-icons/AntDesign'
 import NotificationIcon from '../customIcons/notificationIcon'
 
 const styles = StyleSheet.create({
   container: {
-    display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    justifyContent: 'flex-start',
+    alignItems: 'flex-end',
     height: 260,
-    width: '100%',
     padding: 10,
-    borderBottomWidth: 2,
-    borderBottomColor: 'grey',
   },
   image: {
-    width: '50%',
-    height: 240,
-    borderRadius: 10,
+    position: 'absolute',
+    left: 10,
+    bottom: 10,
+    width: '100%',
+    height: '100%',
+    borderRadius: 5,
   },
   information: {
-    display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-evenly',
-    height: 240,
+    backgroundColor: 'rgba(0,0,0,0.5)',
+    paddingLeft: 20,
+    height: '100%',
     width: '40%',
+    borderTopLeftRadius: 5,
+    borderBottomLeftRadius: 5,
+    zIndex: 1,
+  },
+  decoration: {
+    width: 0,
+    height: 0,
+    bottom: 0,
+    borderTopWidth: 240,
+    borderTopColor: 'rgba(0,0,0,0.5)',
+    borderRightWidth: 70,
+    borderRightColor: 'transparent',
+    zIndex: 0,
   },
   notificationsTitleContainer: {
     display: 'flex',
@@ -40,18 +54,24 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   title: {
-    fontSize: 30,
-  },
-  recentTitle: {
-    fontSize: 10,
+    fontSize: 20,
+    color: 'white',
+    marginLeft: 10,
   },
   notificationsTitle: {
-    fontSize: 20,
+    fontSize: 16,
+    fontWeight: '100',
     marginRight: 10,
+    color: 'white',
+    marginLeft: 10,
   },
   notificationContainer: {
     display: 'flex',
     flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+    marginBottom: 5,
+    color: 'white',
   },
   notificationIconActive: {
     color: '#1B9CC4',
@@ -64,48 +84,62 @@ const styles = StyleSheet.create({
 })
 
 const AsociacionHomeCard = ({
-  Sport,
-  Photo,
+  sport,
+  photo,
   isSubscribed,
-  News,
-  Advertisements,
-  Results,
-  navigation,
-}) => (
-  // TODO: Debe enviar el objeto completo de association en el navigate
-  <TouchableOpacity onPress={() => navigation.navigate('Association', {
-    association: { isSubscribed }, // TODO: Y todos los demas parametros
-  })}
-  >
-    <View style={styles.container}>
-      <Image
-        style={styles.image}
-        source={{ uri: Photo }}
-      />
-      <View style={styles.information}>
-        <IconIonic
-          name="ios-notifications-outline"
-          style={isSubscribed ? styles.notificationIconActive : styles.notificationIconDeactive}
+  news,
+  advertisements,
+  results,
+}) => {
+  const navigation = useNavigation()
+
+  return (
+    // TODO: Debe enviar el objeto completo de association en el navigate
+    <TouchableOpacity onPress={() => navigation.navigate('Association', {
+      association: { isSubscribed }, // TODO: Y todos los demas parametros
+    })}
+    >
+      <View style={styles.container}>
+        <Image
+          style={styles.image}
+          source={{ uri: photo }}
         />
-        <Text style={styles.title}>{Sport}</Text>
-        <Text style={styles.recentTitle}>Reciente:</Text>
-        <View style={styles.notificationsTitleContainer}>
+        <View style={styles.information}>
           <View style={styles.notificationContainer}>
-            <Text style={styles.notificationsTitle}>Noticias</Text>
-            <NotificationIcon number={News} />
+            <IconIonic
+              name="ios-notifications-outline"
+              style={isSubscribed ? styles.notificationIconActive : styles.notificationIconDeactive}
+            />
+            <Text style={styles.title}>{sport}</Text>
           </View>
-          <View style={styles.notificationContainer}>
-            <Text style={styles.notificationsTitle}>Anuncios</Text>
-            <NotificationIcon number={Advertisements} />
-          </View>
-          <View style={styles.notificationContainer}>
-            <Text style={styles.notificationsTitle}>Resultados</Text>
-            <NotificationIcon number={Results} />
+          <View style={styles.notificationsTitleContainer}>
+            <View style={styles.notificationContainer}>
+              <NotificationIcon number={news} />
+              <Text style={styles.notificationsTitle}>Noticias</Text>
+            </View>
+            <View style={styles.notificationContainer}>
+              <NotificationIcon number={advertisements} />
+              <Text style={styles.notificationsTitle}>Anuncios</Text>
+            </View>
+            <View style={styles.notificationContainer}>
+              <NotificationIcon number={results} />
+              <Text style={styles.notificationsTitle}>Resultados</Text>
+            </View>
           </View>
         </View>
+        <View style={styles.decoration} />
       </View>
-      <IconAnt name="right" size={30} />
-    </View>
-  </TouchableOpacity>
-)
+    </TouchableOpacity>
+  )
+}
+
+AsociacionHomeCard.propTypes = {
+  sport: PropTypes.string.isRequired,
+  photo: PropTypes.string.isRequired,
+  isSubscribed: PropTypes.bool.isRequired,
+  news: PropTypes.number.isRequired,
+  advertisements: PropTypes.number.isRequired,
+  results: PropTypes.number.isRequired,
+}
+
 export default AsociacionHomeCard
