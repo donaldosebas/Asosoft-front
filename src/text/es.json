@@ -1,0 +1,30 @@
+{
+  "associationViewText": {
+    "currentEventsTitle": "Eventos en curso",
+    "postEventsTitle": "Próximos Eventos",
+    "pastEventsTitle": "Eventos Pasados",
+    "topPlayersTitle": "Jugadores Destacados"
+  },
+  "loginText":{
+    "loginTitle": "Login GuateSports"
+  },
+  "playerProfileText":{
+    "biographyTitle": "Biografia",
+    "contactTitle": "Contacto"
+  },
+  "dataPlayerProfileText":{
+    "victoryTitle": "Victorias",
+    "defeatsTitle": "Derrotas",
+    "gamesTitle": "Juegos",
+    "countryTitle": "País de origen",
+    "actualteamTitle": "Equipo actual"
+  },
+  "routePlayerProfileText":{
+    "routeTitle": "Recorrido",
+    "bateosTitle": "Bateos",
+    "catchTitle": "Atrapadas"
+  },
+  "biographyPlayerProfileText":{
+    "bioTitle": "Biografía"
+  }
+}

@@ -1,30 +1,41 @@
 import React from 'react'
-import { StyleSheet, View, Image } from 'react-native'
+import { StyleSheet, View, ImageBackground } from 'react-native'
+import PropTypes from 'prop-types'
 
 const styles = StyleSheet.create({
   container: {
-    justifyContent: 'center',
     width: '100%',
     height: 200,
-    borderRadius: 5,
-    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
   },
   perfil: {
+    flex: 1,
     width: '100%',
-    height: 200,
-    borderRadius: 5,
+    height: '100%',
   },
 })
 
-const ImageProfile = () => (
+const ImageProfile = ({ image }) => (
   <View style={styles.container}>
-    <Image
+    <ImageBackground
       style={styles.perfil}
+      resizeMode="cover"
       source={{
-        uri: 'https://a2.espncdn.com/combiner/i?img=%2Fmedia%2Fmotion%2F2020%2F0725%2FHu_200725_Deportes_video_Javier_lemus_beibolista_Guatemala_alemania%2FHu_200725_Deportes_video_Javier_lemus_beibolista_Guatemala_alemania.jpg&w=640&h=360&format=jpg',
+        uri: image,
       }}
     />
   </View>
 )
+
+ImageProfile.propTypes = {
+  image: PropTypes.string.isRequired,
+}
 
 export default ImageProfile
