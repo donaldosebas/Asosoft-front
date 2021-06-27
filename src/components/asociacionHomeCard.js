@@ -6,9 +6,10 @@ import {
   Text,
   TouchableOpacity,
 } from 'react-native'
+import PropTypes from 'prop-types'
 import IconIonic from 'react-native-vector-icons/Ionicons'
 import IconAnt from 'react-native-vector-icons/AntDesign'
-import NotificationIcon from '../customIcons/notificationIcon'
+import NotificationIcon from '../customIcons/iconBadge/notificationIcon'
 
 const styles = StyleSheet.create({
   container: {
@@ -108,4 +109,21 @@ const AsociacionHomeCard = ({
     </View>
   </TouchableOpacity>
 )
+
+AsociacionHomeCard.propTypes = {
+  Sport: PropTypes.string.isRequired,
+  Photo: PropTypes.string.isRequired,
+  isSubscribed: PropTypes.bool.isRequired,
+  News: PropTypes.number,
+  Advertisements: PropTypes.number,
+  Results: PropTypes.number,
+  navigation: PropTypes.func.isRequired,
+}
+
+AsociacionHomeCard.defaultProps = {
+  News: 0,
+  Advertisements: 0,
+  Results: 0,
+}
+
 export default AsociacionHomeCard
