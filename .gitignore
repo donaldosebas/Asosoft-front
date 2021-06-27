@@ -78,3 +78,6 @@ typings/
 # Expo
 .expo
 __generated__
+
+# Jest
+__snapshots__

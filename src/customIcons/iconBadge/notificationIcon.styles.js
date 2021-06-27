@@ -1,8 +1,5 @@
-import React from 'react'
 import {
   StyleSheet,
-  View,
-  Text,
 } from 'react-native'
 
 const styles = StyleSheet.create({
@@ -22,10 +19,4 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
 })
-
-const NotificationIcon = ({ number }) => (
-  <View style={styles.container}>
-    <Text style={styles.numberStyle}>{number}</Text>
-  </View>
-)
-export default NotificationIcon
+export default styles
