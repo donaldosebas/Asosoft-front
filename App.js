@@ -24,4 +24,4 @@ const App = () => {
     </StoreProviderContext.Provider>
   )
 }
-export default App
+export default App;
