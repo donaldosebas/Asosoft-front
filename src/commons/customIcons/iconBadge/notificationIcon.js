@@ -21,3 +21,4 @@ NotificationIcon.defaultProps = {
 }
 
 export default NotificationIcon
+s
