@@ -9,7 +9,7 @@ import {
 import PropTypes from 'prop-types'
 import IconIonic from 'react-native-vector-icons/Ionicons'
 import IconAnt from 'react-native-vector-icons/AntDesign'
-import NotificationIcon from '../customIcons/iconBadge/notificationIcon'
+import NotificationIcon from '../commons/customIcons/iconBadge/notificationIcon'
 
 const styles = StyleSheet.create({
   container: {
