@@ -54,14 +54,8 @@
   "private": true,
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged",
-      "pre-push": "lint-staged"
+      "pre-commit": "eslint . --fix",
+      "pre-push": "eslint . --fix"
     }
-  },
-  "lint-staged": {
-    "./src/*.{js,jsx,ts,tsx}": [
-      "./node_modules/.bin/eslint --fix",
-      "git add"
-    ]
   }
 }
