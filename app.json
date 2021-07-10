@@ -1,16 +1,17 @@
 {
   "expo": {
-   "name": "GuateSports",
-   "icon": "./logo.png",
-   "version": "1.0.0",
-   "slug": "Tus-deportes-favoritos",
-   "ios": {
-     "bundleIdentifier": "com.code.guatesports",
-     "buildNumber": "1.0.0"
-   },
-   "android": {
-     "package": "com.code.guatesports",
-     "versionCode": 1
-   }
+    "owner": "donaldosebasu",
+    "name": "GuateSports",
+    "icon": "./logo.png",
+    "version": "1.0.0",
+    "slug": "Tus-deportes-favoritos",
+    "ios": {
+      "bundleIdentifier": "com.code.guatesports",
+      "buildNumber": "1.0.0"
+    },
+    "android": {
+      "package": "com.code.guatesports",
+      "versionCode": 1
+    }
   }
 }
