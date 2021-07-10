@@ -21,5 +21,3 @@ NotificationIcon.defaultProps = {
 }
 
 export default NotificationIcon
-swlekdkwnf
-wlkedklewn

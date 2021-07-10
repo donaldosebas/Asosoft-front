@@ -22,6 +22,6 @@ const App = () => {
     <StoreProviderContext.Provider value={{ store, dispatch }}>
       <Navigation />
     </StoreProviderContext.Provider>
-  );
+  )
 }
-export default App;
+export default App
