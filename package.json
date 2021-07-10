@@ -43,7 +43,8 @@
     "web": "expo start --web",
     "eject": "expo eject",
     "test": "jest",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "prepush": "husky"
   },
   "jest": {
     "preset": "jest-expo",
