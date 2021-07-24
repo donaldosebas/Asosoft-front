@@ -7,8 +7,8 @@ import {
   Image,
 } from 'react-native'
 import PropTypes from 'prop-types'
-import IconIonic from 'react-native-vector-icons/Ionicons'
 import { useNavigation } from '@react-navigation/core'
+import IconIonic from 'react-native-vector-icons/Ionicons'
 import NotificationIcon from '../customIcons/iconBadge/notificationIcon'
 
 const styles = StyleSheet.create({
