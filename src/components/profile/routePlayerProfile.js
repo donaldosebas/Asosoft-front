@@ -3,8 +3,8 @@ import {
   StyleSheet, View, Text,
 } from 'react-native'
 import PropTypes from 'prop-types'
-import { routePlayerProfileText } from '../text/es.json'
-import MatchBase from './matchBase'
+import { routePlayerProfileText } from '../../text/es.json'
+import MatchBase from '../matchs/matchBase'
 
 const styles = StyleSheet.create({
   container: {

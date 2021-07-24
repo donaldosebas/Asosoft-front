@@ -3,10 +3,10 @@ import {
   View, StyleSheet, ScrollView, Text,
 } from 'react-native'
 import IconIonic from 'react-native-vector-icons/Ionicons'
-import ImageProfile from '../components/profileImagePlayer'
-import ProfileData from '../components/dataPlayerProfile'
-import RouteProfile from '../components/routePlayerProfile'
-import BiographyProfile from '../components/biographyPlayerProfile'
+import ImageProfile from '../components/profile/profileImagePlayer'
+import ProfileData from '../components/profile/dataPlayerProfile'
+import RouteProfile from '../components/profile/routePlayerProfile'
+import BiographyProfile from '../components/profile/biographyPlayerProfile'
 
 const styles = StyleSheet.create({
   container: {

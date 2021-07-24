@@ -3,7 +3,7 @@ import {
   StyleSheet, View, Text, Image,
 } from 'react-native'
 import PropTypes from 'prop-types'
-import { dataPlayerProfileText } from '../text/es.json'
+import { dataPlayerProfileText } from '../../text/es.json'
 
 const styles = StyleSheet.create({
   container: {

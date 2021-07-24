@@ -3,10 +3,10 @@ import {
   View, StyleSheet, SafeAreaView, ScrollView, Text,
 } from 'react-native'
 import PropTypes from 'prop-types'
-import TeamVersusHeader from '../components/teamVersus'
-import TransmissionInfo from '../components/transmissionInfo'
-import MatchInfo from '../components/matchInfo'
-import TeamsShowdown from '../components/teamsShowdown'
+import TeamVersusHeader from '../components/matchs/teamVersus'
+import TransmissionInfo from '../components/matchs/transmissionInfo'
+import MatchInfo from '../components/matchs/matchInfo'
+import TeamsShowdown from '../components/matchs/teamsShowdown'
 
 const styles = StyleSheet.create({
   container: {
