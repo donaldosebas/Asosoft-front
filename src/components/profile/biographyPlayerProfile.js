@@ -4,7 +4,7 @@ import {
 } from 'react-native'
 import PropTypes from 'prop-types'
 import Truncate from './truncateText'
-import { biographyPlayerProfileText } from '../text/es.json'
+import { biographyPlayerProfileText } from '../../text/es.json'
 
 const styles = StyleSheet.create({
   container: {

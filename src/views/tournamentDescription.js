@@ -6,10 +6,10 @@ import { FlatList, ScrollView } from 'react-native-gesture-handler'
 import PropTypes from 'prop-types'
 import { useNavigation } from '@react-navigation/core'
 import IconIonic from 'react-native-vector-icons/Ionicons'
-import IsSubscribed from '../components/isSubscribed'
+import IsSubscribed from '../components/common/isSubscribed'
 import { margin } from '../utils/stylesUtils'
-import TeamCircle from '../components/teamCircle'
-import Match from '../components/match'
+import TeamCircle from '../components/common/teamCircle'
+import Match from '../components/matchs/match'
 
 const styles = StyleSheet.create({
   container: {

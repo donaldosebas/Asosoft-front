@@ -1,7 +1,7 @@
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
 import PropTypes from 'prop-types'
-import Match from '../components/match'
+import Match from '../components/matchs/match'
 
 const styles = StyleSheet.create({
   container: {
