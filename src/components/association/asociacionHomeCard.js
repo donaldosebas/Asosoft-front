@@ -9,7 +9,7 @@ import {
 import PropTypes from 'prop-types'
 import { useNavigation } from '@react-navigation/core'
 import IconIonic from 'react-native-vector-icons/Ionicons'
-import NotificationIcon from '../customIcons/notificationIcon'
+import NotificationIcon from '../../customIcons/notificationIcon'
 
 const styles = StyleSheet.create({
   container: {

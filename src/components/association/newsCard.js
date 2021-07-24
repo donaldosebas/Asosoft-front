@@ -4,7 +4,7 @@ import {
   StyleSheet, View, Text, Image,
 } from 'react-native'
 import { LinearGradient } from 'expo-linear-gradient'
-import { margin, padding } from '../utils/stylesUtils'
+import { margin, padding } from '../../utils/stylesUtils'
 
 const styles = StyleSheet.create({
   container: {

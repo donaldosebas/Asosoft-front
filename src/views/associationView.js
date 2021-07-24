@@ -4,11 +4,11 @@ import {
 } from 'react-native'
 import PropTypes from 'prop-types'
 import { FlatList } from 'react-native-gesture-handler'
-import NewsCarousel from '../components/newsCarousel'
+import NewsCarousel from '../components/association/newsCarousel'
 import { margin } from '../utils/stylesUtils'
-import EventCard from '../components/eventCard'
-import BestPlayers from '../components/bestPlayers'
-import IsSubscribed from '../components/isSubscribed'
+import EventCard from '../components/events/eventCard'
+import BestPlayers from '../components/association/bestPlayers'
+import IsSubscribed from '../components/common/isSubscribed'
 import { associationViewText } from '../text/es.json'
 
 const styles = StyleSheet.create({

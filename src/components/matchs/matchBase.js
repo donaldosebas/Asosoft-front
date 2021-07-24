@@ -4,7 +4,7 @@ import { useNavigation } from '@react-navigation/core'
 import {
   StyleSheet, View, Text, Pressable,
 } from 'react-native'
-import TeamCircle from './teamCircle'
+import TeamCircle from '../common/teamCircle'
 
 const styles = StyleSheet.create({
   contentContainer: {

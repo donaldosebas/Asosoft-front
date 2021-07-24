@@ -4,7 +4,7 @@ import {
   StyleSheet,
   FlatList,
 } from 'react-native'
-import AsociacionCard from '../components/asociacionHomeCard'
+import AsociacionCard from '../components/association/asociacionHomeCard'
 
 const data = [
   {
