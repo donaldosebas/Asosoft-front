@@ -1,11 +1,11 @@
 import React, { useReducer } from 'react'
-// import UserNavigation from './src/navigation/UserNavigation'
+import UserNavigation from './src/navigation/UserNavigation'
 import LoginNavigation from './src/navigation/LoginNavigation'
 import reducer from './src/store/Reducer'
 import StoreProviderContext from './src/store/StoreProvider'
 
 const value = {
-  type: 'USER',
+  type: 'LOGIN',
 }
 
 const App = () => {
@@ -13,8 +13,7 @@ const App = () => {
   const Navigation = () => {
     switch (store.type) {
       case 'USER':
-        // return <UserNavigation />
-        return <LoginNavigation />
+        return <UserNavigation />
       default:
         return <LoginNavigation />
     }
