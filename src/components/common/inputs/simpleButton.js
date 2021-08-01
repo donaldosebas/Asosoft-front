@@ -26,8 +26,8 @@ const styles = StyleSheet.create({
   },
 })
 
-const SimpleButton = ({ title }) => (
-  <TouchableOpacity style={styles.button}>
+const SimpleButton = ({ title, onPress }) => (
+  <TouchableOpacity onPress={onPress} style={styles.button}>
     <Text style={styles.title}>
       {title}
     </Text>
@@ -36,6 +36,11 @@ const SimpleButton = ({ title }) => (
 
 SimpleButton.propTypes = {
   title: PropTypes.string.isRequired,
+  onPress: PropTypes.func,
+}
+
+SimpleButton.defaultProps = {
+  onPress: () => {},
 }
 
 export default SimpleButton

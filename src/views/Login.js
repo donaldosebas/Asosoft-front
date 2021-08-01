@@ -1,11 +1,13 @@
 import { useNavigation } from '@react-navigation/core'
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import {
   View, Text, StyleSheet, Pressable,
 } from 'react-native'
 import IconAntDesign from 'react-native-vector-icons/AntDesign'
 import CheckToggle from '../components/common/inputs/checkToggle'
 import SimpleButton from '../components/common/inputs/simpleButton'
+import { authUser, setToken } from '../services/login.service'
+import AppContext from '../store/StoreProvider'
 import { CustomTextInput, Types } from '../components/common/inputs/textInput'
 import { loginText } from '../text/es.json'
 
@@ -35,6 +37,9 @@ const styles = StyleSheet.create({
     color: '#1B9CC4',
     textDecorationLine: 'underline',
   },
+  errorText: {
+    color: '#FF0000',
+  },
 })
 
 const Login = () => {
@@ -43,7 +48,20 @@ const Login = () => {
     username: '',
     password: '',
   })
+  const [error, setError] = useState(undefined)
   const [rememberMe, setRememberMe] = useState(false)
+  const { dispatch } = useContext(AppContext)
+
+  const authorization = async () => {
+    // TODO VERIFY USERNAME AND PASSWORD
+    if (user.username.length !== 0 && user.password.length !== 0) {
+      await authUser(user.username, user.password).then((data) => {
+        if (data.non_field_errors) setError(data.non_field_errors)
+        if (data.token) dispatch({ type: 'LOGIN', token: data.token })
+        if (rememberMe) setToken(data.token)
+      })
+    }
+  }
 
   return (
     <View style={styles.container}>
@@ -63,6 +81,7 @@ const Login = () => {
           onChangeText={(newValue) => setUser((old) => ({ ...old, password: newValue }))}
           type={Types.PASSWORD}
         />
+        {error && <Text style={styles.errorText}>{error}</Text>}
         <Pressable
           onPress={() => setRememberMe((old) => !old)}
           style={styles.optionContainer}
@@ -77,7 +96,7 @@ const Login = () => {
           <Text>{loginText.forgotPassword}</Text>
         </Pressable>
       </View>
-      <SimpleButton title={loginText.action} />
+      <SimpleButton title={loginText.action} onPress={authorization} />
       <Pressable
         onPress={() => navigation.navigate('Signup')}
       >

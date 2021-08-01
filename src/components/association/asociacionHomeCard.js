@@ -137,8 +137,12 @@ AsociacionHomeCard.propTypes = {
   photo: PropTypes.string.isRequired,
   isSubscribed: PropTypes.bool.isRequired,
   news: PropTypes.number.isRequired,
-  advertisements: PropTypes.number.isRequired,
+  advertisements: PropTypes.number,
   results: PropTypes.number.isRequired,
+}
+
+AsociacionHomeCard.defaultProps = {
+  advertisements: 0,
 }
 
 export default AsociacionHomeCard
