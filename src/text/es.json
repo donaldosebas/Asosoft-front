@@ -6,7 +6,24 @@
     "topPlayersTitle": "Jugadores Destacados"
   },
   "loginText":{
-    "loginTitle": "Login GuateSports"
+    "loginTitle": "Entra en GuateSports",
+    "usernameInput": "Nombre de usuario",
+    "passwordInput": "Contraseña",
+    "rememberMe": "Recordarme",
+    "forgotPassword": "Olvidé mi contraseña",
+    "action": "Entrar",
+    "goToSignup": "Crear una cuenta"
+  },
+  "signupText": {
+    "signupTitle": "Regístrate en GuateSports",
+    "usernameInput": "Nombre de usuario",
+    "nameInput": "Nombre",
+    "emailInput": "Correo electrónico",
+    "passwordInput": "Contraseña",
+    "rememberMe": "Recordarme",
+    "termsConditions": "Términos y condiciones",
+    "action": "Registrarme",
+    "goToLogin": "Ya tengo una cuenta"
   },
   "playerProfileText":{
     "biographyTitle": "Biografia",
