@@ -6,6 +6,7 @@
 // https://medium.com/@dariaruckaolszaska/testing-your-react-navigation-5-hooks-b8b8f745e5b6
 describe('<Login />', () => {
   it('renders correctly', () => {
+    expect(1).toBe(1)
     // const tree = renderer.create(<Login />).toJSON()
     // expect(tree).toMatchSnapshot()
   })
