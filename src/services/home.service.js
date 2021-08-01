@@ -1,7 +1,7 @@
 import { apiUrl } from './commons'
 
 export const fetchHomeItems = async () => {
-  const response = await fetch(`${apiUrl}asociations/`, {
+  const response = await fetch(`${apiUrl}api/asociations/`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -11,7 +11,7 @@ export const fetchHomeItems = async () => {
 }
 
 export const fetchHomeItemsDetails = async () => {
-  const response = await fetch(`${apiUrl}asociations/associations_info/`, {
+  const response = await fetch(`${apiUrl}api/asociations/associations_info/`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
