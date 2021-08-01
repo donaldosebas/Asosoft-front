@@ -5,7 +5,7 @@ import reducer from './src/store/Reducer'
 import StoreProviderContext from './src/store/StoreProvider'
 
 const value = {
-  type: 'LOGIN',
+  type: 'USER',
 }
 
 const App = () => {
