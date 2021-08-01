@@ -44,7 +44,7 @@ const UserNavigationStack = () => (
     />
   </Stack.Navigator>
 )
-
+// TODO CHANGE TO TAB NAVIGATION
 const Drawer = createDrawerNavigator()
 
 const UserNavigationDrawer = () => (
