@@ -40,13 +40,13 @@ const NewsCard = ({ notice }) => (
   <View style={styles.container}>
     <Image
       style={styles.image}
-      source={{ uri: notice.image }}
+      source={{ uri: notice.news_image }}
     />
     <LinearGradient colors={['transparent', 'black']} style={styles.gradient}>
-      <Text style={styles.title}>{notice.title}</Text>
+      <Text style={styles.title}>{notice.news_title}</Text>
     </LinearGradient>
     <Text style={styles.preview}>
-      {notice.preview}
+      {notice.news_preview}
       <Text style={styles.continue}> ...Leer más</Text>
     </Text>
   </View>
@@ -54,9 +54,10 @@ const NewsCard = ({ notice }) => (
 
 NewsCard.propTypes = {
   notice: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired,
-    preview: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
+    news_title: PropTypes.string.isRequired,
+    news_image: PropTypes.string.isRequired,
+    news_preview: PropTypes.string.isRequired,
   }).isRequired,
 }
 

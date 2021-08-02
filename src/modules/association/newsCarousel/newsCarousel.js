@@ -34,7 +34,11 @@ const NewsCarousel = ({ data }) => {
     const interval = setInterval(() => {
       setActual((old) => {
         const newActual = (old === (data.length - 1)) ? 0 : old + 1
-        if (flatList.current) flatList.current.scrollToIndex({ index: newActual, animated: true })
+        if (flatList.current) {
+          flatList.current.scrollToIndex(
+            { index: ((data.length > 1) ? newActual : 0), animated: true },
+          )
+        }
         return newActual
       })
     }, 8000)

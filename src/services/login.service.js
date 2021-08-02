@@ -20,3 +20,11 @@ export const setToken = async (token) => {
     return err
   }
 }
+
+export const getToken = async () => {
+  try {
+    return await AsyncStorage.getItem('token')
+  } catch (err) {
+    return err
+  }
+}

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import {
   StyleSheet, ScrollView, Text, View,
 } from 'react-native'
@@ -10,6 +10,7 @@ import EventCard from './eventCard/eventCard'
 import BestPlayers from '../bestPlayers/bestPlayers'
 import IsSubscribed from '../shared/issubscribe/isSubscribed'
 import { associationViewText } from '../../text/es.json'
+import { fetchNews } from '../../services/association.service'
 
 const styles = StyleSheet.create({
   title: {
@@ -18,25 +19,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
 })
-
-// TODO: Estas noticias vienen en el objeto association
-const notices = [
-  {
-    title: 'Noticia 1',
-    image: 'https://www.asosoft.org/assets/images/website/masculino_6.jpg',
-    preview: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s.',
-  },
-  {
-    title: 'Noticia 2',
-    image: 'http://cdag.com.gt/wp-content/uploads/2014/09/ca3.jpg',
-    preview: 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.',
-  },
-  {
-    title: 'Noticia 3',
-    image: 'https://static.wbsc.org/assets/cms/e64e1bb2-3a7e-b468-2be4-d82392a3d3d5.jpg',
-    preview: 'There are many variations of passages of Lorem Ipsum available.',
-  },
-]
 
 const teams = [
   {
@@ -1255,13 +1237,25 @@ const players = [
 ]
 
 const AssociationView = ({ route }) => {
-  const { association } = route.params
+  const { isSubscribed } = route.params
+  const { id } = route.params
+  const [news, setNews] = useState([])
+
+  const fetchAssociationNews = async () => {
+    fetchNews(id).then((data) => {
+      setNews(data)
+    })
+  }
+
+  useEffect(() => {
+    fetchAssociationNews()
+  }, [])
 
   return (
     <View>
-      <IsSubscribed isSubscribed={association.isSubscribed} />
+      <IsSubscribed isSubscribed={isSubscribed} />
       <ScrollView>
-        <NewsCarousel data={notices} />
+        <NewsCarousel data={news} />
         <Text style={styles.title}>{associationViewText.currentEventsTitle}</Text>
         <FlatList
           data={actualEvents}
@@ -1306,9 +1300,8 @@ const AssociationView = ({ route }) => {
 AssociationView.propTypes = {
   route: PropTypes.shape({
     params: PropTypes.shape({
-      association: PropTypes.shape({
-        isSubscribed: PropTypes.bool.isRequired,
-      }).isRequired,
+      id: PropTypes.number.isRequired,
+      isSubscribed: PropTypes.bool.isRequired,
     }).isRequired,
   }).isRequired,
 }

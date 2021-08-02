@@ -46,6 +46,7 @@ const Home = () => {
           return (
             <AsociacionCard
               key={id}
+              id={+id}
               sport={associationsDetails[id].sport}
               photo={`${imagesUrl}${associationsDetails[id].photo}`}
               isSubscribed={true}

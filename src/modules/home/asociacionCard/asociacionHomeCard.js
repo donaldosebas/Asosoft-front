@@ -89,13 +89,15 @@ const AsociacionHomeCard = ({
   news,
   advertisements,
   results,
+  id,
 }) => {
   const navigation = useNavigation()
 
   return (
     // TODO: Debe enviar el objeto completo de association en el navigate
     <TouchableOpacity onPress={() => navigation.navigate('Association', {
-      association: { isSubscribed }, // TODO: Y todos los demas parametros
+      isSubscribed,
+      id,
     })}
     >
       <View style={styles.container}>
@@ -139,6 +141,7 @@ AsociacionHomeCard.propTypes = {
   news: PropTypes.number.isRequired,
   advertisements: PropTypes.number,
   results: PropTypes.number.isRequired,
+  id: PropTypes.number.isRequired,
 }
 
 AsociacionHomeCard.defaultProps = {
