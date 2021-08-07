@@ -12,7 +12,8 @@
     "rememberMe": "Recordarme",
     "forgotPassword": "Olvidé mi contraseña",
     "action": "Entrar",
-    "goToSignup": "Crear una cuenta"
+    "goToSignup": "Crear una cuenta",
+    "loginError": "Algo salió mal"
   },
   "signupText": {
     "signupTitle": "Regístrate en GuateSports",

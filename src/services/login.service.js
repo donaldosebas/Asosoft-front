@@ -12,10 +12,17 @@ export const authUser = async (user, pass) => {
   return response.json()
 }
 
-// TODO GET TOKEN FUNCTION
 export const setToken = async (token) => {
   try {
     return await AsyncStorage.setItem('token', token)
+  } catch (err) {
+    return err
+  }
+}
+
+export const getToken = async () => {
+  try {
+    return await AsyncStorage.getItem('token')
   } catch (err) {
     return err
   }
