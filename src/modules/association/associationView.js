@@ -62,7 +62,7 @@ const AssociationView = ({ route }) => {
     <View>
       <IsSubscribed isSubscribed={isSubscribed} />
       <ScrollView>
-        <NewsCarousel data={news} />
+        { news.length > 0 && <NewsCarousel data={news} /> }
         {
           currentEvents.length > 0
             ? (
