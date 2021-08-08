@@ -1,11 +1,21 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { StyleSheet, Text, TouchableOpacity } from 'react-native'
+import {
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  ActivityIndicator,
+  View,
+} from 'react-native'
 
 const styles = StyleSheet.create({
   button: {
+    position: 'relative',
     width: '100%',
     backgroundColor: '#1B9CC4',
+    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'center',
     borderRadius: 5,
     padding: 5,
     margin: 10,
@@ -19,6 +29,14 @@ const styles = StyleSheet.create({
     shadowRadius: 2.22,
     elevation: 3,
   },
+  spinnerContainer: {
+    position: 'absolute',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    left: '5%',
+    height: '100%',
+  },
   title: {
     color: 'white',
     textAlign: 'center',
@@ -26,8 +44,13 @@ const styles = StyleSheet.create({
   },
 })
 
-const SimpleButton = ({ title, onPress }) => (
+const SimpleButton = ({ title, onPress, isLoading }) => (
   <TouchableOpacity onPress={onPress} style={styles.button}>
+    {isLoading && (
+      <View style={styles.spinnerContainer}>
+        <ActivityIndicator size="small" color="#0000ff" />
+      </View>
+    )}
     <Text style={styles.title}>
       {title}
     </Text>
@@ -37,10 +60,12 @@ const SimpleButton = ({ title, onPress }) => (
 SimpleButton.propTypes = {
   title: PropTypes.string.isRequired,
   onPress: PropTypes.func,
+  isLoading: PropTypes.bool,
 }
 
 SimpleButton.defaultProps = {
   onPress: () => {},
+  isLoading: false,
 }
 
 export default SimpleButton

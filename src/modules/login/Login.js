@@ -1,7 +1,10 @@
 import { useNavigation } from '@react-navigation/core'
 import React, { useState, useContext } from 'react'
 import {
-  View, Text, StyleSheet, Pressable,
+  View,
+  Text,
+  StyleSheet,
+  Pressable,
 } from 'react-native'
 import IconAntDesign from 'react-native-vector-icons/AntDesign'
 import CheckToggle from '../shared/inputs/checkToggle'
@@ -50,17 +53,21 @@ const Login = () => {
   })
   const [error, setError] = useState(undefined)
   const [rememberMe, setRememberMe] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
   const { dispatch } = useContext(AppContext)
 
   const authorization = async () => {
-    // TODO VERIFY USERNAME AND PASSWORD
-    if (user.username.length !== 0 && user.password.length !== 0) {
-      await authUser(user.username, user.password).then((data) => {
+    setIsLoading(true)
+    await authUser(user.username, user.password)
+      .then((data) => {
         if (data.non_field_errors) setError(data.non_field_errors)
         if (data.token) dispatch({ type: 'LOGIN', token: data.token })
         if (rememberMe) setToken(data.token)
       })
-    }
+      .catch(() => {
+        setError(loginText.loginError)
+        setIsLoading(false)
+      })
   }
 
   return (
@@ -96,7 +103,7 @@ const Login = () => {
           <Text>{loginText.forgotPassword}</Text>
         </Pressable>
       </View>
-      <SimpleButton title={loginText.action} onPress={authorization} />
+      <SimpleButton title={loginText.action} onPress={authorization} isLoading={isLoading} />
       <Pressable
         onPress={() => navigation.navigate('Signup')}
       >
