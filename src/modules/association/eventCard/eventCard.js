@@ -66,7 +66,6 @@ const styles = StyleSheet.create({
 
 const EventCard = ({ event }) => {
   const navigation = useNavigation()
-  const local = 'Guatemala'
 
   return (
     <View style={styles.container}>
@@ -99,7 +98,7 @@ const EventCard = ({ event }) => {
             <Text>{`Jornada ${event.actualJourney} de ${event.totalJourneys}`}</Text>
           </View>
         )}
-        {(event.sede !== local) && (
+        {(event.actualJourney === 0) && (
           <View style={{ flexDirection: 'row', margin: 10 }}>
             <IconIonic
               name="pin"
@@ -117,7 +116,7 @@ const EventCard = ({ event }) => {
             <Text>{event.winner}</Text>
           </View>
         )}
-        {(Date.parse(`${event.startDate.split('-')[2]}-${event.startDate.split('-')[1]}-${event.startDate.split('-')[0]}`) > Date.now()) && (
+        {(Date.parse(`${event.startDate.split('-')[0]}-${event.startDate.split('-')[1]}-${event.startDate.split('-')[2]}`) > Date.now()) && (
           <>
             <Text>Inicia:</Text>
             <View style={{ flexDirection: 'row', marginBottom: 10 }}>
@@ -129,8 +128,8 @@ const EventCard = ({ event }) => {
             </View>
           </>
         )}
-        {(Date.parse(`${event.endDate.split('-')[2]}-${event.endDate.split('-')[1]}-${event.endDate.split('-')[0]}`) > Date.now())
-        && (Date.parse(`${event.startDate.split('-')[2]}-${event.startDate.split('-')[1]}-${event.startDate.split('-')[0]}`) < Date.now()) && (
+        {(Date.parse(`${event.endDate.split('-')[0]}-${event.endDate.split('-')[1]}-${event.endDate.split('-')[2]}`) > Date.now())
+        && (Date.parse(`${event.startDate.split('-')[0]}-${event.startDate.split('-')[1]}-${event.startDate.split('-')[2]}`) < Date.now()) && (
           <>
             <Text>Finaliza:</Text>
             <View style={{ flexDirection: 'row', marginBottom: 10 }}>
@@ -142,7 +141,7 @@ const EventCard = ({ event }) => {
             </View>
           </>
         )}
-        {(Date.parse(`${event.endDate.split('-')[2]}-${event.endDate.split('-')[1]}-${event.endDate.split('-')[0]}`) < Date.now()) && (
+        {(Date.parse(`${event.endDate.split('-')[0]}-${event.endDate.split('-')[1]}-${event.endDate.split('-')[2]}`) < Date.now()) && (
           <>
             <Text>Finalizó:</Text>
             <View style={{ flexDirection: 'row', marginBottom: 10 }}>
