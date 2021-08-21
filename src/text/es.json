@@ -24,7 +24,8 @@
     "rememberMe": "Recordarme",
     "termsConditions": "Términos y condiciones",
     "action": "Registrarme",
-    "goToLogin": "Ya tengo una cuenta"
+    "goToLogin": "Ya tengo una cuenta",
+    "signupError": "Algo salió mal"
   },
   "playerProfileText":{
     "biographyTitle": "Biografia",

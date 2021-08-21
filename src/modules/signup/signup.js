@@ -1,11 +1,13 @@
 import { useNavigation } from '@react-navigation/core'
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import {
   View, Text, StyleSheet, Pressable,
 } from 'react-native'
 import IconAntDesign from 'react-native-vector-icons/AntDesign'
 import CheckToggle from '../shared/inputs/checkToggle'
 import SimpleButton from '../shared/inputs/simpleButton'
+import AppContext from '../../store/StoreProvider'
+import { createUser, setToken } from '../../services/signup.service'
 import { CustomTextInput, Types } from '../shared/inputs/textInput'
 import { signupText } from '../../text/es.json'
 
@@ -46,6 +48,25 @@ const Signup = () => {
     password: '',
   })
   const [rememberMe, setRememberMe] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState(undefined)
+  const { dispatch } = useContext(AppContext)
+
+  const register = async () => {
+    setIsLoading(true)
+    await createUser(user.username, user.name, user.email, user.password)
+      .then((data) => {
+        console.log('good')
+        if (data.non_field_errors) setError(data.non_field_errors)
+        if (data.token) dispatch({ type: 'LOGIN', token: data.token })
+        if (rememberMe) setToken(data.token)
+      })
+      .catch(() => {
+        console.log('bad')
+        setError(signupText.signupError)
+        setIsLoading(false)
+      })
+  }
 
   return (
     <View style={styles.container}>
@@ -79,6 +100,7 @@ const Signup = () => {
           onChangeText={(newValue) => setUser((old) => ({ ...old, password: newValue }))}
           type={Types.PASSWORD}
         />
+        {error && <Text style={styles.errorText}>{error}</Text>}
         <Pressable
           onPress={() => setRememberMe((old) => !old)}
           style={styles.optionContainer}
@@ -93,7 +115,7 @@ const Signup = () => {
           <Text>{signupText.termsConditions}</Text>
         </Pressable>
       </View>
-      <SimpleButton title={signupText.action} />
+      <SimpleButton onPress={register} title={signupText.action} isLoading={isLoading} />
       <Pressable
         onPress={() => navigation.navigate('Login')}
       >
