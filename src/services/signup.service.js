@@ -2,7 +2,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 import { apiUrl } from './commons'
 
 export const createUser = async (user, name, emailr, pass) => {
-  console.log(user, name, pass, emailr)
   const response = await fetch(`${apiUrl}api/users/`, {
     method: 'POST',
     headers: {

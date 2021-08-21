@@ -56,13 +56,11 @@ const Signup = () => {
     setIsLoading(true)
     await createUser(user.username, user.name, user.email, user.password)
       .then((data) => {
-        console.log('good')
         if (data.non_field_errors) setError(data.non_field_errors)
         if (data.token) dispatch({ type: 'LOGIN', token: data.token })
         if (rememberMe) setToken(data.token)
       })
       .catch(() => {
-        console.log('bad')
         setError(signupText.signupError)
         setIsLoading(false)
       })
