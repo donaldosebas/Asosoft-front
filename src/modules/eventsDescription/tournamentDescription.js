@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import {
   StyleSheet, View, Text, Image,
 } from 'react-native'
@@ -10,6 +10,9 @@ import IsSubscribed from '../shared/issubscribe/isSubscribed'
 import { margin } from '../../utils/stylesUtils'
 import TeamCircle from '../shared/teamCircle/teamCircle'
 import Match from '../matchs/match/match'
+import { fetchEventInfoAndTeams, fetchEventMatches } from '../../services/event.service'
+import { MATCHES_TYPE } from '../../utils/types'
+import { EventInfoMapper, MatchesMapper } from '../../utils/events.mapper'
 
 const styles = StyleSheet.create({
   container: {
@@ -75,40 +78,63 @@ const styles = StyleSheet.create({
 const TournamentDescription = ({ route }) => {
   const { event } = route.params
   const navigation = useNavigation()
+  const [eventInfo, setEventInfo] = useState(event)
+  const [pastMatches, setPastMatches] = useState([])
+  const [nextMatches, setNextMatches] = useState([])
+
+  const fetchEventInfo = async () => {
+    fetchEventInfoAndTeams(event.id).then((data) => {
+      setEventInfo(EventInfoMapper(data[0]))
+    })
+    fetchEventMatches(event.id, MATCHES_TYPE.PAST).then((data) => {
+      setPastMatches(data.map((match) => MatchesMapper(match)))
+    })
+    fetchEventMatches(event.id, MATCHES_TYPE.NEXT).then((data) => {
+      setNextMatches(data.map((match) => {
+        const mappedMatch = MatchesMapper(match)
+        mappedMatch.localScore = null
+        return mappedMatch
+      }))
+    })
+  }
+
+  useEffect(() => {
+    fetchEventInfo()
+  }, [])
 
   return (
     <View style={styles.container}>
-      <IsSubscribed isSubscribed={event.isSubscribed} />
+      <IsSubscribed isSubscribed={eventInfo.isSubscribed} />
       <ScrollView>
         <View style={styles.infoContainer}>
-          <Text style={styles.title}>{event.title}</Text>
-          <Text style={styles.category}>{event.category}</Text>
-          <Image style={styles.image} source={{ uri: event.image }} />
+          <Text style={styles.title}>{eventInfo.title}</Text>
+          <Text style={styles.category}>{eventInfo.category}</Text>
+          <Image style={styles.image} source={{ uri: eventInfo.image }} />
           <View style={styles.iconTextContainer}>
             <IconIonic
               name="pin"
               style={{ margin: 5, color: '#1B9CC4' }}
             />
-            <Text>{event.sede}</Text>
+            <Text>{eventInfo.sede}</Text>
           </View>
           <View style={styles.iconTextContainer}>
             <IconIonic
               name="flag"
               style={{ margin: 5, color: '#1B9CC4' }}
             />
-            <Text>{`Jornada ${event.actualJourney} de ${event.totalJourneys}`}</Text>
+            <Text>{`Jornada ${eventInfo.actualJourney} de ${eventInfo.totalJourneys}`}</Text>
           </View>
           <View style={styles.iconTextContainer}>
             <IconIonic
               name="calendar"
               style={{ margin: 5, color: '#1B9CC4' }}
             />
-            <Text>{`Del ${event.startDate} al ${event.endDate}`}</Text>
+            <Text>{`Del ${eventInfo.startDate} al ${eventInfo.endDate}`}</Text>
           </View>
         </View>
         <Text style={styles.sectionTitle}>Equipos</Text>
         <FlatList
-          data={event.teams}
+          data={eventInfo.teams}
           horizontal
           renderItem={({ item }) => (
             <TeamCircle team={item} />
@@ -116,9 +142,7 @@ const TournamentDescription = ({ route }) => {
           keyExtractor={(team) => team.id.toString()}
         />
         {
-          (event.matches.filter((match) => (
-            Date.parse(`${match.date.split('-')[2]}-${match.date.split('-')[1]}-${match.date.split('-')[0]}`) > Date.now()
-          )).length !== 0)
+          nextMatches.length !== 0
           && (
             <>
               <View style={styles.titleLinkContainer}>
@@ -126,22 +150,18 @@ const TournamentDescription = ({ route }) => {
                 <Text
                   style={styles.linkAll}
                   onPress={() => navigation.navigate('Matches', {
-                    event,
-                    matches: event.matches.filter((match) => (
-                      Date.parse(`${match.date.split('-')[2]}-${match.date.split('-')[1]}-${match.date.split('-')[0]}`) > Date.now()
-                    )),
+                    eventInfo,
+                    nextMatches,
                   })}
                 >
                   Ver todos
                 </Text>
               </View>
               <FlatList
-                data={event.matches.filter((match) => (
-                  Date.parse(`${match.date.split('-')[2]}-${match.date.split('-')[1]}-${match.date.split('-')[0]}`) > Date.now()
-                ))}
+                data={nextMatches}
                 horizontal
                 renderItem={({ item }) => (
-                  <Match match={item} event={event} />
+                  <Match match={item} event={eventInfo} />
                 )}
                 keyExtractor={(item, index) => index.toString()}
               />
@@ -149,9 +169,7 @@ const TournamentDescription = ({ route }) => {
           )
         }
         {
-          (event.matches.filter((match) => (
-            Date.parse(`${match.date.split('-')[2]}-${match.date.split('-')[1]}-${match.date.split('-')[0]}`) < Date.now()
-          )).length !== 0)
+          pastMatches.length !== 0
           && (
           <>
             <View style={styles.titleLinkContainer}>
@@ -159,22 +177,18 @@ const TournamentDescription = ({ route }) => {
               <Text
                 style={styles.linkAll}
                 onPress={() => navigation.navigate('Matches', {
-                  event,
-                  matches: event.matches.filter((match) => (
-                    Date.parse(`${match.date.split('-')[2]}-${match.date.split('-')[1]}-${match.date.split('-')[0]}`) < Date.now()
-                  )),
+                  eventInfo,
+                  matches: pastMatches,
                 })}
               >
                 Ver todos
               </Text>
             </View>
             <FlatList
-              data={event.matches.filter((match) => (
-                Date.parse(`${match.date.split('-')[2]}-${match.date.split('-')[1]}-${match.date.split('-')[0]}`) < Date.now()
-              ))}
+              data={pastMatches}
               horizontal
               renderItem={({ item }) => (
-                <Match match={item} event={event} />
+                <Match match={item} event={eventInfo} />
               )}
               keyExtractor={(item, index) => index.toString()}
             />
@@ -201,24 +215,6 @@ TournamentDescription.propTypes = {
         startDate: PropTypes.string,
         endDate: PropTypes.string,
         isSubscribed: PropTypes.bool,
-        teams: PropTypes.arrayOf(PropTypes.shape({
-          id: PropTypes.number,
-          image: PropTypes.string,
-          title: PropTypes.string,
-          isSubscribed: PropTypes.bool,
-        })),
-        matches: PropTypes.arrayOf(PropTypes.shape({
-          id: PropTypes.number,
-          local: PropTypes.shape,
-          visit: PropTypes.shape,
-          localScore: PropTypes.number,
-          visitScore: PropTypes.number,
-          journey: PropTypes.number,
-          date: PropTypes.string,
-          time: PropTypes.string,
-          stadium: PropTypes.string,
-          price: PropTypes.string,
-        })),
       }).isRequired,
     }).isRequired,
   }).isRequired,
