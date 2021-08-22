@@ -4,7 +4,6 @@ import {
 } from 'react-native'
 import PropTypes from 'prop-types'
 import IconIonic from 'react-native-vector-icons/Ionicons'
-import { useNavigation } from '@react-navigation/core'
 
 const styles = StyleSheet.create({
   container: {
@@ -64,71 +63,68 @@ const styles = StyleSheet.create({
   },
 })
 
-const EventCard = ({ event }) => {
-  const navigation = useNavigation()
-
-  return (
-    <View style={styles.container}>
-      <Pressable
-        style={({ pressed }) => [
-          (pressed) ? styles.pressed : styles.notPressed,
-          styles.contentContainer,
+const EventCard = ({ event, navigation }) => (
+  <View style={styles.container}>
+    <Pressable
+      style={({ pressed }) => [
+        (pressed) ? styles.pressed : styles.notPressed,
+        styles.contentContainer,
+      ]}
+      onPress={() => navigation.navigate('Tournament', {
+        event,
+      })}
+    >
+      <IconIonic
+        name="ios-notifications-outline"
+        style={[
+          // eslint-disable-next-line max-len
+          event.isSubscribed ? styles.notificationIconActive : styles.notificationIconDeactive,
+          styles.notificationIcon,
         ]}
-        onPress={() => navigation.navigate('Tournament', {
-          event,
-        })}
-      >
+      />
+      <Image style={styles.image} source={{ uri: event.image }} />
+      <Text style={styles.title}>{event.title}</Text>
+      <Text style={styles.category}>{event.category}</Text>
+      {(event.actualJourney > 0) && (
+      <View style={{ flexDirection: 'row', margin: 10 }}>
         <IconIonic
-          name="ios-notifications-outline"
-          style={[
-            // eslint-disable-next-line max-len
-            event.isSubscribed ? styles.notificationIconActive : styles.notificationIconDeactive,
-            styles.notificationIcon,
-          ]}
+          name="flag"
+          style={{ margin: 5, color: '#1B9CC4' }}
         />
-        <Image style={styles.image} source={{ uri: event.image }} />
-        <Text style={styles.title}>{event.title}</Text>
-        <Text style={styles.category}>{event.category}</Text>
-        {(event.actualJourney > 0) && (
-          <View style={{ flexDirection: 'row', margin: 10 }}>
-            <IconIonic
-              name="flag"
-              style={{ margin: 5, color: '#1B9CC4' }}
-            />
-            <Text>{`Jornada ${event.actualJourney} de ${event.totalJourneys}`}</Text>
-          </View>
-        )}
-        {(event.actualJourney === 0) && (
-          <View style={{ flexDirection: 'row', margin: 10 }}>
-            <IconIonic
-              name="pin"
-              style={{ margin: 5, color: '#1B9CC4' }}
-            />
-            <Text>{event.sede}</Text>
-          </View>
-        )}
-        {(event.winner !== '') && (
-          <View style={{ flexDirection: 'row', margin: 10 }}>
-            <IconIonic
-              name="trophy"
-              style={{ margin: 5, color: '#1B9CC4' }}
-            />
-            <Text>{event.winner}</Text>
-          </View>
-        )}
-        {(Date.parse(`${event.startDate.split('-')[0]}-${event.startDate.split('-')[1]}-${event.startDate.split('-')[2]}`) > Date.now()) && (
-          <>
-            <Text>Inicia:</Text>
-            <View style={{ flexDirection: 'row', marginBottom: 10 }}>
-              <IconIonic
-                name="calendar"
-                style={{ margin: 5, color: '#1B9CC4' }}
-              />
-              <Text>{event.startDate}</Text>
-            </View>
-          </>
-        )}
-        {(Date.parse(`${event.endDate.split('-')[0]}-${event.endDate.split('-')[1]}-${event.endDate.split('-')[2]}`) > Date.now())
+        <Text>{`Jornada ${event.actualJourney} de ${event.totalJourneys}`}</Text>
+      </View>
+      )}
+      {(event.actualJourney === 0) && (
+      <View style={{ flexDirection: 'row', margin: 10 }}>
+        <IconIonic
+          name="pin"
+          style={{ margin: 5, color: '#1B9CC4' }}
+        />
+        <Text>{event.sede}</Text>
+      </View>
+      )}
+      {(event.winner !== '') && (
+      <View style={{ flexDirection: 'row', margin: 10 }}>
+        <IconIonic
+          name="trophy"
+          style={{ margin: 5, color: '#1B9CC4' }}
+        />
+        <Text>{event.winner}</Text>
+      </View>
+      )}
+      {(Date.parse(`${event.startDate.split('-')[0]}-${event.startDate.split('-')[1]}-${event.startDate.split('-')[2]}`) > Date.now()) && (
+      <>
+        <Text>Inicia:</Text>
+        <View style={{ flexDirection: 'row', marginBottom: 10 }}>
+          <IconIonic
+            name="calendar"
+            style={{ margin: 5, color: '#1B9CC4' }}
+          />
+          <Text>{event.startDate}</Text>
+        </View>
+      </>
+      )}
+      {(Date.parse(`${event.endDate.split('-')[0]}-${event.endDate.split('-')[1]}-${event.endDate.split('-')[2]}`) > Date.now())
         && (Date.parse(`${event.startDate.split('-')[0]}-${event.startDate.split('-')[1]}-${event.startDate.split('-')[2]}`) < Date.now()) && (
           <>
             <Text>Finaliza:</Text>
@@ -140,25 +136,26 @@ const EventCard = ({ event }) => {
               <Text>{event.endDate}</Text>
             </View>
           </>
-        )}
-        {(Date.parse(`${event.endDate.split('-')[0]}-${event.endDate.split('-')[1]}-${event.endDate.split('-')[2]}`) < Date.now()) && (
-          <>
-            <Text>Finalizó:</Text>
-            <View style={{ flexDirection: 'row', marginBottom: 10 }}>
-              <IconIonic
-                name="calendar"
-                style={{ margin: 5, color: '#1B9CC4' }}
-              />
-              <Text>{event.endDate}</Text>
-            </View>
-          </>
-        )}
-      </Pressable>
-    </View>
-  )
-}
+      )}
+      {(Date.parse(`${event.endDate.split('-')[0]}-${event.endDate.split('-')[1]}-${event.endDate.split('-')[2]}`) < Date.now()) && (
+      <>
+        <Text>Finalizó:</Text>
+        <View style={{ flexDirection: 'row', marginBottom: 10 }}>
+          <IconIonic
+            name="calendar"
+            style={{ margin: 5, color: '#1B9CC4' }}
+          />
+          <Text>{event.endDate}</Text>
+        </View>
+      </>
+      )}
+    </Pressable>
+  </View>
+)
 
 EventCard.propTypes = {
+  // eslint-disable-next-line react/forbid-prop-types
+  navigation: PropTypes.object.isRequired,
   event: PropTypes.shape({
     id: PropTypes.number.isRequired,
     image: PropTypes.string.isRequired,

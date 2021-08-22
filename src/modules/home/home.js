@@ -6,6 +6,7 @@ import {
   FlatList,
   Text,
 } from 'react-native'
+import PropTypes from 'prop-types'
 import AsociacionCard from './asociacionCard/asociacionHomeCard'
 import { fetchHomeItems, fetchHomeItemsDetails } from '../../services/home.service'
 import { imagesUrl } from '../../services/commons'
@@ -16,7 +17,7 @@ const styles = StyleSheet.create({
   },
 })
 
-const Home = () => {
+const Home = ({ navigation }) => {
   const [associations, setAssociations] = useState({})
   const [associationsDetails, setAssociationsDetails] = useState('')
 
@@ -52,6 +53,7 @@ const Home = () => {
               isSubscribed={true}
               news={associationsDetails[id].news}
               results={associationsDetails[id].results}
+              navigation={navigation}
             />
           )
         }}
@@ -59,6 +61,11 @@ const Home = () => {
       />
     </SafeAreaView>
   )
+}
+
+Home.propTypes = {
+  // eslint-disable-next-line react/forbid-prop-types
+  navigation: PropTypes.object.isRequired,
 }
 
 export default Home

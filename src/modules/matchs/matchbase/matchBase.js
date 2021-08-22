@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { useNavigation } from '@react-navigation/core'
 import {
   StyleSheet, View, Text, Pressable,
 } from 'react-native'
@@ -30,37 +29,35 @@ const styles = StyleSheet.create({
   },
 })
 
-const MatchBase = ({ match, event }) => {
-  const navigation = useNavigation()
-
-  return (
-    <Pressable
-      style={({ pressed }) => [
-        (pressed) ? styles.pressed : {},
-        styles.contentContainer,
-      ]}
-      onPress={() => navigation.navigate('Match Description', {
-        event,
-        match,
-      })}
-    >
-      <Text>{`${event.title} - ${event.category} - Jornada: ${match.journey}`}</Text>
-      <View style={styles.versusContainer}>
-        <TeamCircle team={match.local} />
-        <Text style={styles.result}>
-          {
+const MatchBase = ({ match, event, navigation }) => (
+  <Pressable
+    style={({ pressed }) => [
+      (pressed) ? styles.pressed : {},
+      styles.contentContainer,
+    ]}
+    onPress={() => navigation.navigate('Match Description', {
+      event,
+      match,
+    })}
+  >
+    <Text>{`${event.title} - ${event.category} - Jornada: ${match.journey}`}</Text>
+    <View style={styles.versusContainer}>
+      <TeamCircle team={match.local} />
+      <Text style={styles.result}>
+        {
             (match.localScore === null) ? 'VS' : `${match.localScore} - ${match.visitScore}`
           }
-        </Text>
-        <TeamCircle team={match.visit} side="right" />
-      </View>
-      <Text>{match.date}</Text>
-      <Text>{match.time}</Text>
-    </Pressable>
-  )
-}
+      </Text>
+      <TeamCircle team={match.visit} side="right" />
+    </View>
+    <Text>{match.date}</Text>
+    <Text>{match.time}</Text>
+  </Pressable>
+)
 
 MatchBase.propTypes = {
+  // eslint-disable-next-line react/forbid-prop-types
+  navigation: PropTypes.object.isRequired,
   event: PropTypes.shape({
     id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,

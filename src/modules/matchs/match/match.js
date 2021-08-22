@@ -28,15 +28,17 @@ const styles = StyleSheet.create({
   },
 })
 
-const Match = ({ match, event }) => (
+const Match = ({ match, event, navigation }) => (
   <View style={styles.container}>
     <View style={styles.contentContainer}>
-      <MatchBase match={match} event={event} />
+      <MatchBase match={match} event={event} navigation={navigation} />
     </View>
   </View>
 )
 
 Match.propTypes = {
+  // eslint-disable-next-line react/forbid-prop-types
+  navigation: PropTypes.object.isRequired,
   event: PropTypes.shape({
     id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,

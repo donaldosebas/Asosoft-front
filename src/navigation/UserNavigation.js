@@ -1,7 +1,7 @@
 import React from 'react'
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
-import { createDrawerNavigator } from '@react-navigation/drawer'
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import Home from '../modules/home/home'
 import playerProfile from '../modules/athleteprofile/playerProfile'
 import tournamentDescription from '../modules/eventsDescription/tournamentDescription'
@@ -10,9 +10,10 @@ import Matches from '../modules/matchs/matches'
 import MatchDescription from '../modules/matchDescription/matchDescription'
 
 const Stack = createStackNavigator()
+const Tab = createBottomTabNavigator()
 
 const UserNavigationStack = () => (
-  <Stack.Navigator>
+  <Stack.Navigator initialRouteName="Home">
     <Stack.Screen
       name="Home"
       component={Home}
@@ -39,18 +40,20 @@ const UserNavigationStack = () => (
     />
   </Stack.Navigator>
 )
-// TODO CHANGE TO TAB NAVIGATION
-const Drawer = createDrawerNavigator()
 
-const UserNavigationDrawer = () => (
-  <Drawer.Navigator>
-    <Drawer.Screen name="Home" component={UserNavigationStack} />
-  </Drawer.Navigator>
+const UserNavigationTab = () => (
+  <Tab.Navigator>
+    <Tab.Screen
+      name="HomeTab"
+      component={UserNavigationStack}
+      options={{ headerShown: false }}
+    />
+  </Tab.Navigator>
 )
 
 const UserNavigation = () => (
   <NavigationContainer>
-    <UserNavigationDrawer />
+    <UserNavigationTab />
   </NavigationContainer>
 )
 export default UserNavigation

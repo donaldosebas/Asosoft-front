@@ -4,7 +4,6 @@ import {
 } from 'react-native'
 import { FlatList, ScrollView } from 'react-native-gesture-handler'
 import PropTypes from 'prop-types'
-import { useNavigation } from '@react-navigation/core'
 import IconIonic from 'react-native-vector-icons/Ionicons'
 import IsSubscribed from '../shared/issubscribe/isSubscribed'
 import { margin } from '../../utils/stylesUtils'
@@ -75,9 +74,8 @@ const styles = StyleSheet.create({
   },
 })
 
-const TournamentDescription = ({ route }) => {
+const TournamentDescription = ({ route, navigation }) => {
   const { event } = route.params
-  const navigation = useNavigation()
   const [eventInfo, setEventInfo] = useState(event)
   const [pastMatches, setPastMatches] = useState([])
   const [nextMatches, setNextMatches] = useState([])
@@ -161,7 +159,7 @@ const TournamentDescription = ({ route }) => {
                 data={nextMatches}
                 horizontal
                 renderItem={({ item }) => (
-                  <Match match={item} event={eventInfo} />
+                  <Match match={item} event={eventInfo} navigation={navigation} />
                 )}
                 keyExtractor={(item, index) => index.toString()}
               />
@@ -188,7 +186,7 @@ const TournamentDescription = ({ route }) => {
               data={pastMatches}
               horizontal
               renderItem={({ item }) => (
-                <Match match={item} event={eventInfo} />
+                <Match match={item} event={eventInfo} navigation={navigation} />
               )}
               keyExtractor={(item, index) => index.toString()}
             />
@@ -201,6 +199,8 @@ const TournamentDescription = ({ route }) => {
 }
 
 TournamentDescription.propTypes = {
+  // eslint-disable-next-line react/forbid-prop-types
+  navigation: PropTypes.object.isRequired,
   route: PropTypes.shape({
     params: PropTypes.shape({
       event: PropTypes.shape({

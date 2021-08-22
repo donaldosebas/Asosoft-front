@@ -31,7 +31,7 @@ const players = [
   },
 ]
 
-const AssociationView = ({ route }) => {
+const AssociationView = ({ route, navigation }) => {
   const { isSubscribed } = route.params
   const { id } = route.params
   const [news, setNews] = useState([])
@@ -72,7 +72,7 @@ const AssociationView = ({ route }) => {
                   data={currentEvents}
                   horizontal
                   renderItem={({ item }) => (
-                    <EventCard event={item} />
+                    <EventCard event={item} navigation={navigation} />
                   )}
                   keyExtractor={(item) => item.id.toString()}
                 />
@@ -89,7 +89,7 @@ const AssociationView = ({ route }) => {
                   data={futureEvents}
                   horizontal
                   renderItem={({ item }) => (
-                    <EventCard event={item} />
+                    <EventCard event={item} navigation={navigation} />
                   )}
                   keyExtractor={(item) => item.id.toString()}
                 />
@@ -106,7 +106,7 @@ const AssociationView = ({ route }) => {
                   data={pastEvents}
                   horizontal
                   renderItem={({ item }) => (
-                    <EventCard event={item} />
+                    <EventCard event={item} navigation={navigation} />
                   )}
                   keyExtractor={(item) => item.id.toString()}
                 />
@@ -119,7 +119,7 @@ const AssociationView = ({ route }) => {
           data={players}
           horizontal
           renderItem={({ item }) => (
-            <BestPlayers player={item} />
+            <BestPlayers player={item} navigation={navigation} />
           )}
           keyExtractor={(item) => item.id.toString()}
         />
@@ -129,6 +129,8 @@ const AssociationView = ({ route }) => {
 }
 
 AssociationView.propTypes = {
+  // eslint-disable-next-line react/forbid-prop-types
+  navigation: PropTypes.object.isRequired,
   route: PropTypes.shape({
     params: PropTypes.shape({
       id: PropTypes.number.isRequired,

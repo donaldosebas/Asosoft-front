@@ -1,8 +1,8 @@
-import { useNavigation } from '@react-navigation/core'
 import React, { useState, useContext } from 'react'
 import {
   View, Text, StyleSheet, Pressable,
 } from 'react-native'
+import PropTypes from 'prop-types'
 import IconAntDesign from 'react-native-vector-icons/AntDesign'
 import CheckToggle from '../shared/inputs/checkToggle'
 import SimpleButton from '../shared/inputs/simpleButton'
@@ -39,8 +39,7 @@ const styles = StyleSheet.create({
   },
 })
 
-const Signup = () => {
-  const navigation = useNavigation()
+const Signup = ({ navigation }) => {
   const [user, setUser] = useState({
     username: '',
     name: '',
@@ -121,6 +120,11 @@ const Signup = () => {
       </Pressable>
     </View>
   )
+}
+
+Signup.propTypes = {
+  // eslint-disable-next-line react/forbid-prop-types
+  navigation: PropTypes.object.isRequired,
 }
 
 export default Signup

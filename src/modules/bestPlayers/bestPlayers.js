@@ -3,7 +3,6 @@ import {
   StyleSheet, View, Text, Image, TouchableOpacity,
 } from 'react-native'
 import PropTypes from 'prop-types'
-import { useNavigation } from '@react-navigation/core'
 
 const styles = StyleSheet.create({
   container: {
@@ -37,22 +36,21 @@ const styles = StyleSheet.create({
   },
 })
 
-const BestPlayers = ({ player }) => {
-  const navigation = useNavigation()
-  return (
-    <TouchableOpacity onPress={() => navigation.navigate('Player', {
-    })}
-    >
-      <View style={styles.container}>
-        <Image style={styles.image} source={{ uri: player.image }} />
-        <Text style={styles.title}>{player.name}</Text>
-        <Text>{player.position}</Text>
-      </View>
-    </TouchableOpacity>
-  )
-}
+const BestPlayers = ({ player, navigation }) => (
+  <TouchableOpacity onPress={() => navigation.navigate('Player', {
+  })}
+  >
+    <View style={styles.container}>
+      <Image style={styles.image} source={{ uri: player.image }} />
+      <Text style={styles.title}>{player.name}</Text>
+      <Text>{player.position}</Text>
+    </View>
+  </TouchableOpacity>
+)
 
 BestPlayers.propTypes = {
+  // eslint-disable-next-line react/forbid-prop-types
+  navigation: PropTypes.object.isRequired,
   player: PropTypes.shape({
     position: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,

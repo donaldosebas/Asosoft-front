@@ -41,13 +41,13 @@ const styles = StyleSheet.create({
   },
 })
 
-const RouteProfile = ({ matches }) => (
+const RouteProfile = ({ matches, navigation }) => (
   <View style={styles.container}>
     <Text style={styles.title}>{routePlayerProfileText.routeTitle}</Text>
     {
       matches.map((match) => (
         <View key={match.id}>
-          <MatchBase match={match} event={match.event} />
+          <MatchBase match={match} event={match.event} navigation={navigation} />
           <View style={styles.separator} />
         </View>
       ))
@@ -57,6 +57,8 @@ const RouteProfile = ({ matches }) => (
 )
 
 RouteProfile.propTypes = {
+  // eslint-disable-next-line react/forbid-prop-types
+  navigation: PropTypes.object.isRequired,
   matches: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number,
     local: PropTypes.shape({
