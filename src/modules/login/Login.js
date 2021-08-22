@@ -60,7 +60,10 @@ const Login = ({ navigation }) => {
     await authUser(user.username, user.password)
       .then((data) => {
         if (data.non_field_errors) setError(data.non_field_errors)
-        if (data.token) dispatch({ type: 'LOGIN', token: data.token })
+        if (data.token) {
+          dispatch({ type: 'LOGIN', token: data.token })
+          navigation.navigate('HomeTab')
+        }
         if (rememberMe) setToken(data.token)
       })
       .catch(() => {
