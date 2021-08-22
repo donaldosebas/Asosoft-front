@@ -37,7 +37,8 @@
     "eslint-plugin-react-native": "^3.10.0",
     "jest-cucumber": "^3.0.1",
     "jest-expo": "^41.0.0",
-    "react-test-renderer": "^17.0.2"
+    "react-test-renderer": "^17.0.2",
+    "sinon": "^11.1.2"
   },
   "scripts": {
     "start": "expo start",
@@ -55,7 +56,8 @@
       "node_modules/(?!(jest-)?react-native|react-clone-referenced-element|@react-native-community|expo(nent)?|@expo(nent)?/.*|react-navigation|@react-navigation/.*|@unimodules/.*|unimodules|sentry-expo|native-base|@sentry/.*)"
     ],
     "testMatch": [
-      "**/*.steps.js"
+      "**/*.steps.js",
+      "**/*.test.js"
     ]
   },
   "private": true,

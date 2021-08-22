@@ -28,6 +28,7 @@ module.exports = {
     'react/jsx-filename-extension': 'off',
     'linebreak-style': 'off',
     'import/prefer-default-export': 'off',
+    'import/no-extraneous-dependencies': 'off',
   },
   settings: {
     react: {
