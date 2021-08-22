@@ -7,7 +7,7 @@ import {
   Text,
 } from 'react-native'
 import AsociacionCard from './asociacionCard/asociacionHomeCard'
-import { fetchHomeItems, fetchHomeItemsDetails } from '../../services/home.service'
+import { fetchHomeItems, fetchHomeItemsDetails } from '../../services/association.service'
 import { imagesUrl } from '../../services/commons'
 
 const styles = StyleSheet.create({
