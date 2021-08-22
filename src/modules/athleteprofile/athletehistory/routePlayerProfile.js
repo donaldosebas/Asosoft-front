@@ -5,6 +5,7 @@ import {
 import PropTypes from 'prop-types'
 import { routePlayerProfileText } from '../../../text/es.json'
 import MatchBase from '../../matchs/matchbase/matchBase'
+import { MATCH_TYPE } from '../../../utils/types'
 
 const styles = StyleSheet.create({
   container: {
@@ -47,7 +48,12 @@ const RouteProfile = ({ matches, navigation }) => (
     {
       matches.map((match) => (
         <View key={match.id}>
-          <MatchBase match={match} event={match.event} navigation={navigation} />
+          <MatchBase
+            match={match}
+            event={match.event}
+            type={MATCH_TYPE.FINISHED}
+            navigation={navigation}
+          />
           <View style={styles.separator} />
         </View>
       ))

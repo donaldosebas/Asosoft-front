@@ -48,7 +48,7 @@ const SimpleButton = ({ title, onPress, isLoading }) => (
   <TouchableOpacity onPress={onPress} style={styles.button}>
     {isLoading && (
       <View style={styles.spinnerContainer}>
-        <ActivityIndicator size="small" color="#0000ff" />
+        <ActivityIndicator size="small" color="#ffffff" />
       </View>
     )}
     <Text style={styles.title}>

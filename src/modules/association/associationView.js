@@ -10,9 +10,10 @@ import EventCard from './eventCard/eventCard'
 import BestPlayers from '../bestPlayers/bestPlayers'
 import IsSubscribed from '../shared/issubscribe/isSubscribed'
 import { associationViewText } from '../../text/es.json'
-import { fetchAssociationEvents, fetchNews } from '../../services/association.service'
+import { fetchAssociationEvents } from '../../services/event.service'
 import { EventMapper } from '../../utils/events.mapper'
 import { EVENT_TYPE } from '../../utils/types'
+import { fetchNews } from '../../services/news.service'
 
 const styles = StyleSheet.create({
   title: {

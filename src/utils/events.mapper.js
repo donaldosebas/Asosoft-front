@@ -1,3 +1,13 @@
+import { AssociationMapper } from './association.mapper'
+
+export const TeamMapper = (team) => ({
+  id: team.id,
+  image: team.team_image,
+  title: team.team_name,
+  description: team.team_description,
+  isSubscribed: team?.is_subscribed || false,
+})
+
 export const EventMapper = (event) => ({
   id: event.id,
   image: event?.image || 'https://i.pinimg.com/474x/16/84/07/16840716d53d268432071001903fe2a0.jpg',
@@ -6,18 +16,18 @@ export const EventMapper = (event) => ({
   actualJourney: event?.current_date || 0,
   totalJourneys: event?.total_dates || null,
   sede: event?.tournament_country || null,
-  winner: event?.winner || '',
+  winner: event?.winner || event?.tournament_winner || '',
   startDate: event?.start_date || '2021-01-01',
   endDate: event?.end_date || '2021-12-31',
   isSubscribed: event?.is_subscribed || false,
+  association: event?.association && AssociationMapper(event?.association),
+  teams: event?.teams && event?.teams.map((team) => TeamMapper(team)),
 })
 
-export const TeamMapper = (team) => ({
-  id: team.id,
-  image: team.team_image,
-  title: team.team_name,
-  description: team.team_description,
-  isSubscribed: team?.is_subscribed || false,
+export const TeamFinishedMatchMapper = (team) => ({
+  ...TeamMapper(team),
+  players: team.players, // TODO: mapear segun la propiedad que venga del api
+  summary: team.summary, // TODO: mapear segun la propiedad que venga del api
 })
 
 export const EventInfoMapper = (event) => ({
