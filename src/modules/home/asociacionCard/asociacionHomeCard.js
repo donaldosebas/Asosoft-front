@@ -92,10 +92,12 @@ const AsociacionHomeCard = ({
   navigation,
 }) => (
   // TODO: Debe enviar el objeto completo de association en el navigate
-  <TouchableOpacity onPress={() => navigation.navigate('Association', {
-    isSubscribed,
-    id,
-  })}
+  <TouchableOpacity
+    activeOpacity={0.8}
+    onPress={() => navigation.navigate('Association', {
+      isSubscribed,
+      id,
+    })}
   >
     <View style={styles.container}>
       <Image

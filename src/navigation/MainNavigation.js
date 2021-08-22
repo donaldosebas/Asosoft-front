@@ -16,7 +16,7 @@ const MainTabNavigator = () => (
 
         if (route.name === 'HomeTab') {
           iconName = 'home-outline'
-        } else if (route.name === 'LoginTab') {
+        } else if (route.name === 'MenuTab') {
           iconName = 'menu-outline'
         }
         return <Ionicons name={iconName} size={size} color={color} />
@@ -28,12 +28,12 @@ const MainTabNavigator = () => (
     <Tab.Screen
       name="HomeTab"
       component={HomeNavigationStack}
-      options={{ headerShown: false }}
+      options={{ headerShown: false, title: 'Home' }}
     />
     <Tab.Screen
-      name="LoginTab"
+      name="MenuTab"
       component={LoginStackNavigation}
-      options={{ headerShown: false }}
+      options={{ headerShown: false, title: 'Menu' }}
     />
   </Tab.Navigator>
 )
