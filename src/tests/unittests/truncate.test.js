@@ -1,7 +1,7 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
 
-import Truncate from '../modules/athleteprofile/truncate/truncateText'
+import Truncate from '../../modules/athleteprofile/truncate/truncateText'
 
 describe('Testing truncate visualization', () => {
   test('Truncate renders correctly', () => {
