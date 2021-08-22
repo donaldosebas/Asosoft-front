@@ -8,7 +8,7 @@ import {
 } from 'react-native'
 import PropTypes from 'prop-types'
 import AsociacionCard from './asociacionCard/asociacionHomeCard'
-import { fetchHomeItems, fetchHomeItemsDetails } from '../../services/home.service'
+import { fetchHomeItems, fetchHomeItemsDetails } from '../../services/association.service'
 import { imagesUrl } from '../../services/commons'
 
 const styles = StyleSheet.create({

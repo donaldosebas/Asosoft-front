@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
   },
 })
 
-const NewsCarousel = ({ data }) => {
+const NewsCarousel = ({ data, navigation }) => {
   // eslint-disable-next-line no-unused-vars
   const [actual, setActual] = useState(0)
   const flatList = useRef()
@@ -58,7 +58,7 @@ const NewsCarousel = ({ data }) => {
         viewabilityConfig={viewConfigRef.current}
         renderItem={({ item }) => (
           <View style={{ width }}>
-            <NewsCard notice={item} />
+            <NewsCard notice={item} navigation={navigation} />
           </View>
         )}
         keyExtractor={(item, index) => index.toString()}
@@ -70,6 +70,8 @@ const NewsCarousel = ({ data }) => {
 NewsCarousel.propTypes = {
   // eslint-disable-next-line react/forbid-prop-types
   data: PropTypes.array.isRequired,
+  // eslint-disable-next-line react/forbid-prop-types
+  navigation: PropTypes.object.isRequired,
 }
 
 export default NewsCarousel

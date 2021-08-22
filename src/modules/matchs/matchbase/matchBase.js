@@ -29,7 +29,9 @@ const styles = StyleSheet.create({
   },
 })
 
-const MatchBase = ({ match, event, navigation }) => (
+const MatchBase = ({
+  type, match, event, navigation,
+}) => (
   <Pressable
     style={({ pressed }) => [
       (pressed) ? styles.pressed : {},
@@ -38,6 +40,7 @@ const MatchBase = ({ match, event, navigation }) => (
     onPress={() => navigation.navigate('Match Description', {
       event,
       match,
+      type,
     })}
   >
     <Text>{`${event.title} - ${event.category} - Jornada: ${match.journey}`}</Text>
@@ -58,6 +61,7 @@ const MatchBase = ({ match, event, navigation }) => (
 MatchBase.propTypes = {
   // eslint-disable-next-line react/forbid-prop-types
   navigation: PropTypes.object.isRequired,
+  type: PropTypes.string.isRequired,
   event: PropTypes.shape({
     id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,

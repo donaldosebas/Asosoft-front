@@ -9,9 +9,10 @@ import IsSubscribed from '../shared/issubscribe/isSubscribed'
 import { margin } from '../../utils/stylesUtils'
 import TeamCircle from '../shared/teamCircle/teamCircle'
 import Match from '../matchs/match/match'
-import { fetchEventInfoAndTeams, fetchEventMatches } from '../../services/event.service'
-import { MATCHES_TYPE } from '../../utils/types'
+import { fetchEventInfoAndTeams } from '../../services/event.service'
+import { MATCHES_TYPE, MATCH_TYPE } from '../../utils/types'
 import { EventInfoMapper, MatchesMapper } from '../../utils/events.mapper'
+import { fetchEventMatches } from '../../services/match.service'
 
 const styles = StyleSheet.create({
   container: {
@@ -80,7 +81,7 @@ const TournamentDescription = ({ route, navigation }) => {
   const [pastMatches, setPastMatches] = useState([])
   const [nextMatches, setNextMatches] = useState([])
 
-  const fetchEventInfo = async () => {
+  const getEventInfo = async () => {
     fetchEventInfoAndTeams(event.id).then((data) => {
       setEventInfo(EventInfoMapper(data[0]))
     })
@@ -97,7 +98,7 @@ const TournamentDescription = ({ route, navigation }) => {
   }
 
   useEffect(() => {
-    fetchEventInfo()
+    getEventInfo()
   }, [])
 
   return (
@@ -148,8 +149,8 @@ const TournamentDescription = ({ route, navigation }) => {
                 <Text
                   style={styles.linkAll}
                   onPress={() => navigation.navigate('Matches', {
-                    eventInfo,
-                    nextMatches,
+                    event,
+                    type: MATCHES_TYPE.NEXT,
                   })}
                 >
                   Ver todos
@@ -159,7 +160,12 @@ const TournamentDescription = ({ route, navigation }) => {
                 data={nextMatches}
                 horizontal
                 renderItem={({ item }) => (
-                  <Match match={item} event={eventInfo} navigation={navigation} />
+                  <Match
+                    match={item}
+                    event={eventInfo}
+                    type={MATCH_TYPE.UPCOMING}
+                    navigation={navigation}
+                  />
                 )}
                 keyExtractor={(item, index) => index.toString()}
               />
@@ -175,8 +181,8 @@ const TournamentDescription = ({ route, navigation }) => {
               <Text
                 style={styles.linkAll}
                 onPress={() => navigation.navigate('Matches', {
-                  eventInfo,
-                  matches: pastMatches,
+                  event,
+                  type: MATCHES_TYPE.PAST,
                 })}
               >
                 Ver todos
@@ -186,7 +192,12 @@ const TournamentDescription = ({ route, navigation }) => {
               data={pastMatches}
               horizontal
               renderItem={({ item }) => (
-                <Match match={item} event={eventInfo} navigation={navigation} />
+                <Match
+                  match={item}
+                  event={eventInfo}
+                  type={MATCH_TYPE.FINISHED}
+                  navigation={navigation}
+                />
               )}
               keyExtractor={(item, index) => index.toString()}
             />
