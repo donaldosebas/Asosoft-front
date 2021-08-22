@@ -28,10 +28,10 @@ const styles = StyleSheet.create({
   },
 })
 
-const Match = ({ match, event }) => (
+const Match = ({ match, event, type }) => (
   <View style={styles.container}>
     <View style={styles.contentContainer}>
-      <MatchBase match={match} event={event} />
+      <MatchBase match={match} event={event} type={type} />
     </View>
   </View>
 )
@@ -62,6 +62,7 @@ Match.propTypes = {
     stadium: PropTypes.string,
     price: PropTypes.string,
   }).isRequired,
+  type: PropTypes.string.isRequired,
 }
 
 export default Match

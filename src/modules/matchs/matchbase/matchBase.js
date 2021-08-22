@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
   },
 })
 
-const MatchBase = ({ match, event }) => {
+const MatchBase = ({ type, match, event }) => {
   const navigation = useNavigation()
 
   return (
@@ -42,6 +42,7 @@ const MatchBase = ({ match, event }) => {
       onPress={() => navigation.navigate('Match Description', {
         event,
         match,
+        type,
       })}
     >
       <Text>{`${event.title} - ${event.category} - Jornada: ${match.journey}`}</Text>
@@ -61,6 +62,7 @@ const MatchBase = ({ match, event }) => {
 }
 
 MatchBase.propTypes = {
+  type: PropTypes.string.isRequired,
   event: PropTypes.shape({
     id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,

@@ -8,6 +8,7 @@ import tournamentDescription from '../modules/eventsDescription/tournamentDescri
 import AssociationView from '../modules/association/associationView'
 import Matches from '../modules/matchs/matches'
 import MatchDescription from '../modules/matchDescription/matchDescription'
+import NewsView from '../modules/news/newsView'
 
 const Stack = createStackNavigator()
 
@@ -36,6 +37,10 @@ const UserNavigationStack = () => (
     <Stack.Screen
       name="Match Description"
       component={MatchDescription}
+    />
+    <Stack.Screen
+      name="News"
+      component={NewsView}
     />
   </Stack.Navigator>
 )

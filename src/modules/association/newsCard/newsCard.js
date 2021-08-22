@@ -1,9 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {
-  StyleSheet, View, Text, Image,
+  StyleSheet, View, Text, Image, Pressable,
 } from 'react-native'
 import { LinearGradient } from 'expo-linear-gradient'
+import { useNavigation } from '@react-navigation/core'
 import { margin, padding } from '../../../utils/stylesUtils'
 
 const styles = StyleSheet.create({
@@ -36,21 +37,29 @@ const styles = StyleSheet.create({
   },
 })
 
-const NewsCard = ({ notice }) => (
-  <View style={styles.container}>
-    <Image
-      style={styles.image}
-      source={{ uri: notice.news_image }}
-    />
-    <LinearGradient colors={['transparent', 'black']} style={styles.gradient}>
-      <Text style={styles.title}>{notice.news_title}</Text>
-    </LinearGradient>
-    <Text style={styles.preview}>
-      {notice.news_preview}
-      <Text style={styles.continue}> ...Leer más</Text>
-    </Text>
-  </View>
-)
+const NewsCard = ({ notice }) => {
+  const navigation = useNavigation()
+
+  return (
+    <View style={styles.container}>
+      <Pressable
+        onPress={() => navigation.navigate('News', { id: notice.id, title: notice.news_title })}
+      >
+        <Image
+          style={styles.image}
+          source={{ uri: notice.news_image }}
+        />
+        <LinearGradient colors={['transparent', 'black']} style={styles.gradient}>
+          <Text style={styles.title}>{notice.news_title}</Text>
+        </LinearGradient>
+        <Text style={styles.preview}>
+          {notice.news_preview}
+          <Text style={styles.continue}> ...Leer más</Text>
+        </Text>
+      </Pressable>
+    </View>
+  )
+}
 
 NewsCard.propTypes = {
   notice: PropTypes.shape({

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import {
   View, StyleSheet, SafeAreaView, ScrollView, Text,
 } from 'react-native'
@@ -7,6 +7,8 @@ import TeamVersusHeader from '../matchs/teamversus/teamVersus'
 import TransmissionInfo from './transmissioninfo/transmissionInfo'
 import MatchInfo from './matchinfo/matchInfo'
 import TeamsShowdown from './teamsshowdown/teamsShowdown'
+import { fetchMatch } from '../../services/match.service'
+import { MatchInfoMapper } from '../../utils/match.mapper'
 
 const styles = StyleSheet.create({
   container: {
@@ -53,8 +55,33 @@ const summaryStyles = StyleSheet.create({
 })
 
 const MatchDescription = ({ route }) => {
-  const { match } = route.params
-  const { event } = route.params
+  const { match, event, type } = route.params
+  // eslint-disable-next-line no-unused-vars
+  const [matchInfo, setMatchInfo] = useState()
+
+  const getMatchInfo = async () => {
+    fetchMatch(match.id, type).then((data) => {
+      const matchToMap = data[0]
+      // eslint-disable-next-line max-len
+      // TODO: temporalmente se usara data estatica para players y summary
+      // TODO: nota: aqui no se deberia usar el formato local_team_id y visiting_team
+      matchToMap.local_team = {
+        ...matchToMap.local_team,
+        players: [{ number: 1, name: 'Juan Perez' }, { number: 2, name: 'Pedro Perez' }],
+        summary: [{ title: 'Bateos', data: '12' }, { title: 'Atrapadas', data: '15' }],
+      }
+      matchToMap.visiting_team = {
+        ...matchToMap.visiting_team,
+        players: [{ number: 5, name: 'Fernando Gonzalez' }, { number: 6, name: 'Luis Quezada' }],
+        summary: [{ title: 'Bateos', data: '17' }, { title: 'Atrapadas', data: '11' }],
+      }
+      setMatchInfo(MatchInfoMapper(matchToMap))
+    })
+  }
+
+  useEffect(() => {
+    getMatchInfo()
+  }, [])
 
   const Player = ({ number, name, side }) => (
     <View style={(side === 'left') ? playerStyles.containerLeft : playerStyles.containerRight}>
@@ -87,24 +114,25 @@ const MatchDescription = ({ route }) => {
       <ScrollView>
         <View style={styles.container}>
           <TeamVersusHeader
-            eventLabel={`${event.title} - ${event.category} - Jornada: ${match.journey}`}
-            match={match}
+            eventLabel={`${event.title} - ${event.category} - Jornada: ${(matchInfo && matchInfo?.journey) || match.journey}`}
+            match={matchInfo || match}
           />
-          <MatchInfo match={match} showExtraInfo={match.localScore === null} />
+          <MatchInfo match={matchInfo || match} showExtraInfo={match.localScore === null} />
           {
             (match.localScore === null)
               ? (
-                <TransmissionInfo transmissions={match.transmissions} />
+                matchInfo?.transmissions
+                && <TransmissionInfo transmissions={matchInfo?.transmissions} />
               )
               : (
                 <>
                   <TeamsShowdown
                     title="Jugadores"
-                    localTitle={match.local.title}
+                    localTitle={matchInfo?.local?.title || match.local.title}
                     localData={(
                       <View>
                         {
-                          match.local.players.map((player) => (
+                          matchInfo?.local?.players && matchInfo.local.players.map((player) => (
                             <Player
                               key={player.number.toString()}
                               number={player.number.toString()}
@@ -115,11 +143,11 @@ const MatchDescription = ({ route }) => {
                         }
                       </View>
                     )}
-                    visitTitle={match.visit.title}
+                    visitTitle={matchInfo?.visit?.title || match.visit.title}
                     visitData={(
                       <View>
                         {
-                          match.visit.players.map((player) => (
+                          matchInfo?.visit?.players && matchInfo.visit.players.map((player) => (
                             <Player
                               key={player.number.toString()}
                               number={player.number.toString()}
@@ -133,21 +161,21 @@ const MatchDescription = ({ route }) => {
                   />
                   <TeamsShowdown
                     title="Resumen"
-                    localTitle={match.local.title}
+                    localTitle={matchInfo?.local?.title || match.local.title}
                     localData={(
                       <View>
                         {
-                          match.local.summary.map((item) => (
+                          matchInfo?.local?.summary && matchInfo.local.summary.map((item) => (
                             <TeamSummary key={item.title} title={item.title} data={item.data} side="left" />
                           ))
                         }
                       </View>
                     )}
-                    visitTitle={match.visit.title}
+                    visitTitle={matchInfo?.visit?.title || match.visit.title}
                     visitData={(
                       <View>
                         {
-                          match.visit.summary.map((item) => (
+                          matchInfo?.visit?.summary && matchInfo.visit.summary.map((item) => (
                             <TeamSummary key={item.title} title={item.title} data={item.data} side="right" />
                           ))
                         }
@@ -166,37 +194,39 @@ const MatchDescription = ({ route }) => {
 MatchDescription.propTypes = {
   route: PropTypes.shape({
     params: PropTypes.shape({
+      type: PropTypes.string.isRequired,
       event: PropTypes.shape({
         id: PropTypes.number.isRequired,
         title: PropTypes.string.isRequired,
         category: PropTypes.string.isRequired,
       }),
       match: PropTypes.shape({
+        id: PropTypes.number.isRequired,
         local: PropTypes.shape({
           image: PropTypes.string,
           title: PropTypes.string,
           isSubscribed: PropTypes.bool,
-          players: PropTypes.arrayOf(PropTypes.shape({
+          /* players: PropTypes.arrayOf(PropTypes.shape({
             number: PropTypes.number,
             name: PropTypes.string,
           })),
           summary: PropTypes.arrayOf(PropTypes.shape({
             title: PropTypes.string,
             data: PropTypes.string,
-          })),
+          })), */
         }),
         visit: PropTypes.shape({
           image: PropTypes.string,
           title: PropTypes.string,
           isSubscribed: PropTypes.bool,
-          players: PropTypes.arrayOf(PropTypes.shape({
+          /* players: PropTypes.arrayOf(PropTypes.shape({
             number: PropTypes.number,
             name: PropTypes.string,
           })),
           summary: PropTypes.arrayOf(PropTypes.shape({
             title: PropTypes.string,
             data: PropTypes.string,
-          })),
+          })), */
         }),
         localScore: PropTypes.number,
         visitScore: PropTypes.number,
@@ -205,11 +235,11 @@ MatchDescription.propTypes = {
         time: PropTypes.string,
         stadium: PropTypes.string,
         price: PropTypes.string,
-        parking: PropTypes.string,
+        /* parking: PropTypes.string,
         transmissions: PropTypes.arrayOf(PropTypes.shape({
           paltform: PropTypes.string,
           link: PropTypes.string,
-        })),
+        })), */
       }).isRequired,
     }).isRequired,
   }).isRequired,
