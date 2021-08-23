@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
   },
 })
 
-const TeamCircle = ({ team, side }) => (
+const TeamCircle = ({ team, side, isIcon }) => (
   <View style={[
     styles.teamContainer,
     {
@@ -64,17 +64,20 @@ const TeamCircle = ({ team, side }) => (
       <Image style={styles.imageTeam} source={{ uri: team.image }} />
     </View>
     <View style={styles.teamTitleNotification}>
-      <IconIonic
-        name="ios-notifications-outline"
-        style={[
-          // eslint-disable-next-line max-len
-          team.isSubscribed ? styles.notificationIconActive : styles.notificationIconDeactive,
-          styles.notificationIcon,
-          {
-            transform: [{ scale: 1.5 }, { translateX: (side === 'left') ? -35 : 35 }],
-          },
-        ]}
-      />
+      {isIcon
+        && (
+        <IconIonic
+          name="ios-notifications-outline"
+          style={[
+            // eslint-disable-next-line max-len
+            team.isSubscribed ? styles.notificationIconActive : styles.notificationIconDeactive,
+            styles.notificationIcon,
+            {
+              transform: [{ scale: 1.5 }, { translateX: (side === 'left') ? -35 : 35 }],
+            },
+          ]}
+        />
+        )}
       <Text style={styles.title}>{team.title}</Text>
     </View>
   </View>
@@ -87,10 +90,12 @@ TeamCircle.propTypes = {
     isSubscribed: PropTypes.bool,
   }).isRequired,
   side: PropTypes.string,
+  isIcon: PropTypes.bool,
 }
 
 TeamCircle.defaultProps = {
   side: 'left',
+  isIcon: true,
 }
 
 export default TeamCircle

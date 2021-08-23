@@ -8,7 +8,6 @@ import {
 } from 'react-native'
 import PropTypes from 'prop-types'
 import IconIonic from 'react-native-vector-icons/Ionicons'
-import { useNavigation } from '@react-navigation/core'
 import NotificationIcon from '../../shared/customIcons/iconBadge/notificationIcon'
 
 const styles = StyleSheet.create({
@@ -90,51 +89,52 @@ const AsociacionHomeCard = ({
   advertisements,
   results,
   id,
-}) => {
-  const navigation = useNavigation()
-
-  return (
-    // TODO: Debe enviar el objeto completo de association en el navigate
-    <TouchableOpacity onPress={() => navigation.navigate('Association', {
+  navigation,
+}) => (
+  // TODO: Debe enviar el objeto completo de association en el navigate
+  <TouchableOpacity
+    activeOpacity={0.8}
+    onPress={() => navigation.navigate('Association', {
       isSubscribed,
       id,
     })}
-    >
-      <View style={styles.container}>
-        <Image
-          style={styles.image}
-          source={{ uri: photo }}
-        />
-        <View style={styles.information}>
+  >
+    <View style={styles.container}>
+      <Image
+        style={styles.image}
+        source={{ uri: photo }}
+      />
+      <View style={styles.information}>
+        <View style={styles.notificationContainer}>
+          <IconIonic
+            name="ios-notifications-outline"
+            style={isSubscribed ? styles.notificationIconActive : styles.notificationIconDeactive}
+          />
+          <Text style={styles.title}>{sport}</Text>
+        </View>
+        <View style={styles.notificationsTitleContainer}>
           <View style={styles.notificationContainer}>
-            <IconIonic
-              name="ios-notifications-outline"
-              style={isSubscribed ? styles.notificationIconActive : styles.notificationIconDeactive}
-            />
-            <Text style={styles.title}>{sport}</Text>
+            <NotificationIcon number={news} />
+            <Text style={styles.notificationsTitle}>Noticias</Text>
           </View>
-          <View style={styles.notificationsTitleContainer}>
-            <View style={styles.notificationContainer}>
-              <NotificationIcon number={news} />
-              <Text style={styles.notificationsTitle}>Noticias</Text>
-            </View>
-            <View style={styles.notificationContainer}>
-              <NotificationIcon number={advertisements} />
-              <Text style={styles.notificationsTitle}>Anuncios</Text>
-            </View>
-            <View style={styles.notificationContainer}>
-              <NotificationIcon number={results} />
-              <Text style={styles.notificationsTitle}>Resultados</Text>
-            </View>
+          <View style={styles.notificationContainer}>
+            <NotificationIcon number={advertisements} />
+            <Text style={styles.notificationsTitle}>Anuncios</Text>
+          </View>
+          <View style={styles.notificationContainer}>
+            <NotificationIcon number={results} />
+            <Text style={styles.notificationsTitle}>Resultados</Text>
           </View>
         </View>
-        <View style={styles.decoration} />
       </View>
-    </TouchableOpacity>
-  )
-}
+      <View style={styles.decoration} />
+    </View>
+  </TouchableOpacity>
+)
 
 AsociacionHomeCard.propTypes = {
+  // eslint-disable-next-line react/forbid-prop-types
+  navigation: PropTypes.object.isRequired,
   sport: PropTypes.string.isRequired,
   photo: PropTypes.string.isRequired,
   isSubscribed: PropTypes.bool.isRequired,

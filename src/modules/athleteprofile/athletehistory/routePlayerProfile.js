@@ -5,6 +5,7 @@ import {
 import PropTypes from 'prop-types'
 import { routePlayerProfileText } from '../../../text/es.json'
 import MatchBase from '../../matchs/matchbase/matchBase'
+import { MATCH_TYPE } from '../../../utils/types'
 
 const styles = StyleSheet.create({
   container: {
@@ -41,13 +42,18 @@ const styles = StyleSheet.create({
   },
 })
 
-const RouteProfile = ({ matches }) => (
+const RouteProfile = ({ matches, navigation }) => (
   <View style={styles.container}>
     <Text style={styles.title}>{routePlayerProfileText.routeTitle}</Text>
     {
       matches.map((match) => (
         <View key={match.id}>
-          <MatchBase match={match} event={match.event} />
+          <MatchBase
+            match={match}
+            event={match.event}
+            type={MATCH_TYPE.FINISHED}
+            navigation={navigation}
+          />
           <View style={styles.separator} />
         </View>
       ))
@@ -57,6 +63,8 @@ const RouteProfile = ({ matches }) => (
 )
 
 RouteProfile.propTypes = {
+  // eslint-disable-next-line react/forbid-prop-types
+  navigation: PropTypes.object.isRequired,
   matches: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number,
     local: PropTypes.shape({

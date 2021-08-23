@@ -4,15 +4,15 @@ import {
 } from 'react-native'
 import { FlatList, ScrollView } from 'react-native-gesture-handler'
 import PropTypes from 'prop-types'
-import { useNavigation } from '@react-navigation/core'
 import IconIonic from 'react-native-vector-icons/Ionicons'
 import IsSubscribed from '../shared/issubscribe/isSubscribed'
 import { margin } from '../../utils/stylesUtils'
 import TeamCircle from '../shared/teamCircle/teamCircle'
 import Match from '../matchs/match/match'
-import { fetchEventInfoAndTeams, fetchEventMatches } from '../../services/event.service'
-import { MATCHES_TYPE } from '../../utils/types'
+import { fetchEventInfoAndTeams } from '../../services/event.service'
+import { MATCHES_TYPE, MATCH_TYPE } from '../../utils/types'
 import { EventInfoMapper, MatchesMapper } from '../../utils/events.mapper'
+import { fetchEventMatches } from '../../services/match.service'
 
 const styles = StyleSheet.create({
   container: {
@@ -75,14 +75,13 @@ const styles = StyleSheet.create({
   },
 })
 
-const TournamentDescription = ({ route }) => {
+const TournamentDescription = ({ route, navigation }) => {
   const { event } = route.params
-  const navigation = useNavigation()
   const [eventInfo, setEventInfo] = useState(event)
   const [pastMatches, setPastMatches] = useState([])
   const [nextMatches, setNextMatches] = useState([])
 
-  const fetchEventInfo = async () => {
+  const getEventInfo = async () => {
     fetchEventInfoAndTeams(event.id).then((data) => {
       setEventInfo(EventInfoMapper(data[0]))
     })
@@ -99,7 +98,7 @@ const TournamentDescription = ({ route }) => {
   }
 
   useEffect(() => {
-    fetchEventInfo()
+    getEventInfo()
   }, [])
 
   return (
@@ -150,8 +149,8 @@ const TournamentDescription = ({ route }) => {
                 <Text
                   style={styles.linkAll}
                   onPress={() => navigation.navigate('Matches', {
-                    eventInfo,
-                    nextMatches,
+                    event,
+                    type: MATCHES_TYPE.NEXT,
                   })}
                 >
                   Ver todos
@@ -161,7 +160,12 @@ const TournamentDescription = ({ route }) => {
                 data={nextMatches}
                 horizontal
                 renderItem={({ item }) => (
-                  <Match match={item} event={eventInfo} />
+                  <Match
+                    match={item}
+                    event={eventInfo}
+                    type={MATCH_TYPE.UPCOMING}
+                    navigation={navigation}
+                  />
                 )}
                 keyExtractor={(item, index) => index.toString()}
               />
@@ -177,8 +181,8 @@ const TournamentDescription = ({ route }) => {
               <Text
                 style={styles.linkAll}
                 onPress={() => navigation.navigate('Matches', {
-                  eventInfo,
-                  matches: pastMatches,
+                  event,
+                  type: MATCHES_TYPE.PAST,
                 })}
               >
                 Ver todos
@@ -188,7 +192,12 @@ const TournamentDescription = ({ route }) => {
               data={pastMatches}
               horizontal
               renderItem={({ item }) => (
-                <Match match={item} event={eventInfo} />
+                <Match
+                  match={item}
+                  event={eventInfo}
+                  type={MATCH_TYPE.FINISHED}
+                  navigation={navigation}
+                />
               )}
               keyExtractor={(item, index) => index.toString()}
             />
@@ -201,6 +210,8 @@ const TournamentDescription = ({ route }) => {
 }
 
 TournamentDescription.propTypes = {
+  // eslint-disable-next-line react/forbid-prop-types
+  navigation: PropTypes.object.isRequired,
   route: PropTypes.shape({
     params: PropTypes.shape({
       event: PropTypes.shape({

@@ -3,11 +3,10 @@
     "@react-native-async-storage/async-storage": "^1.15.5",
     "@react-native-community/masked-view": "0.1.10",
     "@react-native-picker/picker": "^1.15.0",
-    "@react-navigation/bottom-tabs": "^6.0.0-next.22",
-    "@react-navigation/core": "^5.15.3",
-    "@react-navigation/drawer": "^5.12.5",
-    "@react-navigation/native": "^5.9.4",
-    "@react-navigation/stack": "^5.14.4",
+    "@react-navigation/bottom-tabs": "^6.0.5",
+    "@react-navigation/core": "^6.0.1",
+    "@react-navigation/native": "^6.0.2",
+    "@react-navigation/stack": "^6.0.7",
     "accordion-collapse-react-native": "^1.0.0",
     "expo": "~40.0.0",
     "expo-cli": "^4.8.1",
@@ -21,7 +20,7 @@
     "react-native-navbar-color": "^1.0.3",
     "react-native-reanimated": "~1.13.0",
     "react-native-safe-area-context": "3.1.9",
-    "react-native-screens": "~2.15.2",
+    "react-native-screens": "^3.5.0",
     "react-native-vector-icons": "^8.1.0",
     "react-native-web": "^0.16.2"
   },
@@ -35,11 +34,14 @@
     "eslint-plugin-react": "^7.23.1",
     "eslint-plugin-react-hooks": "^4.2.0",
     "eslint-plugin-react-native": "^3.10.0",
+    "jest-cucumber": "^3.0.1",
     "jest-expo": "^41.0.0",
-    "react-test-renderer": "^17.0.2"
+    "react-test-renderer": "^17.0.2",
+    "sinon": "^11.1.2"
   },
   "scripts": {
     "start": "expo start",
+    "start:clean": "expo start -c",
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
@@ -52,6 +54,10 @@
     "preset": "jest-expo",
     "transformIgnorePatterns": [
       "node_modules/(?!(jest-)?react-native|react-clone-referenced-element|@react-native-community|expo(nent)?|@expo(nent)?/.*|react-navigation|@react-navigation/.*|@unimodules/.*|unimodules|sentry-expo|native-base|@sentry/.*)"
+    ],
+    "testMatch": [
+      "**/*.steps.js",
+      "**/*.test.js"
     ]
   },
   "private": true,

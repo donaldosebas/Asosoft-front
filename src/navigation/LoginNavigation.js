@@ -1,24 +1,26 @@
 import React from 'react'
-import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
+import Menu from '../modules/menu/menu'
 import Login from '../modules/login/Login'
 import Signup from '../modules/signup/signup'
 
 const Stack = createStackNavigator()
 
-const LoginNavigation = () => (
-  <NavigationContainer>
-    <Stack.Navigator>
-      <Stack.Screen
-        name="Login"
-        component={Login}
-      />
-      <Stack.Screen
-        name="Signup"
-        component={Signup}
-      />
-    </Stack.Navigator>
-  </NavigationContainer>
+const LoginStackNavigation = () => (
+  <Stack.Navigator initialRouteName="Menu">
+    <Stack.Screen
+      name="Menu"
+      component={Menu}
+    />
+    <Stack.Screen
+      name="Login"
+      component={Login}
+    />
+    <Stack.Screen
+      name="Signup"
+      component={Signup}
+    />
+  </Stack.Navigator>
 )
 
-export default LoginNavigation
+export default LoginStackNavigation

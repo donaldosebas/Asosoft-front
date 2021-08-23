@@ -10,9 +10,10 @@ import EventCard from './eventCard/eventCard'
 import BestPlayers from '../bestPlayers/bestPlayers'
 import IsSubscribed from '../shared/issubscribe/isSubscribed'
 import { associationViewText } from '../../text/es.json'
-import { fetchAssociationEvents, fetchNews } from '../../services/association.service'
+import { fetchAssociationEvents } from '../../services/event.service'
 import { EventMapper } from '../../utils/events.mapper'
 import { EVENT_TYPE } from '../../utils/types'
+import { fetchNews } from '../../services/news.service'
 
 const styles = StyleSheet.create({
   title: {
@@ -31,7 +32,7 @@ const players = [
   },
 ]
 
-const AssociationView = ({ route }) => {
+const AssociationView = ({ route, navigation }) => {
   const { isSubscribed } = route.params
   const { id } = route.params
   const [news, setNews] = useState([])
@@ -62,7 +63,7 @@ const AssociationView = ({ route }) => {
     <View>
       <IsSubscribed isSubscribed={isSubscribed} />
       <ScrollView>
-        { news.length > 0 && <NewsCarousel data={news} /> }
+        { news.length > 0 && <NewsCarousel data={news} navigation={navigation} /> }
         {
           currentEvents.length > 0
             ? (
@@ -72,7 +73,7 @@ const AssociationView = ({ route }) => {
                   data={currentEvents}
                   horizontal
                   renderItem={({ item }) => (
-                    <EventCard event={item} />
+                    <EventCard event={item} navigation={navigation} />
                   )}
                   keyExtractor={(item) => item.id.toString()}
                 />
@@ -89,7 +90,7 @@ const AssociationView = ({ route }) => {
                   data={futureEvents}
                   horizontal
                   renderItem={({ item }) => (
-                    <EventCard event={item} />
+                    <EventCard event={item} navigation={navigation} />
                   )}
                   keyExtractor={(item) => item.id.toString()}
                 />
@@ -106,7 +107,7 @@ const AssociationView = ({ route }) => {
                   data={pastEvents}
                   horizontal
                   renderItem={({ item }) => (
-                    <EventCard event={item} />
+                    <EventCard event={item} navigation={navigation} />
                   )}
                   keyExtractor={(item) => item.id.toString()}
                 />
@@ -119,7 +120,7 @@ const AssociationView = ({ route }) => {
           data={players}
           horizontal
           renderItem={({ item }) => (
-            <BestPlayers player={item} />
+            <BestPlayers player={item} navigation={navigation} />
           )}
           keyExtractor={(item) => item.id.toString()}
         />
@@ -129,6 +130,8 @@ const AssociationView = ({ route }) => {
 }
 
 AssociationView.propTypes = {
+  // eslint-disable-next-line react/forbid-prop-types
+  navigation: PropTypes.object.isRequired,
   route: PropTypes.shape({
     params: PropTypes.shape({
       id: PropTypes.number.isRequired,

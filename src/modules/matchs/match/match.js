@@ -28,15 +28,19 @@ const styles = StyleSheet.create({
   },
 })
 
-const Match = ({ match, event }) => (
+const Match = ({
+  match, event, type, navigation,
+}) => (
   <View style={styles.container}>
     <View style={styles.contentContainer}>
-      <MatchBase match={match} event={event} />
+      <MatchBase match={match} event={event} type={type} navigation={navigation} />
     </View>
   </View>
 )
 
 Match.propTypes = {
+  // eslint-disable-next-line react/forbid-prop-types
+  navigation: PropTypes.object.isRequired,
   event: PropTypes.shape({
     id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
@@ -62,6 +66,7 @@ Match.propTypes = {
     stadium: PropTypes.string,
     price: PropTypes.string,
   }).isRequired,
+  type: PropTypes.string.isRequired,
 }
 
 export default Match

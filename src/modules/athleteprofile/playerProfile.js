@@ -2,6 +2,7 @@ import React from 'react'
 import {
   View, StyleSheet, ScrollView, Text,
 } from 'react-native'
+import PropTypes from 'prop-types'
 import IconIonic from 'react-native-vector-icons/Ionicons'
 import ImageProfile from './profileImage/profileImagePlayer'
 import ProfileData from './playerProfileData/dataPlayerProfile'
@@ -333,7 +334,7 @@ sus metas de llegar a las Grandes Ligas de Béisbol de Estados Unidos.`,
   journey: matches,
 }
 
-const PlayerProfile = () => (
+const PlayerProfile = ({ navigation }) => (
   <ScrollView>
     <View style={styles.container}>
       <ImageProfile image={player.img} />
@@ -358,10 +359,15 @@ const PlayerProfile = () => (
         loses={player.loses}
         games={player.games}
       />
-      <RouteProfile matches={player.journey} />
+      <RouteProfile matches={player.journey} navigation={navigation} />
       <BiographyProfile biography={player.biography} />
     </View>
   </ScrollView>
-
 )
+
+PlayerProfile.propTypes = {
+  // eslint-disable-next-line react/forbid-prop-types
+  navigation: PropTypes.object.isRequired,
+}
+
 export default PlayerProfile
