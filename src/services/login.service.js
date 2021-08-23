@@ -12,6 +12,15 @@ export const authUser = async (user, pass) => {
   return response.json()
 }
 
+// eslint-disable-next-line consistent-return
+export const logout = async () => {
+  try {
+    await AsyncStorage.removeItem('token')
+  } catch (err) {
+    return err
+  }
+}
+
 export const setToken = async (token) => {
   try {
     return await AsyncStorage.setItem('token', token)

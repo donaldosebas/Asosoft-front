@@ -62,7 +62,7 @@ const Login = ({ navigation }) => {
         if (data.non_field_errors) setError(data.non_field_errors)
         if (data.token) {
           dispatch({ type: 'LOGIN', token: data.token })
-          navigation.navigate('HomeTab')
+          navigation.navigate('Menu')
         }
         if (rememberMe) setToken(data.token)
       })

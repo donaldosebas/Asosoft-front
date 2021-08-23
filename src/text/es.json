@@ -45,5 +45,10 @@
   },
   "biographyPlayerProfileText":{
     "bioTitle": "Biografía"
+  },
+  "menu": {
+    "menuVersion": "Version V",
+    "login": "Entrar",
+    "favouriteTeams": "Equipos Favoritos"
   }
 }

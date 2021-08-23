@@ -1,0 +1,14 @@
+{
+  "options": [
+    {
+      "id": 1,
+      "name": "Terms and Conditions",
+      "iconName": "document-outline"
+    },
+    {
+      "id": 2,
+      "name": "logout",
+      "iconName": "log-out-outline"
+    }
+  ]
+}

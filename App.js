@@ -4,9 +4,7 @@ import reducer from './src/store/Reducer'
 import StoreProviderContext from './src/store/StoreProvider'
 import { getToken } from './src/services/login.service'
 
-const value = {
-  token: '',
-}
+const value = {}
 
 const App = () => {
   const [store, dispatch] = useReducer(reducer, value)
