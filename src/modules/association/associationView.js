@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import {
-  StyleSheet, ScrollView, Text, View,
+  StyleSheet, ScrollView, Text, View, FlatList,
 } from 'react-native'
 import PropTypes from 'prop-types'
-import { FlatList } from 'react-native-gesture-handler'
 import NewsCarousel from './newsCarousel/newsCarousel'
 import { margin } from '../../utils/stylesUtils'
 import EventCard from './eventCard/eventCard'
@@ -40,7 +39,8 @@ const AssociationView = ({ route, navigation }) => {
   const [currentEvents, setCurrentEvents] = useState([])
   const [futureEvents, setFutureEvents] = useState([])
 
-  const fetchAssociation = async () => {
+  const fetchAssociation = async (isMounted) => {
+    if (!isMounted) return
     fetchNews(id).then((data) => {
       setNews(data)
     })
@@ -56,7 +56,9 @@ const AssociationView = ({ route, navigation }) => {
   }
 
   useEffect(() => {
-    fetchAssociation()
+    let isMounted = true
+    fetchAssociation(isMounted)
+    return () => { isMounted = false }
   }, [])
 
   return (

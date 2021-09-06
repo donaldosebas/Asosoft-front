@@ -67,6 +67,7 @@ const Menu = ({ navigation }) => {
           />
         </View>
         <FlatList
+          style={styles.teamsContainer}
           data={teams}
           horizontal
           renderItem={({ item }) => (

@@ -17,6 +17,7 @@ const styles = StyleSheet.create({
     alignItems: 'flex-end',
     height: 250,
     padding: 10,
+    paddingTop: 0,
   },
   image: {
     position: 'absolute',
@@ -32,7 +33,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0,0,0,0.5)',
     paddingLeft: 20,
     height: '100%',
-    width: '40%',
+    width: '50%',
     borderTopLeftRadius: 5,
     borderBottomLeftRadius: 5,
     zIndex: 1,
@@ -41,7 +42,7 @@ const styles = StyleSheet.create({
     width: 0,
     height: 0,
     bottom: 0,
-    borderTopWidth: 230,
+    borderTopWidth: 240,
     borderTopColor: 'rgba(0,0,0,0.5)',
     borderRightWidth: 70,
     borderRightColor: 'transparent',
@@ -53,7 +54,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   title: {
-    fontSize: 20,
+    fontSize: 19,
     color: 'white',
     marginLeft: 10,
   },
@@ -89,6 +90,7 @@ const AsociacionHomeCard = ({
   advertisements,
   results,
   id,
+  index,
   navigation,
 }) => (
   // TODO: Debe enviar el objeto completo de association en el navigate
@@ -99,7 +101,7 @@ const AsociacionHomeCard = ({
       id,
     })}
   >
-    <View style={styles.container}>
+    <View style={[styles.container, index === 0 ? { paddingTop: 10 } : {}]}>
       <Image
         style={styles.image}
         source={{ uri: photo }}
@@ -127,7 +129,7 @@ const AsociacionHomeCard = ({
           </View>
         </View>
       </View>
-      <View style={styles.decoration} />
+      <View style={[styles.decoration, index === 0 ? { borderTopWidth: 230 } : {}]} />
     </View>
   </TouchableOpacity>
 )
@@ -142,6 +144,7 @@ AsociacionHomeCard.propTypes = {
   advertisements: PropTypes.number,
   results: PropTypes.number.isRequired,
   id: PropTypes.number.isRequired,
+  index: PropTypes.number.isRequired,
 }
 
 AsociacionHomeCard.defaultProps = {

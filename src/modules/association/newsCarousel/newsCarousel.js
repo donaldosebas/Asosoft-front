@@ -21,6 +21,25 @@ const styles = StyleSheet.create({
     shadowRadius: 3.84,
     elevation: 5,
   },
+  bulletsContainer: {
+    position: 'absolute',
+    width: '100%',
+    alignItems: 'center',
+    top: 230,
+  },
+  bullet: {
+    width: 10,
+    height: 10,
+    borderRadius: 5,
+    marginHorizontal: 5,
+    backgroundColor: '#ccc',
+    opacity: 0.5,
+    margin: 5,
+  },
+  activeBullet: {
+    opacity: 1,
+    backgroundColor: '#fff',
+  },
 })
 
 const NewsCarousel = ({ data, navigation }) => {
@@ -63,6 +82,14 @@ const NewsCarousel = ({ data, navigation }) => {
         )}
         keyExtractor={(item, index) => index.toString()}
       />
+      <View style={styles.bulletsContainer}>
+        {data.map((item, index) => (
+          <View
+            key={item.id}
+            style={[styles.bullet, actual === index ? styles.activeBullet : {}]}
+          />
+        ))}
+      </View>
     </View>
   )
 }
