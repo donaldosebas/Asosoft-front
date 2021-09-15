@@ -81,7 +81,8 @@ const TournamentDescription = ({ route, navigation }) => {
   const [pastMatches, setPastMatches] = useState([])
   const [nextMatches, setNextMatches] = useState([])
 
-  const getEventInfo = async () => {
+  const getEventInfo = async (isMounted) => {
+    if (!isMounted) return
     fetchEventInfoAndTeams(event.id).then((data) => {
       setEventInfo(EventInfoMapper(data[0]))
     })
@@ -98,7 +99,9 @@ const TournamentDescription = ({ route, navigation }) => {
   }
 
   useEffect(() => {
-    getEventInfo()
+    let isMounted = true
+    getEventInfo(isMounted)
+    return () => { isMounted = false }
   }, [])
 
   return (

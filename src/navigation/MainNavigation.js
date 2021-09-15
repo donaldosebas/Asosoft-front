@@ -4,6 +4,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import HomeNavigationStack from './HomeNavigation'
 import LoginStackNavigation from './LoginNavigation'
+import NotificationsNavigationStack from './NotificationsNavigation'
 
 const Tab = createBottomTabNavigator()
 
@@ -16,6 +17,8 @@ const MainTabNavigator = () => (
 
         if (route.name === 'HomeTab') {
           iconName = 'home-outline'
+        } else if (route.name === 'NotificationsTab') {
+          iconName = 'notifications-outline'
         } else if (route.name === 'MenuTab') {
           iconName = 'menu-outline'
         }
@@ -23,12 +26,24 @@ const MainTabNavigator = () => (
       },
       tabBarActiveTintColor: '#1B9CC4',
       tabBarInactiveTintColor: 'gray',
+      tabBarItemStyle: {
+        paddingBottom: 10,
+        paddingTop: 10,
+      },
+      tabBarStyle: {
+        height: 60,
+      },
     })}
   >
     <Tab.Screen
       name="HomeTab"
       component={HomeNavigationStack}
       options={{ headerShown: false, title: 'Home' }}
+    />
+    <Tab.Screen
+      name="NotificationsTab"
+      component={NotificationsNavigationStack}
+      options={{ headerShown: false, title: 'Notificaciones' }}
     />
     <Tab.Screen
       name="MenuTab"
