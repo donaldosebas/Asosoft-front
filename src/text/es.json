@@ -50,5 +50,9 @@
     "menuVersion": "Version V",
     "login": "Entrar",
     "favouriteTeams": "Equipos Favoritos"
+  },
+  "notificationsText": {
+    "recents": "Recientes",
+    "notReaded": "Sin leer"
   }
 }

@@ -21,13 +21,16 @@ const Home = ({ navigation }) => {
   const [associations, setAssociations] = useState({})
   const [associationsDetails, setAssociationsDetails] = useState('')
 
-  const fetchItems = async () => {
+  const fetchItems = async (isMounted) => {
+    if (!isMounted) return
     setAssociations(await fetchHomeItems())
     setAssociationsDetails(await fetchHomeItemsDetails())
   }
 
   useEffect(() => {
-    fetchItems()
+    let isMounted = true
+    fetchItems(isMounted)
+    return () => { isMounted = false }
   }, [])
 
   if (associationsDetails === '' || associations === 0) {
@@ -42,11 +45,12 @@ const Home = ({ navigation }) => {
     <SafeAreaView style={styles.container}>
       <FlatList
         data={associations}
-        renderItem={({ item }) => {
+        renderItem={({ item, index }) => {
           const id = item.id.toString()
           return (
             <AsociacionCard
               key={id}
+              index={index}
               id={+id}
               sport={associationsDetails[id].sport}
               photo={`${imagesUrl}${associationsDetails[id].photo}`}

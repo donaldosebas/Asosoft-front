@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 18,
     position: 'relative',
-    top: 65,
+    top: 55,
     color: 'white',
     ...margin(2, 0, 2, 10),
   },

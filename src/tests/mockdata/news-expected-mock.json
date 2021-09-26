@@ -1,0 +1,8 @@
+{
+    "expected1": {
+        "id" : 1,
+        "news_title": "Asosoft gana un reconocimiento",
+        "news_preview": "El dia de ayer ...",
+        "news_image": "http://asosoft.jpg"
+    }
+}

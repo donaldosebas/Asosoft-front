@@ -8,14 +8,12 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     height: '100%',
     width: '100%',
-    alignItems: 'center',
+    justifyContent: 'space-between',
   },
   containerTop: {
     display: 'flex',
-    height: '35%',
     width: '100%',
     justifyContent: 'space-between',
-    padding: '5%',
   },
   containerTopTitles: {
     display: 'flex',
@@ -23,6 +21,11 @@ const styles = StyleSheet.create({
     width: '100%',
     justifyContent: 'space-between',
     alignItems: 'center',
+    padding: 10,
+  },
+  teamsContainer: {
+    paddingLeft: 10,
+    width: '100%',
   },
   favoriteTeamsTitle: {
     fontSize: 18,
@@ -31,25 +34,26 @@ const styles = StyleSheet.create({
   },
   middleContainer: {
     display: 'flex',
+    flex: 1,
     flexDirection: 'column',
-    height: '50%',
     width: '100%',
     justifyContent: 'center',
   },
   bottomContiner: {
     display: 'flex',
-    height: '15%',
     width: '100%',
     alignItems: 'center',
+    margin: 5,
   },
   button: {
     display: 'flex',
-    width: '90%',
-    height: '50%',
+    width: '80%',
+    height: 50,
     backgroundColor: '#1B9CC4',
     borderRadius: 30,
     justifyContent: 'center',
     alignItems: 'center',
+    margin: 10,
   },
   buttonTitle: {
     fontSize: 18,
@@ -57,7 +61,7 @@ const styles = StyleSheet.create({
     color: '#FFFFFF',
   },
   versionText: {
-    fontSize: 18,
+    fontSize: 13,
     fontWeight: '500',
     color: '#1B9CC4',
   },
