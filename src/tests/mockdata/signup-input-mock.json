@@ -1,0 +1,14 @@
+{
+  "input1": {
+    "username": "test",
+    "name": "test",
+    "email": "test@mail.com",
+    "password": "test"
+  },
+  "input2": {
+    "username": "test2",
+    "name": "test2",
+    "email": "test2@mail.com",
+    "password": "test2"
+  }
+}

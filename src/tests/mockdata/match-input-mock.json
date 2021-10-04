@@ -1,0 +1,10 @@
+{
+  "input1": {
+    "type": "finished_match",
+    "id": "1"
+  },
+  "input2": {
+    "type": "upcoming_match",
+    "id": "2"
+  }
+}
