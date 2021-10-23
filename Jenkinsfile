@@ -5,6 +5,7 @@ pipeline {
         stage('Lint') {
             steps {
                 echo 'Project linter'
+                sh 'npm install'
                 sh 'npm run lint'
             }
         }
