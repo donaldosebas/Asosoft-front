@@ -2,14 +2,16 @@ pipeline {
     agent any
 
     stages {
-        stage('Build') {
+        stage('Lint') {
             steps {
-                echo 'building the project'
+                echo 'Project linter'
+                sh 'npm run lint'
             }
         }
         stage('Test') {
             steps {
                 echo 'testing the project'
+                sh 'npm run test'
             }
         }
         stage('Deploy') {
