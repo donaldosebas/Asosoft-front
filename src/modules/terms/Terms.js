@@ -36,11 +36,14 @@ const styles = StyleSheet.create({
   errorText: {
     color: '#FF0000',
   },
+  title: {
+    fontSize: 20,
+  },
 })
 
 const Terms = () => (
   <View style={styles.container}>
-    <Text>{termsText.termsTitle}</Text>
+    <Text style={styles.title}>{termsText.title}</Text>
   </View>
 )
 
