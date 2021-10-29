@@ -125,7 +125,9 @@ const CustomTextInput = ({
           style={[styles.input, isFocused ? styles.isFocused : {}]}
           onChangeText={onChangeText}
           value={value}
+          key={type === Types.EMAIL ? 'email-address' : 'default'}
           secureTextEntry={type === Types.PASSWORD}
+          keyboardType={type === Types.EMAIL ? 'email-address' : 'default'}
           onBlur={() => {
             setIsFocused(false)
           }}

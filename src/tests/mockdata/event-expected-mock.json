@@ -1,0 +1,18 @@
+{
+  "expected1": {
+    "id": 1,
+    "tournament_name": "Torneo 2021",
+    "tournament_category": "Femenino Mayor A",
+    "tournament_country": "Guatemala",
+    "tournament_winner": null,
+    "current_date": 12,
+    "total_dates": 30,
+    "start_date": "2020-10-28",
+    "end_date": "2021-10-28",
+    "teams": [
+        2,
+        1
+    ],
+    "association": 3
+  }
+}

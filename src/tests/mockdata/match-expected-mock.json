@@ -1,0 +1,88 @@
+{
+  "expected1": {
+    "id": 1,
+    "match_date": "2021-02-07",
+    "journey": 5,
+    "local_team": {
+        "id": 1,
+        "team_name": "USAC",
+        "team_description": "Equipo de la universidad de San Carlos de Guatemala",
+        "team_image": "https://asosoft-images.s3.amazonaws.com/usacbeisbol.jpg?AWSAccessKeyId=AKIAUHIZDJZIQYCQC6KR&Signature=2F4xyIf8KfgjgScblT53hhcaQag%3D&Expires=1633320479"
+    },
+    "visiting_team": {
+        "id": 2,
+        "team_name": "Piratas",
+        "team_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sagittis, ipsum non fringilla vehicul",
+        "team_image": "https://asosoft-images.s3.amazonaws.com/piratasbeisbol.png?AWSAccessKeyId=AKIAUHIZDJZIQYCQC6KR&Signature=YYpuu5CN9VQ8NCu0w%2Bq3BcB4ZXU%3D&Expires=1633320479"
+    },
+    "tournament": {
+        "id": 2,
+        "tournament_name": "Torneo 2021",
+        "tournament_category": "Masculino Mayor A",
+        "tournament_country": "Guatemala",
+        "current_date": 12,
+        "total_dates": 30,
+        "start_date": "2020-10-28",
+        "end_date": "2021-10-28",
+        "tournament_winner": null,
+        "association": 3,
+        "teams": [
+            2,
+            1
+        ]
+    },
+    "start_time": "2021-02-07T14:00:00Z",
+    "end_time": "2021-02-07T16:00:00Z",
+    "match_place": "Estadio X",
+    "facebook_link": "http://www.facebook.com",
+    "youtube_link": "http://www.youtube.com",
+    "local_score": 9,
+    "visiting_score": 12,
+    "match_type": "Torneo",
+    "access_ticket": 25.0,
+    "match_parking": "Si, gratis"
+  },
+  "expected2": {
+    "id": 2,
+    "match_date": "2021-02-07",
+    "journey": 5,
+    "local_team": {
+        "id": 1,
+        "team_name": "USAC",
+        "team_description": "Equipo de la universidad de San Carlos de Guatemala",
+        "team_image": "https://asosoft-images.s3.amazonaws.com/usacbeisbol.jpg?AWSAccessKeyId=AKIAUHIZDJZIQYCQC6KR&Signature=2F4xyIf8KfgjgScblT53hhcaQag%3D&Expires=1633320479"
+    },
+    "visiting_team": {
+        "id": 2,
+        "team_name": "Piratas",
+        "team_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sagittis, ipsum non fringilla vehicul",
+        "team_image": "https://asosoft-images.s3.amazonaws.com/piratasbeisbol.png?AWSAccessKeyId=AKIAUHIZDJZIQYCQC6KR&Signature=YYpuu5CN9VQ8NCu0w%2Bq3BcB4ZXU%3D&Expires=1633320479"
+    },
+    "tournament": {
+        "id": 2,
+        "tournament_name": "Torneo 2021",
+        "tournament_category": "Masculino Mayor A",
+        "tournament_country": "Guatemala",
+        "current_date": 12,
+        "total_dates": 30,
+        "start_date": "2020-10-28",
+        "end_date": "2021-10-28",
+        "tournament_winner": null,
+        "association": 3,
+        "teams": [
+            2,
+            1
+        ]
+    },
+    "start_time": "2021-02-07T14:00:00Z",
+    "end_time": "2021-02-07T16:00:00Z",
+    "match_place": "Estadio X",
+    "facebook_link": "http://www.facebook.com",
+    "youtube_link": "http://www.youtube.com",
+    "local_score": 9,
+    "visiting_score": 12,
+    "match_type": "Torneo",
+    "access_ticket": 25.0,
+    "match_parking": "Si, gratis"
+  }
+}

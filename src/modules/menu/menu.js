@@ -84,7 +84,7 @@ const Menu = ({ navigation }) => {
               if (store.token) return <MenuOption icon={item.iconName} option={item.name} />
               return null
             }
-            return <MenuOption icon={item.iconName} option={item.name} />
+            return <MenuOption icon={item.iconName} option={item.name} navigation={navigation} />
           }}
           keyExtractor={(option) => option.id.toString()}
         />

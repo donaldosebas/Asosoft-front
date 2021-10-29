@@ -45,6 +45,7 @@ const styles = StyleSheet.create({
 const RouteProfile = ({ matches, navigation }) => (
   <View style={styles.container}>
     <Text style={styles.title}>{routePlayerProfileText.routeTitle}</Text>
+    <View style={styles.separator} />
     {
       matches.map((match) => (
         <View key={match.id}>

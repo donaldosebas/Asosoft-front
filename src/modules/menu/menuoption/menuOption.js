@@ -6,7 +6,8 @@ import styles from './menuOption.style'
 import { logout } from '../../../services/login.service'
 import provider from '../../../store/StoreProvider'
 
-const MenuOption = ({ icon, option }) => {
+// eslint-disable-next-line react/prop-types
+const MenuOption = ({ icon, option, navigation }) => {
   const { dispatch } = useContext(provider)
 
   const onPress = (func) => {
@@ -14,6 +15,11 @@ const MenuOption = ({ icon, option }) => {
       case 'logout':
         logout()
         dispatch({ type: 'LOGOUT' })
+        break
+      case 'Términos y condiciones':
+        // eslint-disable-next-line react/prop-types
+        navigation.navigate('Terms', {
+        })
         break
       default:
         break
