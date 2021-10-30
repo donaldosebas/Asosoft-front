@@ -29,12 +29,15 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'flex-start',
     alignItems: 'center',
-    marginTop: 5,
+    marginTop: 8,
   },
   optionIcon: {
     transform: [{ scale: 1.7 }],
     margin: 10,
     color: '#7C7C7C',
+  },
+  linkContainer: {
+    marginTop: 30,
   },
   link: {
     color: '#1B9CC4',
@@ -109,6 +112,7 @@ const Login = ({ navigation }) => {
       <SimpleButton title={loginText.action} onPress={authorization} isLoading={isLoading} />
       <Pressable
         onPress={() => navigation.navigate('Signup')}
+        style={styles.linkContainer}
       >
         <Text style={styles.link}>{loginText.goToSignup}</Text>
       </Pressable>
