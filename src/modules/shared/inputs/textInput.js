@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
   },
   box: {
     backgroundColor: 'white',
-    height: 42,
+    height: 52,
     flexDirection: 'row',
     borderWidth: 2,
     borderColor: PRIMARYCOLOR,
@@ -43,15 +43,15 @@ const styles = StyleSheet.create({
   },
   icon: {
     color: PRIMARYCOLOR,
-    transform: [{ scale: 2 }, { translateY: 7 }, { translateX: 8 }],
+    transform: [{ scale: 2 }, { translateY: 11 }, { translateX: 8 }],
   },
   input: {
     color: 'black',
     marginLeft: 30,
-    top: -5,
+    top: -7,
     paddingRight: 5,
     flex: 1,
-    height: 40,
+    height: 48,
   },
   isFocused: {
     color: PRIMARYCOLOR,
@@ -70,7 +70,7 @@ const animations = StyleSheet.create({
       {
         translateY: animation.interpolate({
           inputRange: (value === '') ? [0, 1] : [1, 1],
-          outputRange: [9, -25],
+          outputRange: [12, -25],
         }),
       },
     ],
