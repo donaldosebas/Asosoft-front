@@ -9,9 +9,10 @@ pipeline {
                 sh 'java -version'
                 echo 'building project...'
                 sh 'ls'
-                sh "ls ./android"
-                sh 'chmod +x .android/gradlew'
-                sh ".android/gradlew clean assembleRelease"
+                sh 'chmod +x android/gradlew'
+                sh 'android/gradlew tasks'
+                sh 'android/gradlew clean'
+                sh 'android/gradlew assembleRelease'
             }
         }
     }
