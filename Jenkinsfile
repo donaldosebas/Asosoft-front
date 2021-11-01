@@ -24,8 +24,8 @@ pipeline {
 =======
                 sh 'java -version'
                 echo 'building project...'
-                cd $JENKINS_HOME/android/
-                sh 'chmod +x gradlew'
+                sh 'cd android'
+                sh 'chmod +x ./gradlew'
                 sh './gradlew app:assembleRelease'
 >>>>>>> 9c12718 (Update Jenkinsfile)
             }
