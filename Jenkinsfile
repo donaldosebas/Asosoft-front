@@ -8,8 +8,7 @@ pipeline {
             steps {
                 sh 'java -version'
                 echo 'building project...'
-                echo $WORKSPACE
-                cd $JENKINS_HOME/users/foo
+                cd $JENKINS_HOME/android/
                 sh 'chmod +x gradlew'
                 sh './gradlew app:assembleRelease'
             }
