@@ -11,7 +11,7 @@ pipeline {
                 sh 'ls'
                 sh 'cd android'
                 sh 'chmod +x android/gradlew'
-                sh 'android/gradlew app:assembleRelease'
+                sh 'android/gradlew assembleRelease'
             }
         }
     }
