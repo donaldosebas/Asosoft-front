@@ -2,6 +2,7 @@ pipeline {
     agent any
     tools {
         jdk 'jdk-14'
+        nodejs 'node'
     }
     stages {
         stage("build project") {
