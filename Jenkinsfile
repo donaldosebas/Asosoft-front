@@ -9,7 +9,7 @@ pipeline {
                 sh 'java -version'
                 echo 'building project...'
                 sh 'cd android'
-                sh 'chmod +x gradlew'
+                sh 'chmod +x ./gradlew'
                 sh './gradlew app:assembleRelease'
             }
         }
