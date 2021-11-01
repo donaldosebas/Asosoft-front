@@ -10,6 +10,7 @@ pipeline {
                 echo 'building project...'
                 sh 'ls'
                 sh 'cd android'
+                sh 'ls'
                 sh 'chmod +x android/gradlew'
                 sh 'android/gradlew assembleRelease'
             }
