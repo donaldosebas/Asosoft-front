@@ -1,7 +1,7 @@
 pipeline {
     agent any
     tools {
-        jdk 'Oracle JDK 14'
+        jdk 'jdk-14'
     }
     stages {
         stage("build project") {
