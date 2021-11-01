@@ -24,6 +24,7 @@ pipeline {
 =======
                 sh 'java -version'
                 echo 'building project...'
+                sh 'ls'
                 sh 'cd android'
                 sh 'chmod +x ./gradlew'
                 sh './gradlew app:assembleRelease'
