@@ -12,7 +12,7 @@ order to maximize the communications between the community.
 
 ## Installation
 
-1. Clone repository https://github.com/donaldosebas/Asosoft-front <br/>
+1. Clone the repository https://github.com/donaldosebas/Asosoft-front <br/>
 2. Open repo folder with your favorite IDE.
 3. Open the terminal and run "npm install"
 5. In the terminal run "npm start"
@@ -31,14 +31,14 @@ Checks for any syntax errors in the code using eslinte air bnb configuration for
 
 Checks all the tests made to check that the calculator operations were well coded.
 
-## Tecnologies 
+## Tecnologies
 Tecnologies    | Description
 ----------------|---------------------------------------------------------
 ✅ React       | React is a well known javascript library used to build scalable websites based on components in order to respect DRY.
 ✅ React native      | React native is a well known javascript library used to build scalable hybrid apps.
 ✅ Babel	    	| Babel let us build websites in E6 javascript which is more confortable to be writing code in, instead of a normal module .js.
 ✅ EsLint     	| Checks the written code in order to make sure you're writing a readable code by other programmers to check your code out.
-✅ Jest     	| Jest is a delightful JavaScript Testing Framework with a focus on simplicity. 
+✅ Jest     	| Jest is a delightful JavaScript Testing Framework with a focus on simplicity.
 
 ## Contributing
 <a href="https://github.com/Sebasssiu"><img src="https://avatars.githubusercontent.com/u/54748964?v=4" height="200"></a>
