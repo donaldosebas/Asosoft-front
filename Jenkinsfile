@@ -10,7 +10,8 @@ pipeline {
                 echo 'building project...'
                 sh 'ls'
                 sh "ls ./android"
-                sh "./android/gradlew clean assembleRelease"
+                sh 'chmod +x ./gradlew'
+                sh "./gradlew clean assembleRelease"
             }
         }
     }
