@@ -13,8 +13,7 @@ pipeline {
                 sh 'ls ./android'
                 sh 'chmod +x android/gradlew'
                 sh 'android/gradlew tasks'
-                sh 'android/gradlew clean'
-                sh 'android/gradlew assembleRelease'
+                sh 'android/gradlew assemble'
             }
         }
     }
