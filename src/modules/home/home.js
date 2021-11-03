@@ -4,11 +4,11 @@ import {
   SafeAreaView,
   StyleSheet,
   FlatList,
-  Text,
 } from 'react-native'
 import PropTypes from 'prop-types'
 import AsociacionCard from './asociacionCard/asociacionHomeCard'
 import { fetchHomeItems, fetchHomeItemsDetails } from '../../services/association.service'
+import Splash from '../splash/Splash'
 import { imagesUrl } from '../../services/commons'
 
 const styles = StyleSheet.create({
@@ -36,7 +36,7 @@ const Home = ({ navigation }) => {
   if (associationsDetails === '' || associations === 0) {
     return (
       <SafeAreaView style={styles.container}>
-        <Text>isLoading</Text>
+        <Splash />
       </SafeAreaView>
     )
   }
