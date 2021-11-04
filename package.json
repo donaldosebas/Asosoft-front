@@ -64,7 +64,7 @@
   "private": true,
   "husky": {
     "hooks": {
-      "pre-commit": "npm run lint:fix",
+      "pre-commit": "bash -c '\"%TALISMAN_HOME%\\${TALISMAN_BINARY_NAME}\" --githook pre-commit && npm run lint:fix",
       "pre-push": "npm run lint:fix"
     }
   }
