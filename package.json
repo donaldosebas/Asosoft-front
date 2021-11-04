@@ -64,7 +64,7 @@
   "private": true,
   "husky": {
     "hooks": {
-      "pre-commit": "bash -c 'C:/Users/Bryann/.talisman/bin/talisman_hook_script --githook pre-commit'; npm run lint:fix",
+      "pre-commit": "bash -c 'YOURPATHERE/.talisman/bin/talisman_hook_script --githook pre-commit'; npm run lint:fix",
       "pre-push": "npm run lint:fix"
     }
   }
