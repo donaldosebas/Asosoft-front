@@ -1,4 +1,3 @@
-
 {
   "dependencies": {
     "@react-native-async-storage/async-storage": "^1.15.5",
@@ -62,11 +61,10 @@
       "**/*.test.js"
     ]
   },
-
   "private": true,
   "husky": {
     "hooks": {
-      "pre-commit": "bash -c '$(TALISMAN_BINARY_NAME) --githook pre-commit'; npm run lint:fix",
+      "pre-commit": "bash -c 'C:/Users/Bryann/.talisman/bin/talisman_hook_script --githook pre-commit'; npm run lint:fix",
       "pre-push": "npm run lint:fix"
     }
   }
