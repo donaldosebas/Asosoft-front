@@ -5,7 +5,6 @@ import {
 import { FlatList, ScrollView } from 'react-native-gesture-handler'
 import PropTypes from 'prop-types'
 import IconIonic from 'react-native-vector-icons/Ionicons'
-import IsSubscribed from '../shared/issubscribe/isSubscribed'
 import { margin } from '../../utils/stylesUtils'
 import TeamCircle from '../shared/teamCircle/teamCircle'
 import Match from '../matchs/match/match'
@@ -106,7 +105,7 @@ const TournamentDescription = ({ route, navigation }) => {
 
   return (
     <View style={styles.container}>
-      <IsSubscribed isSubscribed={eventInfo.isSubscribed} />
+      {/* <IsSubscribed isSubscribed={eventInfo.isSubscribed} /> */}
       <ScrollView>
         <View style={styles.infoContainer}>
           <Text style={styles.title}>{eventInfo.title}</Text>

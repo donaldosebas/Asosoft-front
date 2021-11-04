@@ -3,7 +3,6 @@ import {
   StyleSheet, View, Text, Image,
 } from 'react-native'
 import PropTypes from 'prop-types'
-import IconIonic from 'react-native-vector-icons/Ionicons'
 
 const styles = StyleSheet.create({
   teamContainer: {
@@ -51,7 +50,7 @@ const styles = StyleSheet.create({
   },
 })
 
-const TeamCircle = ({ team, side, isIcon }) => (
+const TeamCircle = ({ team, side }) => (
   <View style={[
     styles.teamContainer,
     {
@@ -64,7 +63,7 @@ const TeamCircle = ({ team, side, isIcon }) => (
       <Image style={styles.imageTeam} source={{ uri: team.image }} />
     </View>
     <View style={styles.teamTitleNotification}>
-      {isIcon
+      {/* {isIcon
         && (
         <IconIonic
           name="ios-notifications-outline"
@@ -77,7 +76,7 @@ const TeamCircle = ({ team, side, isIcon }) => (
             },
           ]}
         />
-        )}
+        )} */}
       <Text style={styles.title}>{team.title}</Text>
     </View>
   </View>
@@ -90,12 +89,10 @@ TeamCircle.propTypes = {
     isSubscribed: PropTypes.bool,
   }).isRequired,
   side: PropTypes.string,
-  isIcon: PropTypes.bool,
 }
 
 TeamCircle.defaultProps = {
   side: 'left',
-  isIcon: true,
 }
 
 export default TeamCircle
