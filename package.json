@@ -31,6 +31,7 @@
   },
   "devDependencies": {
     "@babel/core": "~7.9.0",
+    "babel-jest": "~25.2.6",
     "eslint": "^7.23.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-plugin-import": "^2.22.1",
@@ -39,12 +40,12 @@
     "eslint-plugin-react": "^7.23.1",
     "eslint-plugin-react-hooks": "^4.2.0",
     "eslint-plugin-react-native": "^3.10.0",
+    "jest": "~25.2.6",
     "jest-cucumber": "^3.0.1",
     "jest-expo": "^41.0.0",
+    "owasp-dependency-check": "0.0.18",
     "react-test-renderer": "^17.0.2",
-    "sinon": "^11.1.2",
-    "babel-jest": "~25.2.6",
-    "jest": "~25.2.6"
+    "sinon": "^11.1.2"
   },
   "scripts": {
     "start": "react-native start",
@@ -55,7 +56,8 @@
     "eject": "expo eject",
     "test": "jest",
     "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
+    "lint:fix": "eslint . --fix",
+    "owasp": "owasp-dependency-check --project \"Asosoft-front\" -f HTML JSON"
   },
   "jest": {
     "preset": "jest-expo",
