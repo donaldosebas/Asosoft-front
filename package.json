@@ -73,8 +73,7 @@
   "husky": {
     "hooks": {
       "pre-commit": "npm run lint:fix",
-      "pre-commit": "npm run lint:fix; npm run owasp",
-      "pre-push": "npm run lint:fix"
+      "pre-push": "npm run lint:fix; npm run owasp"
     }
   },
   "name": "Asosoft-front",
