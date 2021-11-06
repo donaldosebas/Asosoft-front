@@ -47,4 +47,3 @@ jobs:
 
       - run: npm ci
       - run: npm test -- -u
-      - run: sudo npm run owasp
