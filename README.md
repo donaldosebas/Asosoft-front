@@ -46,4 +46,3 @@ Tecnologies    | Description
 <a href="https://github.com/bryannalfaro"><img src="https://avatars.githubusercontent.com/u/46506166?v=4" height="200"></a>
 ## License
 MIT
-
