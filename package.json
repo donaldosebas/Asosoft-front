@@ -37,6 +37,7 @@
     "eslint-plugin-react-native": "^3.10.0",
     "jest-cucumber": "^3.0.1",
     "jest-expo": "^41.0.0",
+    "owasp-dependency-check": "0.0.18",
     "react-test-renderer": "^17.0.2",
     "sinon": "^11.1.2"
   },
@@ -49,7 +50,8 @@
     "eject": "expo eject",
     "test": "jest",
     "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
+    "lint:fix": "eslint . --fix",
+    "owasp": "owasp-dependency-check --project \"Asosoft-front\" -f HTML JSON"
   },
   "jest": {
     "preset": "jest-expo",
@@ -65,7 +67,7 @@
   "husky": {
     "hooks": {
       "pre-commit": "bash -c 'YOURPATHERE/.talisman/bin/talisman_hook_script --githook pre-commit'; npm run lint:fix",
-      "pre-push": "npm run lint:fix"
+      "pre-push": "npm run lint:fix; npm run owasp; git restore dependency-check-reports/dependency-check-report.html"
     }
   }
 }
