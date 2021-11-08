@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import {
-  StyleSheet, View, Text,
+  StyleSheet, View,
 } from 'react-native'
+import { onSnapshot, collectionGroup } from 'firebase/firestore'
 import NotificationCard from './NotificationCard/notificationCard'
-import { notificationsText } from '../../text/es.json'
+import db from '../../database/firebase'
 
+// eslint-disable-next-line no-unused-vars
 const notData = [
   {
     id: 1,
@@ -37,6 +39,7 @@ const notData = [
   },
 ]
 
+// eslint-disable-next-line no-unused-vars
 const notDataNotRead = [
   {
     id: 1,
@@ -64,21 +67,36 @@ const styles = StyleSheet.create({
   },
 })
 
-const Notifications = () => (
-  <View style={styles.container}>
-    <Text>{notificationsText.recents}</Text>
-    {
-      notData.map((notification) => (
-        <NotificationCard key={notification.id} notification={notification} />
-      ))
-    }
-    <Text>{notificationsText.notReaded}</Text>
-    {
-      notDataNotRead.map((notification) => (
-        <NotificationCard key={notification.id} notification={notification} />
-      ))
-    }
-  </View>
-)
+const Notifications = () => {
+  // eslint-disable-next-line no-unused-vars
+  const [notifications, setNotifications] = useState([])
+
+  useEffect(() => {
+    // eslint-disable-next-line no-unused-vars
+    const unsub = onSnapshot(collectionGroup(db, 'notifications'), (snap) => {
+      const notList = []
+      snap.forEach((doc) => {
+        notList.push({ id: doc.id, ...doc.data() })
+      })
+      snap.docChanges().forEach((change) => {
+        if (change.type === 'modified') {
+          // TODO: show expo notification here
+          setNotifications((prev) => [...prev, { id: change.doc.id, ...change.doc.data() }])
+        }
+      })
+      setNotifications(notList)
+    })
+  }, [])
+
+  return (
+    <View style={styles.container}>
+      {
+        notifications.map((notification) => (
+          <NotificationCard key={notification.id} notification={notification} />
+        ))
+      }
+    </View>
+  )
+}
 
 export default Notifications

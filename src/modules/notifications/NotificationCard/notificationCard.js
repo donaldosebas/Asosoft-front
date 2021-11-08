@@ -65,8 +65,20 @@ const styles = StyleSheet.create({
 
 const NotificationCard = ({ notification }) => {
   const {
-    id, title, body, date, time, read, preview, association,
+    id, title, body, date, read, preview, association,
   } = notification
+
+  // function format seconds to date
+  const formatDate = (seconds) => {
+    const dateF = new Date(seconds * 1000)
+    const day = dateF.getDate()
+    const month = dateF.getMonth() + 1
+    const year = dateF.getFullYear()
+    const hours = dateF.getHours()
+    const minutes = dateF.getMinutes()
+    const secondsF = dateF.getSeconds()
+    return `${day}/${month}/${year} a las ${hours}:${minutes}:${secondsF}`
+  }
 
   return (
     <View style={[styles.container, read ? { borderColor: 'white' } : { borderColor: '#1B9CC4' }]}>
@@ -77,7 +89,7 @@ const NotificationCard = ({ notification }) => {
         <View style={styles.data}>
           <Text style={styles.title}>{title}</Text>
           <Text style={styles.body}>{body}</Text>
-          <Text style={styles.dateTime}>{`${date} a las ${time}`}</Text>
+          <Text style={styles.dateTime}>{`${formatDate(date.seconds)}`}</Text>
           { read ? null
             : (
               <Text style={[styles.dateTime, { marginBottom: 5 }]}>
@@ -93,11 +105,13 @@ const NotificationCard = ({ notification }) => {
 
 NotificationCard.propTypes = {
   notification: PropTypes.shape({
-    id: PropTypes.number.isRequired,
+    id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     body: PropTypes.string.isRequired,
-    date: PropTypes.string.isRequired,
-    time: PropTypes.string.isRequired,
+    date: PropTypes.shape({
+      nanoseconds: PropTypes.number.isRequired,
+      seconds: PropTypes.number.isRequired,
+    }).isRequired,
     read: PropTypes.bool.isRequired,
     preview: PropTypes.string,
     association: PropTypes.string.isRequired,
