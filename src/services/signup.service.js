@@ -16,3 +16,14 @@ export const createUser = async (user, name, emailr, pass) => {
   })
   return response.json()
 }
+
+export const getUsers = async (token) => {
+  const response = await fetch(`${apiUrl}api/users/`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: token,
+    },
+  })
+  return response.json()
+}
