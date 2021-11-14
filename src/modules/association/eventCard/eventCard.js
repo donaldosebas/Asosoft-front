@@ -74,14 +74,6 @@ const EventCard = ({ event, navigation }) => (
         event,
       })}
     >
-      <IconIonic
-        name="ios-notifications-outline"
-        style={[
-          // eslint-disable-next-line max-len
-          event.isSubscribed ? styles.notificationIconActive : styles.notificationIconDeactive,
-          styles.notificationIcon,
-        ]}
-      />
       <Image style={styles.image} source={{ uri: event.image }} />
       <Text style={styles.title}>{event.title}</Text>
       <Text style={styles.category}>{event.category}</Text>
