@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react'
 import {
-  View, Text, StyleSheet, Pressable,
+  View, Text, StyleSheet, Pressable, ScrollView,
 } from 'react-native'
 import PropTypes from 'prop-types'
 import IconAntDesign from 'react-native-vector-icons/AntDesign'
@@ -8,16 +8,18 @@ import CheckToggle from '../shared/inputs/checkToggle'
 import SimpleButton from '../shared/inputs/simpleButton'
 import AppContext from '../../store/StoreProvider'
 import { createUser } from '../../services/signup.service'
-import { setToken } from '../../services/login.service'
+import { authUser, setToken } from '../../services/login.service'
 import { CustomTextInput, Types } from '../shared/inputs/textInput'
 import { signupText } from '../../text/es.json'
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flexGrow: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'white',
+  },
+  containerouter: {
+    flex: 1,
   },
   inputContainer: {
     width: '70%',
@@ -56,12 +58,15 @@ const Signup = ({ navigation }) => {
   const [error, setError] = useState(undefined)
   const { dispatch } = useContext(AppContext)
 
-  const register = async () => {
+  const authorization = async () => {
     setIsLoading(true)
-    await createUser(user.username, user.name, user.email, user.password)
+    await authUser(user.username, user.password)
       .then((data) => {
         if (data.non_field_errors) setError(data.non_field_errors)
-        if (data.token) dispatch({ type: 'LOGIN', token: data.token })
+        if (data.token) {
+          dispatch({ type: 'LOGIN', token: data.token })
+          navigation.navigate('Menu')
+        }
         if (rememberMe) setToken(data.token)
       })
       .catch(() => {
@@ -70,8 +75,26 @@ const Signup = ({ navigation }) => {
       })
   }
 
+  const register = async () => {
+    setIsLoading(true)
+    await createUser(user.username, user.name, user.email, user.password)
+      .then((data) => {
+        if (data.non_field_errors) setError(data.non_field_errors)
+        if (data.token) {
+          dispatch({ type: 'LOGIN', token: data.token })
+        }
+        if (rememberMe) setToken(data.token)
+        authorization(user.username, user.name, user.email, user.password)
+      })
+      .catch(() => {
+        setError(signupText.signupError)
+        setIsLoading(false)
+      })
+  }
+
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.containerouter} contentContainerStyle={styles.container}>
+
       <Text>{signupText.signupTitle}</Text>
       <View style={styles.inputContainer}>
         <CustomTextInput
@@ -124,7 +147,7 @@ const Signup = ({ navigation }) => {
       >
         <Text style={styles.link}>{signupText.goToLogin}</Text>
       </Pressable>
-    </View>
+    </ScrollView>
   )
 }
 

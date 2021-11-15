@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import {
-  StyleSheet, View, Text, Image,
+  StyleSheet, ScrollView, Text, Image,
 } from 'react-native'
 import { fetchNewById } from '../../services/news.service'
 import { NewsMapper } from '../../utils/news.mapper'
@@ -11,8 +11,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   image: {
+    resizeMode: 'contain',
     width: '100%',
-    height: 200,
+    height: undefined,
+    aspectRatio: 1,
   },
   title: {
     fontSize: 20,
@@ -42,11 +44,11 @@ const NewsView = ({ route }) => {
   }, [])
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <Image style={styles.image} source={{ uri: news?.image }} />
       <Text style={styles.title}>{ news?.title || title }</Text>
       <Text style={styles.description}>{ news?.description }</Text>
-    </View>
+    </ScrollView>
   )
 }
 

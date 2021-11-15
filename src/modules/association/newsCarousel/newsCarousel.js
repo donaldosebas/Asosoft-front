@@ -22,6 +22,9 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   bulletsContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'center',
     position: 'absolute',
     width: '100%',
     alignItems: 'center',
