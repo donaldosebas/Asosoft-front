@@ -135,6 +135,7 @@ const Signup = ({ navigation }) => {
         </Pressable>
         <Pressable
           style={styles.optionContainer}
+          onPress={() => navigation.navigate('Terms')}
         >
           <IconAntDesign name="questioncircleo" style={styles.optionIcon} />
           <Text>{signupText.termsConditions}</Text>
