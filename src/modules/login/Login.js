@@ -57,13 +57,20 @@ const Login = ({ navigation }) => {
   const [error, setError] = useState(undefined)
   const [rememberMe, setRememberMe] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
+  const [isEnabledButton, setIsEnabledButton] = useState(false)
   const { dispatch } = useContext(AppContext)
 
   const authorization = async () => {
     setIsLoading(true)
     await authUser(user.username, user.password)
       .then((data) => {
-        if (data.non_field_errors) setError(data.non_field_errors)
+        if (data.non_field_errors) {
+          if (data.non_field_errors.includes('Unable to log in with provided credentials.')) {
+            setError('Usuario y contraseña no coinciden.')
+          } else {
+            setError(data.non_field_errors)
+          }
+        }
         if (data.token) {
           dispatch({ type: 'LOGIN', token: data.token })
           navigation.navigate('Menu')
@@ -74,6 +81,7 @@ const Login = ({ navigation }) => {
         setError(loginText.loginError)
         setIsLoading(false)
       })
+    setIsLoading(false)
   }
 
   return (
@@ -84,14 +92,28 @@ const Login = ({ navigation }) => {
           title={loginText.usernameInput}
           name="username"
           value={user.username}
-          onChangeText={(newValue) => setUser((old) => ({ ...old, username: newValue }))}
+          onChangeText={(newValue) => {
+            setUser((old) => ({ ...old, username: newValue }))
+            if (user.username.length > 0 && user.password.length > 0) {
+              setIsEnabledButton(true)
+            } else {
+              setIsEnabledButton(false)
+            }
+          }}
           type={Types.USERNAME}
         />
         <CustomTextInput
           title={loginText.passwordInput}
           name="password"
           value={user.password}
-          onChangeText={(newValue) => setUser((old) => ({ ...old, password: newValue }))}
+          onChangeText={(newValue) => {
+            setUser((old) => ({ ...old, password: newValue }))
+            if (user.username.length > 0 && user.password.length > 0) {
+              setIsEnabledButton(true)
+            } else {
+              setIsEnabledButton(false)
+            }
+          }}
           type={Types.PASSWORD}
         />
         {error && <Text style={styles.errorText}>{error}</Text>}
@@ -109,7 +131,12 @@ const Login = ({ navigation }) => {
           <Text>{loginText.forgotPassword}</Text>
         </Pressable>
       </View>
-      <SimpleButton title={loginText.action} onPress={authorization} isLoading={isLoading} />
+      <SimpleButton
+        title={loginText.action}
+        onPress={authorization}
+        isLoading={isLoading}
+        enabled={isEnabledButton}
+      />
       <Pressable
         onPress={() => navigation.navigate('Signup')}
         style={styles.linkContainer}
