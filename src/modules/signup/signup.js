@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import React, { useState, useContext } from 'react'
 import {
   View, Text, StyleSheet, Pressable, ScrollView,
@@ -56,6 +57,7 @@ const Signup = ({ navigation }) => {
   const [rememberMe, setRememberMe] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState(undefined)
+  const [isEnabledButton, setIsEnabledButton] = useState(false)
   const { dispatch } = useContext(AppContext)
 
   const authorization = async () => {
@@ -101,28 +103,58 @@ const Signup = ({ navigation }) => {
           title={signupText.usernameInput}
           name="username"
           value={user.username}
-          onChangeText={(newValue) => setUser((old) => ({ ...old, username: newValue }))}
+          onChangeText={(newValue) => {
+            setUser((old) => ({ ...old, username: newValue }))
+            // eslint-disable-next-line max-len
+            if (user.username.length > 0 && user.password.length > 0 && user.name.length > 0 && user.email.length > 0) {
+              setIsEnabledButton(true)
+            } else {
+              setIsEnabledButton(false)
+            }
+          }}
           type={Types.USERNAME}
         />
         <CustomTextInput
           title={signupText.nameInput}
           name="name"
           value={user.name}
-          onChangeText={(newValue) => setUser((old) => ({ ...old, name: newValue }))}
+          onChangeText={(newValue) => {
+            setUser((old) => ({ ...old, name: newValue }))
+            if (user.username.length > 0 && user.password.length > 0 && user.name.length > 0 && user.email.length > 0) {
+              setIsEnabledButton(true)
+            } else {
+              setIsEnabledButton(false)
+            }
+          }}
           type={Types.USERNAME}
         />
         <CustomTextInput
           title={signupText.emailInput}
           name="email"
           value={user.email}
-          onChangeText={(newValue) => setUser((old) => ({ ...old, email: newValue }))}
+          onChangeText={(newValue) => {
+            setUser((old) => ({ ...old, email: newValue }))
+            if (user.username.length > 0 && user.password.length > 0 && user.name.length > 0 && user.email.length > 0) {
+              setIsEnabledButton(true)
+            } else {
+              setIsEnabledButton(false)
+            }
+          }}
           type={Types.EMAIL}
         />
         <CustomTextInput
           title={signupText.passwordInput}
           name="password"
           value={user.password}
-          onChangeText={(newValue) => setUser((old) => ({ ...old, password: newValue }))}
+          onChangeText={(newValue) => {
+            setUser((old) => ({ ...old, password: newValue }))
+            // eslint-disable-next-line max-len
+            if (user.username.length > 0 && user.password.length > 0 && user.name.length > 0 && user.email.length > 0) {
+              setIsEnabledButton(true)
+            } else {
+              setIsEnabledButton(false)
+            }
+          }}
           type={Types.PASSWORD}
         />
         {error && <Text style={styles.errorText}>{error}</Text>}
@@ -141,7 +173,12 @@ const Signup = ({ navigation }) => {
           <Text>{signupText.termsConditions}</Text>
         </Pressable>
       </View>
-      <SimpleButton onPress={register} title={signupText.action} isLoading={isLoading} />
+      <SimpleButton
+        onPress={register}
+        title={signupText.action}
+        isLoading={isLoading}
+        enabled={isEnabledButton}
+      />
       <Pressable
         onPress={() => navigation.navigate('Login')}
         style={styles.linkContainer}
