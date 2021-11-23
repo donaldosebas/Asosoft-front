@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { StyleSheet, View } from 'react-native'
 import PropTypes from 'prop-types'
+import { useNavigation } from '@react-navigation/native'
 import Match from './match/match'
 import { fetchMatches } from '../../services/match.service'
 import { MatchesMapper } from '../../utils/events.mapper'
@@ -13,10 +14,11 @@ const styles = StyleSheet.create({
   },
 })
 
-const Matches = ({ route, navigation }) => {
+const Matches = ({ route }) => {
   const [matches, setMatches] = useState([])
 
   const { event, type } = route.params
+  const navigation = useNavigation()
 
   const getMatches = async () => {
     fetchMatches(event.id, type).then((data) => {
@@ -49,8 +51,6 @@ const Matches = ({ route, navigation }) => {
 }
 
 Matches.propTypes = {
-  // eslint-disable-next-line react/forbid-prop-types
-  navigation: PropTypes.object.isRequired,
   route: PropTypes.shape({
     params: PropTypes.shape({
       event: PropTypes.shape({

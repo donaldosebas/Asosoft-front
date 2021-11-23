@@ -1,6 +1,7 @@
 import React from 'react'
 import { StyleSheet, View, Text } from 'react-native'
 import PropTypes from 'prop-types'
+import { timeFormat } from '../../../utils/formats'
 
 const styles = StyleSheet.create({
   container: {
@@ -39,9 +40,9 @@ const MatchInfo = ({ match, showExtraInfo }) => (
     <Text style={styles.title}>Fecha:</Text>
     <Text>{match.date}</Text>
     <Text style={styles.title}>Hora:</Text>
-    <Text>{`Inicia: ${match.time}`}</Text>
+    <Text>{`Inicia: ${timeFormat(match.time)}`}</Text>
     {
-      (match.estimateEndTime) && <Text>{`Finaliza: ${match.estimateEndTime}`}</Text>
+      (match.estimateEndTime) && <Text>{`Finaliza: ${timeFormat(match.estimateEndTime)}`}</Text>
     }
     <Text style={styles.title}>Lugar:</Text>
     <Text>{match.stadium}</Text>
