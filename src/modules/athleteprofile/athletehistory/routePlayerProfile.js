@@ -5,7 +5,7 @@ import {
 import PropTypes from 'prop-types'
 import { routePlayerProfileText } from '../../../text/es.json'
 import MatchBase from '../../matchs/matchbase/matchBase'
-import { MATCH_TYPE } from '../../../utils/types'
+import { MATCHES_TYPE, MATCH_TYPE } from '../../../utils/types'
 
 const styles = StyleSheet.create({
   container: {
@@ -59,7 +59,15 @@ const RouteProfile = ({ matches, navigation }) => (
         </View>
       ))
     }
-    <Text style={styles.more}>Ver todo</Text>
+    <Text
+      style={styles.more}
+      onPress={() => navigation.navigate('Matches', {
+        event: matches[0].event,
+        type: MATCHES_TYPE.PAST,
+      })}
+    >
+      Ver todo
+    </Text>
   </View>
 )
 

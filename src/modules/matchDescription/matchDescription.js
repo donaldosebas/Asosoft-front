@@ -76,6 +76,8 @@ const MatchDescription = ({ route }) => {
         summary: [{ title: 'Bateos', data: '17' }, { title: 'Atrapadas', data: '11' }],
       }
       setMatchInfo(MatchInfoMapper(matchToMap))
+    }).catch(() => {
+      setMatchInfo(match)
     })
   }
 

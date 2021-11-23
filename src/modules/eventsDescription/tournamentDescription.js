@@ -153,7 +153,6 @@ const TournamentDescription = ({ route, navigation }) => {
                   onPress={() => navigation.navigate('Matches', {
                     event,
                     type: MATCHES_TYPE.NEXT,
-                    navigation,
                   })}
                 >
                   Ver todos
@@ -186,7 +185,6 @@ const TournamentDescription = ({ route, navigation }) => {
                 onPress={() => navigation.navigate('Matches', {
                   event,
                   type: MATCHES_TYPE.PAST,
-                  navigation,
                 })}
               >
                 Ver todos

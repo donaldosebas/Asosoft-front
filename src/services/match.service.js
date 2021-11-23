@@ -23,6 +23,7 @@ export const fetchMatch = async (id, type) => {
       Authorization: `Token ${token}`,
     },
   })
+  if (!response) return Promise.reject(new Error('No response'))
   const data = await response.json()
   return data
 }

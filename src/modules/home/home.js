@@ -23,8 +23,12 @@ const Home = ({ navigation }) => {
 
   const fetchItems = async (isMounted) => {
     if (!isMounted) return
-    setAssociations(await fetchHomeItems())
-    setAssociationsDetails(await fetchHomeItemsDetails())
+    try {
+      setAssociations(await fetchHomeItems())
+      setAssociationsDetails(await fetchHomeItemsDetails())
+    } catch (error) {
+      // console.log(error)
+    }
   }
 
   useEffect(() => {
