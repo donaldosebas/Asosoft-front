@@ -13,8 +13,9 @@ const styles = StyleSheet.create({
   },
 })
 
-const Matches = ({ route }) => {
+const Matches = ({ route, navigation }) => {
   const [matches, setMatches] = useState([])
+
   const { event, type } = route.params
 
   const getMatches = async () => {
@@ -39,7 +40,8 @@ const Matches = ({ route }) => {
     <View style={styles.container}>
       {
         matches.map((match) => (
-          <Match key={match.id} match={match} event={event} type={MatchesToMatchTypeMapper(type)} />
+          // eslint-disable-next-line max-len
+          <Match key={match.id} match={match} event={event} type={MatchesToMatchTypeMapper(type)} navigation={navigation} />
         ))
       }
     </View>
@@ -47,6 +49,8 @@ const Matches = ({ route }) => {
 }
 
 Matches.propTypes = {
+  // eslint-disable-next-line react/forbid-prop-types
+  navigation: PropTypes.object.isRequired,
   route: PropTypes.shape({
     params: PropTypes.shape({
       event: PropTypes.shape({
