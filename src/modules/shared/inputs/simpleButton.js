@@ -29,6 +29,26 @@ const styles = StyleSheet.create({
     shadowRadius: 2.22,
     elevation: 3,
   },
+  disabled: {
+    position: 'relative',
+    width: '100%',
+    backgroundColor: '#8c8c8c',
+    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    borderRadius: 5,
+    padding: 5,
+    margin: 10,
+    maxWidth: 150,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.22,
+    shadowRadius: 2.22,
+    elevation: 3,
+  },
   spinnerContainer: {
     position: 'absolute',
     display: 'flex',
@@ -44,8 +64,13 @@ const styles = StyleSheet.create({
   },
 })
 
-const SimpleButton = ({ title, onPress, isLoading }) => (
-  <TouchableOpacity onPress={onPress} style={styles.button}>
+const SimpleButton = ({
+  title, onPress, isLoading, enabled,
+}) => (
+  <TouchableOpacity
+    onPress={enabled ? onPress : () => {}}
+    style={enabled ? styles.button : styles.disabled}
+  >
     {isLoading && (
       <View style={styles.spinnerContainer}>
         <ActivityIndicator size="small" color="#ffffff" />
@@ -61,11 +86,13 @@ SimpleButton.propTypes = {
   title: PropTypes.string.isRequired,
   onPress: PropTypes.func,
   isLoading: PropTypes.bool,
+  enabled: PropTypes.bool,
 }
 
 SimpleButton.defaultProps = {
   onPress: () => {},
   isLoading: false,
+  enabled: false,
 }
 
 export default SimpleButton

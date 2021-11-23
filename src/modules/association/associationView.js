@@ -9,7 +9,7 @@ import EventCard from './eventCard/eventCard'
 import BestPlayers from '../bestPlayers/bestPlayers'
 import IsSubscribed from '../shared/issubscribe/isSubscribed'
 import { associationViewText } from '../../text/es.json'
-import { fetchAssociationEvents } from '../../services/event.service'
+import { fetchAssociationEvents, fetchEventInfoAndTeams } from '../../services/event.service'
 import { EventMapper } from '../../utils/events.mapper'
 import { EVENT_TYPE } from '../../utils/types'
 import { fetchNews } from '../../services/news.service'
@@ -45,7 +45,17 @@ const AssociationView = ({ route, navigation }) => {
       setNews(data)
     })
     fetchAssociationEvents(id, EVENT_TYPE.PAST).then((data) => {
-      setPastEvents(data.map((event) => EventMapper(event)))
+      data.forEach((event) => {
+        fetchEventInfoAndTeams(event.id).then((eventData) => {
+          const eventMapped = {
+            ...EventMapper(event),
+            // eslint-disable-next-line max-len
+            winner: eventData[0].teams.find((team) => team.id === event.tournament_winner).team_name,
+            actualJourney: -1,
+          }
+          setPastEvents((prevState) => [...prevState, eventMapped])
+        })
+      })
     })
     fetchAssociationEvents(id, EVENT_TYPE.CURRENT).then((data) => {
       setCurrentEvents(data.map((event) => EventMapper(event)))

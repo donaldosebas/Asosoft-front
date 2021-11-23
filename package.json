@@ -74,7 +74,7 @@
   "husky": {
     "hooks": {
       "pre-commit": "bash -c 'YOURPATHERE/.talisman/bin/talisman_hook_script --githook pre-commit'; npm run lint:fix",
-      "pre-push": "npm run lint:fix; npm run owasp; git restore dependency-check-reports/dependency-check-report.html"
+      "pre-push": "npm run lint:fix"
     }
   },
   "name": "Asosoft-front",
